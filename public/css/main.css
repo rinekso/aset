@@ -136,3 +136,7 @@ table thead tr th {
   margin-top: 20px;
   margin-left: 95px;
 }
+
+.text-orange {
+  color: #ff6f00;
+}
