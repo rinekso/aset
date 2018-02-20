@@ -32,17 +32,6 @@
                     <div class="col-md-12">
                         <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Responsive Hover Table</h3>
-
-                            <div class="box-tools">
-                                <div class="input-group input-group-sm" style="width: 150px;">
-                                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-
-                                    <div class="input-group-btn">
-                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body table-responsive no-padding">
@@ -79,8 +68,34 @@
                                   <td>{{$data->id_kategori}}</td>
                                   <td>{{$data->no_spk}}</td>
                                   <td>{{$data->keterangan}}</td>
-                                  <td>{{$data->status_unit}}</td>
-                                  <td>{{$data->status_bidang}}</td>
+                                  <!-- <td>{{$data->status_unit}}</td>
+                                  <td>{{$data->status_bidang}}</td> -->
+                                  <!-- status unit -->
+                                @if($data->status_unit == 0)
+                                  <td class="text-orange text-bold">Belum dikonfirmasi
+                                  </td>
+                                @elseif($data->status_unit == 1)
+                                  <td class="text-success text-bold">Diterima
+                                  </td>
+                                @elseif($data->status_unit == 2)
+                                  <td class="text-danger text-bold">Ditolak
+                                  </td>
+                                @endif
+                                <!-- end status unit -->
+
+                                <!-- status bidang -->
+
+                                @if($data->status_bidang == 0)
+                                  <td class="text-orange text-bold">Belum dikonfirmasi
+                                  </td>
+                                @elseif($data->status_bidang == 1)
+                                  <td class="text-success text-bold">Diterima
+                                  </td>
+                                @elseif($data->status_bidang == 2)
+                                  <td class="text-danger text-bold">Ditolak
+                                  </td>
+                                @endif
+                                <!-- end status bidang -->
                                   <td>{{$data->id_user}}</td>
                                   <td>
                                     <a href="{{url('/unit/approve/'.$data->id)}}">

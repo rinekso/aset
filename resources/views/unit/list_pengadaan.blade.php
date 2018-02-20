@@ -53,7 +53,7 @@
 
                                             <th>Status Bidang</th>
 
-                                            <th>Pengaju</th>
+                                            <th>Pengajus</th>
 
                                             <!-- <th>Action</th> -->
 

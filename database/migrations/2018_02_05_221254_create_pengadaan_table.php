@@ -24,6 +24,7 @@ class CreatePengadaanTable extends Migration
             $table->string('no_spk');
             $table->integer('status_unit');
             $table->integer('status_bidang');
+            $table->integer('id_user');
             $table->timestamps();
         });
     }
