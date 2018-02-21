@@ -51,6 +51,7 @@ class RegisterController extends Controller
         $data['terms'] = empty($data['terms']) ? 0 : 1;
 
         return Validator::make($data, [
+            'role' => 'required',
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
@@ -69,6 +70,7 @@ class RegisterController extends Controller
         $data['is_subscribed'] = empty($data['is_subscribed']) ? 0 : 1;
 
         return User::create([
+            'id' => $data['id'],
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),

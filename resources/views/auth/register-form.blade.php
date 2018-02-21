@@ -3,6 +3,32 @@
 
       {{ csrf_field() }}
 
+    <!-- id pegawai input -->
+
+    <div class="form-group has-feedback{{ $errors->has('id') ? ' has-error' : '' }}">
+
+        <input id="id"
+               name="id"
+               type="text"
+               class="form-control"
+               value="{{ old('id') }}"
+               placeholder="ID Pegawai"
+               required autofocus>
+
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+
+        @if ($errors->has('id'))
+
+            <span class="help-block">
+                <strong>{{ $errors->first('id') }}</strong>
+            </span>
+
+        @endif
+
+    </div>
+
+    <!-- id pegawai input -->
+
     <!-- name input -->
 
     <div class="form-group has-feedback{{ $errors->has('name') ? ' has-error' : '' }}">
