@@ -4,8 +4,6 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Pengadaan;
-use App\Role;
 
 class User extends Authenticatable
 {
@@ -30,10 +28,10 @@ class User extends Authenticatable
     ];
 
     public function pengadaan(){
-        return $this->hasMany('Pengadaan');
+        return $this->hasMany(Pengadaan::class);
     }
 
     public function role(){
-        return $this->hasMany('App\Role');
+        return $this->hasMany(Role::class);
     }
 }

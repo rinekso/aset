@@ -42,7 +42,7 @@
 
                     <div class="login-logo">
 
-                        <a href="/"><b>Admin</b>DASH</a>
+                        <a href="/"><b>Assets</b>Management</a>
 
                     </div>
 
@@ -59,7 +59,7 @@
                         <!-- end login form -->
                         <!-- password reset and register links -->
 
-                        <a href="{{ url('/password/reset') }}">I forgot my password</a><br>
+                        {{-- <a href="{{ url('/password/reset') }}">I forgot my password</a><br> --}}
                         <a href="/register" class="text-center">Register a new membership</a>
 
                     </div>

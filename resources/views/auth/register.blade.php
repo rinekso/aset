@@ -41,7 +41,7 @@
 
                     <div class="register-logo">
 
-                        <a href="/"><b>Admin</b>DASH</a>
+                        <a href="/"><b>Assets</b>Management</a>
 
                     </div>
 
