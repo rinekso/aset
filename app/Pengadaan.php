@@ -3,22 +3,20 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\User;
-use App\Kategori;
 
 class Pengadaan extends Model
 {
     protected $table = 'pengadaan';
     protected $fillable = [
-        'nama', 'jumlah', 'harga_satuan', 'total', 'id_kategori', 'keterangan', 'no_spk', 'status_unit', 'status_bidang', 'id_user',
+        'nama', 'jumlah', 'harga_satuan', 'total', 'kategori_id', 'keterangan', 'no_spk', 'status_unit', 'status_bidang', 'user_id',
     ];
 
     public function user(){
-    	return $this->belongsTo('User');
+    	return $this->belongsTo(User::class);
     }
 
     public function kategori(){
-    	return $this->belongsTo('Kategori');
+    	return $this->belongsTo(Kategori::class);
     }
 
 }

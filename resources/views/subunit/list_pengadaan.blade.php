@@ -58,7 +58,7 @@
                                   <td>{{$data->jumlah}}</td>
                                   <td>{{$data->harga_satuan}}</td>
                                   <td>{{$data->total}}</td>
-                                  <td>{{$data->id_kategori}}</td>
+                                  <td>{{$data->kategori->nama_kategori}}</td>
                                   <td>{{$data->no_spk}}</td>
                                   <td>{{$data->keterangan}}</td>
                                   <!-- status unit -->

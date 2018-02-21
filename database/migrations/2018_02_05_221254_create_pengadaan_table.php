@@ -19,12 +19,12 @@ class CreatePengadaanTable extends Migration
             $table->double('jumlah');
             $table->double('harga_satuan');
             $table->double('total');
-            $table->integer('id_kategori');
+            $table->integer('kategori_id')->unsigned();
             $table->text('keterangan');
             $table->string('no_spk');
             $table->integer('status_unit');
             $table->integer('status_bidang');
-            $table->integer('id_user');
+            $table->string('user_id');
             $table->timestamps();
         });
     }

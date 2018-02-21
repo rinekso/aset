@@ -71,7 +71,7 @@
                                   <td>{{$data->jumlah}}</td>
                                   <td>{{$data->harga_satuan}}</td>
                                   <td>{{$data->total}}</td>
-                                  <td>{{$data->id_kategori}}</td>
+                                  <td>{{$data->kategori->nama_kategori}}</td>
                                   <td>{{$data->no_spk}}</td>
                                   <td>{{$data->keterangan}}</td>
                                   <!-- <td>{{$data->status_unit}}</td>
@@ -103,7 +103,7 @@
                                 @endif
                                 <!-- end status bidang -->
 
-                                  <td>{{$data->id_user}}</td>
+                                  <td>{{$data->user->name}}</td>
                                   <td>
                                     <a href="{{url('/bidang/approve/'.$data->id)}}">
                                         <button class="btn btn-success btn-xs">

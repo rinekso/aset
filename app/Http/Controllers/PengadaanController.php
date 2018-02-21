@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Pengadaan;
+use App\Kategori;
 
 class PengadaanController extends Controller
 {
@@ -17,7 +18,9 @@ class PengadaanController extends Controller
      */
     public function index()
     {
-        return view('pages/pengadaan');
+        $kategori = Kategori::all();
+
+        return view('pages/pengadaan', compact('kategori'));
     }
 
     /**
@@ -42,7 +45,8 @@ class PengadaanController extends Controller
                 'nama' => 'required',
                 'jumlah' => 'required',
                 'harga_satuan' => 'required',
-                'id_kategori' => 'required',
+                // 'total' => 'required',
+                'kategori_id' => 'required',
                 'no_spk' => 'required',
                 'keterangan' => 'required',
             ]);
@@ -51,13 +55,13 @@ class PengadaanController extends Controller
             'nama' => $request->nama,
             'jumlah' => $request->jumlah,
             'harga_satuan' => $request->harga_satuan,
-            'total' => $request->harga_satuan,
-            'id_kategori' => $request->id_kategori,
+            'total' => $request->jumlah * $request->harga_satuan,
+            'kategori_id' => $request->kategori_id,
             'no_spk' => $request->no_spk,
             'keterangan' => $request->keterangan,
             'status_unit' => '0',
             'status_bidang' => '0',
-            'id_user' => Auth::user()->id,
+            'user_id' => Auth::user()->id,
         ]);
 
         Session::flash('flash_message', 'Data Berhasil Disimpan');

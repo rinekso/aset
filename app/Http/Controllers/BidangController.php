@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Datatables;
 use App\Pengadaan;
+use App\User;
 
 class BidangController extends Controller
 {

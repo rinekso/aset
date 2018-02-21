@@ -58,17 +58,17 @@
                             <div class="box-body">
                                 <div class="form-group">
                                     <label>Nama Barang</label>
-                                    <input type="text" class="form-control" placeholder="Misal: Flashdisk Toshiba 8GB" name="nama">
+                                    <input type="text" class="form-control" placeholder="Misal: Flashdisk Toshiba 8GB" name="nama" value="{{ old('nama') }}">
                                 </div>
                                 <div class="form-group">
                                     <label>Jumlah</label>
-                                    <input type="number" class="form-control" id="jumlah" name="jumlah" placeholder="Misal: 8" onkeyup="sum();">
+                                    <input type="number" class="form-control" id="jumlah" name="jumlah" placeholder="Misal: 8" onkeyup="sum();" value="{{ old('jumlah') }}">
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Harga Satuan (Rp)</label>
-                                            <input type="number" class="form-control" id="harga_satuan" name="harga_satuan" placeholder="Harga Satuan" onkeyup="sum();">
+                                            <input type="number" class="form-control" id="harga_satuan" name="harga_satuan" placeholder="Harga Satuan" onkeyup="sum();" value="{{ old('harga_satuan') }}">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -80,20 +80,20 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Kategori</label>
-                                    <select class="form-control" name="id_kategori">
+                                    <select class="form-control" name="kategori_id">
                                         <option value="">--pilih salah satu--</option>
-                                        <option value="1">ATK</option>
-                                        <option value="2">Mesin</option>
-                                        <option value="3">Tanah</option>
+                                    @foreach($kategori as $key => $data)
+                                        <option value="{{$data->id}}">{{$data->nama_kategori}}</option>
+                                    @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label>Nomor SPK</label>
-                                    <input type="text" name="no_spk" class="form-control" placeholder="Masukkan Nomor SPK">
+                                    <input type="text" name="no_spk" class="form-control" placeholder="Masukkan Nomor SPK" value="{{ old('no_spk') }}">
                                 </div>
                                 <div class="form-group">
                                     <label>Keterangan</label>
-                                    <textarea class="form-control" placeholder="Keteranagan" name="keterangan"></textarea>
+                                    <textarea class="form-control" placeholder="Keteranagan" name="keterangan">{{ old('keterangan') }}</textarea>
                                 </div>
                             </div>
                             <!-- /.box-body -->

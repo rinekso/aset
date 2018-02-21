@@ -20,7 +20,7 @@ class SubUnitController extends Controller
     }
 
     public function listPengadaan(){
-        $pengadaan = Pengadaan::where('id_user', Auth::user()->id)->get();
+        $pengadaan = Pengadaan::where('user_id', Auth::user()->id)->get();
     	return view('subunit.list_pengadaan', compact('pengadaan'));
     }
 }
