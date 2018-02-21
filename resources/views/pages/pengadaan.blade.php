@@ -62,19 +62,19 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Jumlah</label>
-                                    <input type="number" class="form-control" name="jumlah" placeholder="Misal: 8">
+                                    <input type="number" class="form-control" id="jumlah" name="jumlah" placeholder="Misal: 8" onkeyup="sum();">
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Harga Satuan (Rp)</label>
-                                            <input type="number" class="form-control" name="harga_satuan" placeholder="Harga Satuan">
+                                            <input type="number" class="form-control" id="harga_satuan" name="harga_satuan" placeholder="Harga Satuan" onkeyup="sum();">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Total (Rp)</label>
-                                            <input type="number" disabled class="form-control" name="total" placeholder="Total" value="100000">
+                                            <input type="number" disabled class="form-control" id="total" name="total" placeholder="Total">
                                         </div>
                                     </div>
                                 </div>
@@ -122,3 +122,23 @@
 @endsection
 
 
+@section('scripts')
+
+    <script>
+        function sum(){
+            var jum = document.getElementById('jumlah').value;
+            var harga = document.getElementById('harga_satuan').value;
+            if (jum == "")
+                jum = 0;
+            if (harga == "")
+                harga = 0;
+
+            var result = parseInt(jum) * parseInt(harga);
+            if (!isNaN(result)) {
+                document.getElementById('total').value = result;
+           }
+        }
+    </script>
+
+
+@endsection
