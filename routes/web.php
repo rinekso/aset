@@ -17,6 +17,11 @@ Route::get('/', 'SubUnitController@index');
 
 Auth::routes();
 
+Route::get('/logout', function(){
+    Auth::logout();
+    return redirect('/');
+});
+
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/pengadaan', 'PengadaanController@index');
     Route::post('/storePengadaan', 'PengadaanController@store');

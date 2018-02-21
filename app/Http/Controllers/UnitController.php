@@ -23,7 +23,7 @@ class UnitController extends Controller
     }
     public function listPengadaan(){
     	$pengadaan = Pengadaan::all();
-    	return view('unit.list_pengadaan2', compact('pengadaan'));
+    	return view('unit.list_pengadaan', compact('pengadaan'));
     }
 
 	public function getDataPengadaan(){
