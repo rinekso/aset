@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Atk;
 
 class BarangController extends Controller
 {
     public function index(){
-    	return view('pages.list_barang');
+    	$atk = Atk::all();
+    	return view('pages.list_barang', compact('atk'));
     }
 }
