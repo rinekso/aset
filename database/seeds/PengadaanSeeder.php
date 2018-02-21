@@ -25,6 +25,18 @@ class PengadaanSeeder extends Seeder
         	 	'status_bidang' => '0', 
         	 	'user_id' => '111',
         	],
+            [
+                'nama' => 'Penggaris Besi KENKO',
+                'jumlah' => '9', 
+                'harga_satuan' => '25000', 
+                'total' => '225000',
+                'kategori_id' => '1', 
+                'keterangan' => 'keperluan kantor baru', 
+                'no_spk' => '12345ad', 
+                'status_unit' => '0', 
+                'status_bidang' => '0', 
+                'user_id' => '444',
+            ],
         ]);
     }
 }
