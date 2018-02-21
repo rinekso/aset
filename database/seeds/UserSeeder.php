@@ -34,6 +34,13 @@ class UserSeeder extends Seeder
         		'password' => \Hash::make('123456'),
         		'role' => '3',
         	],
+            [
+                'id' => '444',
+                'name' => 'Bambang Sub',
+                'email' => 'bambang@gmail.com',
+                'password' => \Hash::make('123456'),
+                'role' => '1',
+            ],
         ]);
     }
 }
