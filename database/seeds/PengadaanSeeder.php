@@ -21,8 +21,8 @@ class PengadaanSeeder extends Seeder
         	 	'kategori_id' => '1', 
         	 	'keterangan' => 'keperluan pencetakan laporan', 
         	 	'no_spk' => '12345', 
-        	 	'status_unit' => '0', 
-        	 	'status_bidang' => '0', 
+        	 	'status_unit' => '1', 
+        	 	'status_bidang' => '1', 
         	 	'user_id' => '111',
         	],
             [
@@ -36,6 +36,18 @@ class PengadaanSeeder extends Seeder
                 'status_unit' => '0', 
                 'status_bidang' => '0', 
                 'user_id' => '444',
+            ],
+            [
+                'nama' => 'Flashdisk Toshiba 8GB',
+                'jumlah' => '8', 
+                'harga_satuan' => '79000', 
+                'total' => '632000',
+                'kategori_id' => '2', 
+                'keterangan' => 'keperluan karyawan baru', 
+                'no_spk' => '12345', 
+                'status_unit' => '1', 
+                'status_bidang' => '0', 
+                'user_id' => '111',
             ],
         ]);
     }

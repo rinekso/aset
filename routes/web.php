@@ -26,6 +26,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/pengadaan', 'PengadaanController@index');
     Route::post('/storePengadaan', 'PengadaanController@store');
 
+    Route::get('/listBarang', 'BarangController@index');
+
     /**
      * Route untuk subunit
      */
@@ -34,6 +36,9 @@ Route::group(['middleware' => ['auth']], function () {
     	Route::get('/home', 'SubUnitController@index');
 		Route::get('/', 'SubUnitController@index');
         Route::get('/listPengadaan', 'SubUnitController@listPengadaan');
+        Route::get('/inputBarang', 'SubUnitController@inputBarang');
+        Route::get('/formInputBarang/{id}', 'SubUnitController@formInputBarang')->name('.formInputBarang');
+        Route::post('/storeBarang', 'SubUnitController@storeBarang');
     });
 
 	/**
