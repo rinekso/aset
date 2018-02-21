@@ -30,6 +30,8 @@
                 <a href="/">
                     <i class="fa fa-archive"></i>
                     <span>Barang</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
                     </span>
                     <ul class="treeview-menu">
                         <li><a href="/listBarang">List Barang</a></li>

@@ -1,7 +1,7 @@
 @extends('subunit.layouts.master-auth')
 
 @section('title')
-    <title>Input Barang ATK</title>
+    <title>Input Barang Elektronika</title>
 @endsection
 
 @section('content')
