@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Session;
 use App\Pengadaan;
 use App\ATK;
 use App\Elektronika;
+use App\Mesin;
+use App\Tanah;
 
 class SubUnitController extends Controller
 {
@@ -44,7 +46,7 @@ class SubUnitController extends Controller
         if ($kategori == 1) {
             return view('subunit.barang.input_atk', compact('pengadaan'));
         } elseif ($kategori == 2) {
-            return view('subunit.barang.input_eletro', compact('pengadaan'));
+            return view('subunit.barang.input_elektro', compact('pengadaan'));
         } elseif ($kategori == 3) {
             return view('subunit.barang.input_mesin', compact('pengadaan'));
         } elseif ($kategori == 4) {
@@ -63,21 +65,81 @@ class SubUnitController extends Controller
                     'satuan' => 'required',
                     'jenis_barang' => 'required',
                 ]);
+            ATK::create([
+                'kode_barang' => $request->kode_barang,
+                'nama_barang' => $request->nama_barang,
+                'merk' => $request->merk,
+                'jumlah' => $request->jumlah,
+                'satuan' => $request->satuan,
+                'harga_satuan' => $request->harga_satuan,
+                'total' => $request->total,
+                'jenis_barang' => $request->jenis_barang,
+                'keterangan' => $request->keterangan,
+                'stok' => $request->jumlah,
+            ]);
+        } elseif ($request->kategori_id == 2) {
+            
+            $this->validate($request, [
+                    'kode_barang' => 'required',
+                    'merk' => 'required',
+                    'spesifikasi' => 'required',
+                    'no_seri' => 'required',
+                    'satuan' => 'required',
+                    'jenis_barang' => 'required',
+                ]);
+            Elektronika::create([
+                'kode_barang' => $request->kode_barang,
+                'nama_barang' => $request->nama_barang,
+                'merk' => $request->merk,
+                'spesifikasi' => $request->spesifikasi,
+                'no_seri' => $request->no_seri,
+                'jumlah' => $request->jumlah,
+                'satuan' => $request->satuan,
+                'harga_satuan' => $request->harga_satuan,
+                'total' => $request->total,
+                'jenis_barang' => $request->jenis_barang,
+                'keterangan' => $request->keterangan,
+                'stok' => $request->jumlah,
+            ]);
+
+        } elseif ($request->kategori_id == 3) {
+            
+            $this->validate($request, [
+                    'kode_barang' => 'required',
+                    'merk' => 'required',
+                    'type' => 'required',
+                    'ukuran' => 'required',
+                    'bahan' => 'required',
+                    'no_pabrik' => 'required',
+                    'no_rangka' => 'required',
+                    'no_mesin' => 'required',
+                    'lokasi' => 'required',
+                ]);
+            Mesin::create([
+                'kode_barang' => $request->kode_barang,
+                'nama_barang' => $request->nama_barang,
+                'merk' => $request->merk,
+                'type' => $request->type,
+                'ukuran' => $request->ukuran,
+                'bahan' => $request->bahan,
+                'no_pabrik' => $request->no_pabrik,
+                'no_rangka' => $request->no_rangka,
+                'no_mesin' => $request->no_mesin,
+                'jumlah' => $request->jumlah,
+                'harga_satuan' => $request->harga_satuan,
+                'total' => $request->total,
+                'lokasi' => $request->lokasi,
+                'keterangan' => $request->keterangan,
+            ]);
+
+
+        } elseif ($request->kategori_id == 4) {
+            # code...
+        } elseif ($request->kategori_id == 5) {
+            # code...
         }
 
 
-        ATK::create([
-            'kode_barang' => $request->kode_barang,
-            'nama_barang' => $request->nama_barang,
-            'merk' => $request->merk,
-            'jumlah' => $request->jumlah,
-            'satuan' => $request->satuan,
-            'harga_satuan' => $request->harga_satuan,
-            'total' => $request->total,
-            'jenis_barang' => $request->jenis_barang,
-            'keterangan' => $request->keterangan,
-            'stok' => $request->jumlah,
-        ]);
 
         Pengadaan::find($request->id)
             ->update([

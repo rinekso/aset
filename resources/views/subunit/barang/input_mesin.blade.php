@@ -1,7 +1,7 @@
-    @extends('subunit.layouts.master-auth')
+@extends('subunit.layouts.master-auth')
 
 @section('title')
-    <title>Input Barang Elektronika</title>
+    <title>Input Barang Mesin</title>
 @endsection
 
 @section('content')
@@ -33,7 +33,7 @@
             <section class="content-header">
 
                 <h1>
-                    Input Barang <b>Elektronika</b>
+                    Input Barang <b>Mesin</b>
                 </h1>
 
             </section>  
@@ -57,24 +57,51 @@
                             <div class="box-body">
                                 <div class="form-group">
                                     <label>Kode Barang</label>
-                                    <input type="text" class="form-control" name="kode_barang" value="">
+                                    <input type="text" class="form-control" name="kode_barang" value="{{ old('kode_barang') }}">
                                 </div>
-
                                 <div class="form-group">
                                     <label>Nama Barang</label>
                                     <input type="text" class="form-control" name="nama_barang" value="{{ $pengadaan->nama }}" readonly>
                                 </div>
-                                <div class="form-group">
-                                    <label>Merk</label>
-                                    <input type="text" class="form-control" name="merk" value="{{ old('merk') }}">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Merk</label>
+                                            <input type="text" class="form-control" name="merk" value="{{ old('merk') }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Type</label>
+                                            <input type="text" class="form-control" name="type" value="{{ old('type') }}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Ukuran</label>
+                                            <input type="text" class="form-control" name="ukuran" value="{{ old('ukuran') }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Bahan</label>
+                                            <input type="text" class="form-control" name="bahan" value="{{ old('bahan') }}">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Spesifikasi</label>
-                                    <input type="text" class="form-control" name="spesifikasi" value="{{ old('spesifikasi') }}">
+                                    <label>Nomor Pabrik</label>
+                                    <input type="text" class="form-control" name="no_pabrik" value="{{ old('no_pabrik') }}">
                                 </div>
                                 <div class="form-group">
-                                    <label>Nomor Seri</label>
-                                    <input type="text" class="form-control" name="no_seri" value="{{ old('no_seri') }}">
+                                    <label>Nomor Rangka</label>
+                                    <input type="text" class="form-control" name="no_rangka" value="{{ old('no_rangka') }}">
+                                </div>
+                                <div class="form-group">
+                                    <label>Nomor Mesin</label>
+                                    <input type="text" class="form-control" name="no_mesin" value="{{ old('no_mesin') }}">
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
@@ -84,10 +111,6 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Satuan</label>
-                                            <input type="text" class="form-control" placeholder="Misal: buah" name="satuan" value="{{ old('satuan') }}">
-                                        </div>
                                     </div>
                                     
                                 </div>
@@ -106,16 +129,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Jenis Barang</label>
-                                    <select class="form-control" name="jenis_barang">
-                                        <option value="">--pilih salah satu--</option>
-                                        <option value="aset">Aset</option>
-                                        <option value="barang_habis">Barang Habis</option>
-                                    </select>
+                                    <label>Lokasi</label>
+                                    <input type="text" class="form-control" placeholder="Isi dengan lokasi penempatan" name="lokasi" value="{{ old('lokasi') }}">
                                 </div>
                                 <div class="form-group">
                                     <label>Keterangan</label>
-                                    <textarea class="form-control" placeholder="Keteranagan" name="keterangan" readonly>{{ $pengadaan->keterangan }}</textarea>
+                                    <textarea class="form-control" name="keterangan" readonly>{{ $pengadaan->keterangan }}</textarea>
                                 </div>
 
                                 <input type="text" name="kategori_id" value="{{$pengadaan->kategori_id}}" hidden="">

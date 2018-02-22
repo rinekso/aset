@@ -49,43 +49,200 @@
                                 <div class="tab-content">
                                     <div class="tab-pane fade in active" id="tabatk">
                                         <table class="table table-hover">
-                                <tr>
-                                    <th>Kode Barang</th>
+                                            <tr>
+                                                <th>Kode Barang</th>
 
-                                    <th>Nama Barang</th>
+                                                <th>Nama Barang</th>
 
-                                    <th>Merk</th>
+                                                <th>Merk</th>
 
-                                    <th>Stok</th>
+                                                <th>Stok</th>
 
-                                    <th>Satuan</th>
+                                                <th>Satuan</th>
 
-                                    <th>Keterangan</th>
+                                                <th>Keterangan</th>
 
-                                    <th>Jenis Barang</th>
+                                                <th>Jenis Barang</th>
 
-                                    <th>Terakhir Dirubah</th>
+                                                <th>Terakhir Dirubah</th>
 
-                                </tr>
+                                            </tr>
 
-                            @foreach($atk as $key => $data)
-                                <tr>
-                                    <td>{{$data->kode_barang}}</td>
-                                    <td>{{$data->nama_barang}}</td>
-                                    <td>{{$data->merk}}</td>
-                                    <td>{{$data->stok}}</td>
-                                    <td>{{$data->satuan}}</td>
-                                    <td>{{$data->keterangan}}</td>
-                                    <td>{{$data->jenis_barang}}</td>
-                                    <td>{{$data->updated_at}}</td>
-                                </tr>
-                            @endforeach
-                            </table>
+                                        @foreach($atk as $key => $data)
+                                            <tr>
+                                                <td>{{$data->kode_barang}}</td>
+                                                <td>{{$data->nama_barang}}</td>
+                                                <td>{{$data->merk}}</td>
+                                                <td>{{$data->stok}}</td>
+                                                <td>{{$data->satuan}}</td>
+                                                <td>{{$data->keterangan}}</td>
+                                                <td>{{$data->jenis_barang}}</td>
+                                                <td>{{$data->updated_at}}</td>
+                                            </tr>
+                                        @endforeach
+                                        </table>
                                     </div>
-                                    <div class="tab-pane fade" id="tabelektronika">Primary 2</div>
-                                    <div class="tab-pane fade" id="tabmesin">Primary 3</div>
-                                    <div class="tab-pane fade" id="tabmeuble">Primary 4</div>
-                                    <div class="tab-pane fade" id="tabtanah">Primary 5</div>
+                                    <div class="tab-pane fade" id="tabelektronika">
+                                        <table class="table table-hover">
+                                            <tr>
+                                                <th>Kode Barang</th>
+
+                                                <th>Nama Barang</th>
+
+                                                <th>Merk</th>
+
+                                                <th>Spesifikasi</th>
+                                                
+                                                <th>No Seri</th>
+
+                                                <th>Stok</th>
+
+                                                <th>Keterangan</th>
+
+                                                <th>Jenis Barang</th>
+
+                                                <th>Terakhir Dirubah</th>
+
+                                            </tr>
+
+                                        @foreach($elektro as $key => $data)
+                                            <tr>
+                                                <td>{{$data->kode_barang}}</td>
+                                                <td>{{$data->nama_barang}}</td>
+                                                <td>{{$data->merk}}</td>
+                                                <td>{{$data->spesifikasi}}</td>
+                                                <td>{{$data->no_seri}}</td>
+                                                <td>{{$data->stok}}</td>
+                                                <td>{{$data->keterangan}}</td>
+                                                <td>{{$data->jenis_barang}}</td>
+                                                <td>{{$data->updated_at}}</td>
+                                            </tr>
+                                        @endforeach
+                                        </table>
+                                    </div>
+                                    <div class="tab-pane fade" id="tabmesin">
+                                        <table class="table table-hover">
+                                            <tr>
+                                                <th>Kode Barang</th>
+
+                                                <th>Nama Barang</th>
+
+                                                <th>Merk</th>
+
+                                                <th>Tipe</th>
+                                                
+                                                <th>Ukuran</th>
+
+                                                <th>No Pabrik</th>
+
+                                                <th>No Rangka</th>
+
+                                                <th>No Mesin</th>
+
+                                                <th>Jumlah</th>                                                
+
+                                                <th>Keterangan</th>
+
+                                                <th>Lokasi</th>
+
+                                                <th>Terakhir Dirubah</th>
+
+                                            </tr>
+
+                                        @foreach($mesin as $key => $data)
+                                            <tr>
+                                                <td>{{$data->kode_barang}}</td>
+                                                <td>{{$data->nama_barang}}</td>
+                                                <td>{{$data->merk}}</td>
+                                                <td>{{$data->tipe}}</td>
+                                                <td>{{$data->ukuran}}</td>
+                                                <td>{{$data->no_pabrik}}</td>
+                                                <td>{{$data->no_rangka}}</td>
+                                                <td>{{$data->no_mesin}}</td>
+                                                <td>{{$data->jumlah}}</td>
+                                                <td>{{$data->keterangan}}</td>
+                                                <td>{{$data->lokasi}}</td>
+                                                <td>{{$data->updated_at}}</td>
+                                            </tr>
+                                        @endforeach
+                                        </table>
+                                    </div>
+                                    <div class="tab-pane fade" id="tabmeuble">
+                                        <table class="table table-hover">
+                                            <tr>
+                                                <th>Kode Barang</th>
+
+                                                <th>Nama Barang</th>
+
+                                                <th>Merk</th>
+
+                                                <th>Tipe</th>
+                                                
+                                                <th>Ukuran</th>
+
+                                                <th>Jumlah</th>                                                
+
+                                                <th>Keterangan</th>
+
+                                                <th>Lokasi</th>
+
+                                                <th>Terakhir Dirubah</th>
+
+                                            </tr>
+
+                                        @foreach($meuble as $key => $data)
+                                            <tr>
+                                                <td>{{$data->kode_barang}}</td>
+                                                <td>{{$data->nama_barang}}</td>
+                                                <td>{{$data->merk}}</td>
+                                                <td>{{$data->tipe}}</td>
+                                                <td>{{$data->ukuran}}</td>
+                                                <td>{{$data->jumlah}}</td>
+                                                <td>{{$data->keterangan}}</td>
+                                                <td>{{$data->lokasi}}</td>
+                                                <td>{{$data->updated_at}}</td>
+                                            </tr>
+                                        @endforeach
+                                        </table>
+                                    </div>
+                                    <div class="tab-pane fade" id="tabtanah">
+                                        <table class="table table-hover">
+                                            <tr>
+                                                <th>Kode Barang</th>
+
+                                                <th>Nama Barang</th>
+
+                                                <th>No Sertifikat</th>
+
+                                                <th>Tipe</th>
+                                                
+                                                <th>Ukuran</th>
+
+                                                <th>Satuan</th>                                             
+
+                                                <th>Lokasi</th>
+
+                                                <th>Keterangan</th>
+
+                                                <th>Terakhir Dirubah</th>
+
+                                            </tr>
+
+                                        @foreach($tanah as $key => $data)
+                                            <tr>
+                                                <td>{{$data->kode_barang}}</td>
+                                                <td>{{$data->nama_barang}}</td>
+                                                <td>{{$data->no_sertifikat}}</td>
+                                                <td>{{$data->tipe}}</td>
+                                                <td>{{$data->ukuran}}</td>
+                                                <td>{{$data->satuan}}</td>
+                                                <td>{{$data->lokasi}}</td>
+                                                <td>{{$data->keterangan}}</td>
+                                                <td>{{$data->updated_at}}</td>
+                                            </tr>
+                                        @endforeach
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>

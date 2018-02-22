@@ -6,6 +6,8 @@
 
     @yield('meta')
 
+    @yield('title')
+
     @include('layouts.auth-partials.css')
 
     @yield('css')
