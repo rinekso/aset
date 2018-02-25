@@ -98,56 +98,41 @@ class SubUnitController extends Controller
             
             $this->validate($request, [
                     'kode_barang' => 'required',
+                    'nama_barang' => 'required',
+                    'no_reg' => 'required',
                     'merk' => 'required',
-                    'spesifikasi' => 'required',
-                    'no_seri' => 'required',
-                    'satuan' => 'required',
-                    'jenis_barang' => 'required',
-                ]);
-            Elektronika::create([
-                'kode_barang' => $request->kode_barang,
-                'nama_barang' => $request->nama_barang,
-                'merk' => $request->merk,
-                'spesifikasi' => $request->spesifikasi,
-                'no_seri' => $request->no_seri,
-                'jumlah' => $request->jumlah,
-                'satuan' => $request->satuan,
-                'harga_satuan' => $request->harga_satuan,
-                'total' => $request->total,
-                'jenis_barang' => $request->jenis_barang,
-                'keterangan' => $request->keterangan,
-                'stok' => $request->jumlah,
-            ]);
-
-        } elseif ($request->kategori_id == 3) {
-            
-            $this->validate($request, [
-                    'kode_barang' => 'required',
-                    'merk' => 'required',
-                    'type' => 'required',
-                    'ukuran' => 'required',
+                    'ukuran' => 'required',    
                     'bahan' => 'required',
-                    'no_pabrik' => 'required',
-                    'no_rangka' => 'required',
-                    'no_mesin' => 'required',
-                    'lokasi' => 'required',
+                    'tahun_pembelian' => 'required',
+                    'asalusul' => 'required',
+                    'jumlah' => 'required',
+                    'harga_satuan' => 'required',
+                    'total' => 'required',
                 ]);
             Mesin::create([
                 'kode_barang' => $request->kode_barang,
                 'nama_barang' => $request->nama_barang,
+                'no_reg' => $request->no_reg,
                 'merk' => $request->merk,
-                'type' => $request->type,
                 'ukuran' => $request->ukuran,
                 'bahan' => $request->bahan,
+                'tahun_pembelian' => $request->tahun_pembelian,
                 'no_pabrik' => $request->no_pabrik,
-                'no_rangka' => $request->no_rangka,
                 'no_mesin' => $request->no_mesin,
+                'no_rangka' => $request->no_rangka,
+                'no_polisi' => $request->no_polisi,
+                'no_bpkb' => $request->no_bpkb,
+                'asalusul' => $request->asalusul,
                 'jumlah' => $request->jumlah,
                 'harga_satuan' => $request->harga_satuan,
                 'total' => $request->total,
-                'lokasi' => $request->lokasi,
                 'keterangan' => $request->keterangan,
+                'user_id' => Auth::user()->id,
             ]);
+
+        } elseif ($request->kategori_id == 3) {
+            
+            
 
 
         } elseif ($request->kategori_id == 4) {

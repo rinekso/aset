@@ -44,7 +44,7 @@
 
                                     <th>Kategori</th>
 
-                                    <th>Nomor SPK</th>
+                                    <th>Nomor BST</th>
 
                                     <th>Keterangan</th>
 
@@ -59,7 +59,7 @@
                                   <td>{{$data->harga_satuan}}</td>
                                   <td>{{$data->total}}</td>
                                   <td>{{$data->kategori->nama_kategori}}</td>
-                                  <td>{{$data->no_spk}}</td>
+                                  <td>{{$data->no_bst}}</td>
                                   <td>{{$data->keterangan}}</td>
                                   <!-- status unit -->
                                 @if($data->status_unit == 0)
