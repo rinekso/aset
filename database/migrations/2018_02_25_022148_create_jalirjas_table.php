@@ -28,7 +28,7 @@ class CreateJalirjasTable extends Migration
             $table->string('penggunaan');
             $table->string('asalusul');
             $table->double('harga');
-            $table->text('keterangan');
+            $table->text('keterangan')->nullable();
             $table->string('user_id');
             $table->timestamps();
         });

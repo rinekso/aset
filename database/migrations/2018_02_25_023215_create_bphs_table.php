@@ -22,7 +22,7 @@ class CreateBphsTable extends Migration
             $table->double('jumlah');            
             $table->double('harga_satuan');
             $table->double('total');
-            $table->string('keterangan');
+            $table->string('keterangan')->nullable();
             $table->string('user_id');
             $table->timestamps();
         });

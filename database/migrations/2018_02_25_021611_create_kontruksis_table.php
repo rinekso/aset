@@ -29,7 +29,7 @@ class CreateKontruksisTable extends Migration
             $table->string('kode_tanah')->nullable();
             $table->string('asalusul');
             $table->double('nilai_kontrak');
-            $table->text('keterangan');
+            $table->text('keterangan')->nullable();
             $table->string('user_id');
             $table->timestamps();
         });

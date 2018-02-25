@@ -44,15 +44,19 @@ class SubUnitController extends Controller
         $kategori = Pengadaan::find($id)->kategori_id;
         $pengadaan = Pengadaan::find($id);
         if ($kategori == 1) {
-            return view('subunit.barang.input_atk', compact('pengadaan'));
-        } elseif ($kategori == 2) {
-            return view('subunit.barang.input_elektro', compact('pengadaan'));
-        } elseif ($kategori == 3) {
-            return view('subunit.barang.input_mesin', compact('pengadaan'));
-        } elseif ($kategori == 4) {
-            return view('subunit.barang.input_meuble', compact('pengadaan'));
-        } elseif ($kategori == 5) {
             return view('subunit.barang.input_tanah', compact('pengadaan'));
+        } elseif ($kategori == 2) {
+            return view('subunit.barang.input_mesin', compact('pengadaan'));
+        } elseif ($kategori == 3) {
+            return view('subunit.barang.input_bangunan', compact('pengadaan'));
+        } elseif ($kategori == 4) {
+            return view('subunit.barang.input_jalirja', compact('pengadaan'));
+        } elseif ($kategori == 5) {
+            return view('subunit.barang.input_aset', compact('pengadaan'));
+        } elseif ($kategori == 6) {
+            return view('subunit.barang.input_kontruksi', compact('pengadaan'));
+        } elseif ($kategori == 7) {
+            return view('subunit.barang.input_bph', compact('pengadaan'));
         }
     }
 
@@ -61,21 +65,34 @@ class SubUnitController extends Controller
         if ($request->kategori_id == 1) {
             $this->validate($request, [
                     'kode_barang' => 'required',
-                    'merk' => 'required',
-                    'satuan' => 'required',
-                    'jenis_barang' => 'required',
+                    'nama_barang' => 'required',
+                    'no_reg' => 'required',
+                    'luas' => 'required',
+                    'tahun_pengadaan' => 'required',    
+                    'lokasi' => 'required',
+                    'hak' => 'required',
+                    'no_sertifikat' => 'required',
+                    'tgl_sertifikat' => 'required',
+                    'penggunaan' => 'required',
+                    'asalusul' => 'required',
+                    'harga' => 'required',
                 ]);
-            ATK::create([
+            Tanah::create([
                 'kode_barang' => $request->kode_barang,
                 'nama_barang' => $request->nama_barang,
-                'merk' => $request->merk,
-                'jumlah' => $request->jumlah,
-                'satuan' => $request->satuan,
-                'harga_satuan' => $request->harga_satuan,
-                'total' => $request->total,
-                'jenis_barang' => $request->jenis_barang,
+                'no_reg' => $request->no_reg,
+                'luas' => $request->luas,
+                'tahun_pengadaan' => $request->tahun_pengadaan,
+                'lokasi' => $request->lokasi,
+                'hak' => $request->hak,
+                'no_sertifikat' => $request->no_sertifikat,
+                'tgl_sertifikat' => $request->tgl_sertifikat,
+                'penggunaan' => $request->penggunaan,
+                'asalusul' => $request->asalusul,
+                'harga' => $request->harga,
                 'keterangan' => $request->keterangan,
-                'stok' => $request->jumlah,
+                'user_id' => Auth::user()->id,
+                
             ]);
         } elseif ($request->kategori_id == 2) {
             

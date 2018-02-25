@@ -30,7 +30,7 @@ class CreateAsettetapsTable extends Migration
             $table->string('tahun_cetak')->nullable();
             $table->string('asalusul');
             $table->double('total');
-            $table->text('keterangan');
+            $table->text('keterangan')->nullable();
             $table->string('user_id');
             $table->timestamps();
         });

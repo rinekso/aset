@@ -43,10 +43,6 @@ class User extends Authenticatable
         return $this->hasMany(Tanah::class);   
     }
 
-    public function tanah(){
-        return $this->hasMany(Tanah::class);   
-    }
-
     public function mesin(){
         return $this->hasMany(Mesin::class);   
     }
@@ -59,12 +55,12 @@ class User extends Authenticatable
         return $this->hasMany(Jalirja::class);   
     }
 
-    public function kontruksi(){
-        return $this->hasMany(Kontruksi::class);   
-    }
-
     public function asettetap(){
         return $this->hasMany(Asettetap::class);   
+    }
+
+    public function kontruksi(){
+        return $this->hasMany(Kontruksi::class);   
     }
 
     public function bph(){

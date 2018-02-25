@@ -29,7 +29,7 @@ class CreateBangunansTable extends Migration
             $table->string('kode_tanah')->nullable();
             $table->string('asalusul');
             $table->double('harga');
-            $table->text('keterangan');
+            $table->text('keterangan')->nullable();
             $table->string('user_id');
             $table->timestamps();
         });

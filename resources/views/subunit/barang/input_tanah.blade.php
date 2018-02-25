@@ -1,7 +1,7 @@
-    @extends('subunit.layouts.master-auth')
+@extends('subunit.layouts.master-auth')
 
 @section('title')
-    <title>Input Barang Elektronika</title>
+    <title>Input Tanah</title>
 @endsection
 
 @section('content')
@@ -33,7 +33,7 @@
             <section class="content-header">
 
                 <h1>
-                    Input Barang <b>Elektronika</b>
+                    Input <b>Tanah</b>
                 </h1>
 
             </section>  
@@ -56,66 +56,82 @@
                             {{ csrf_field() }}
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label>Kode Barang</label>
-                                    <input type="text" class="form-control" name="kode_barang" value="">
-                                </div>
-
-                                <div class="form-group">
                                     <label>Nama Barang</label>
-                                    <input type="text" class="form-control" name="nama_barang" value="{{ $pengadaan->nama }}" readonly>
+                                    <input type="text" class="form-control" name="nama_barang" value="{{ $pengadaan->nama }}">
                                 </div>
-                                <div class="form-group">
-                                    <label>Merk</label>
-                                    <input type="text" class="form-control" name="merk" value="{{ old('merk') }}">
-                                </div>
-                                <div class="form-group">
-                                    <label>Spesifikasi</label>
-                                    <input type="text" class="form-control" name="spesifikasi" value="{{ old('spesifikasi') }}">
-                                </div>
-                                <div class="form-group">
-                                    <label>Nomor Seri</label>
-                                    <input type="text" class="form-control" name="no_seri" value="{{ old('no_seri') }}">
+                                <div class="row">
+                                    <div class="col-md-6">    
+                                        <div class="form-group">
+                                            <label>Kode Barang</label>
+                                            <input type="text" class="form-control" name="kode_barang" value="{{ old('kode_barang') }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">    
+                                        <div class="form-group">
+                                            <label>Nomor Reg</label>
+                                            <input type="text" class="form-control" name="no_reg" value="{{ old('no_reg') }}">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Jumlah</label>
-                                            <input type="number" class="form-control" id="jumlah" name="jumlah" value="{{ $pengadaan->jumlah }}" readonly>
+                                            <label>Luas (m2)</label>
+                                            <input type="text" class="form-control" name="luas" value="{{ $pengadaan->jumlah }}">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Satuan</label>
-                                            <input type="text" class="form-control" placeholder="Misal: buah" name="satuan" value="{{ old('satuan') }}">
+                                            <label>Tahun Pengadaan</label>
+                                            <input type="number" class="form-control" name="tahun_pengadaan" value="{{ old('tahun_pengadaan') }}">
                                         </div>
                                     </div>
-                                    
+                                </div>
+                                <div class="form-group">
+                                    <label>Lokasi</label>
+                                    <input type="text" class="form-control" placeholder="Isi dengan lokasi penempatan" name="lokasi" value="{{ old('lokasi') }}">
+                                </div>
+                                <div class="form-group">
+                                    <label>Hak</label>
+                                    <input type="text" class="form-control" placeholder="Hak" name="hak" value="{{ old('hak') }}">
+
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Harga Satuan (Rp)</label>
-                                            <input type="number" class="form-control" id="harga_satuan" name="harga_satuan" value="{{ $pengadaan->harga_satuan }}" readonly>
+                                            <label>Nomor Sertifikat</label>
+                                            <input type="text" class="form-control" name="no_sertifikat" value="{{ old('no_sertifikat') }}">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Total (Rp)</label>
-                                            <input type="number" readonly class="form-control" id="total" name="total" value="{{ $pengadaan->total }}">
+                                            <label>Tanggal Sertifikat</label>
+                                            <input type="date" class="form-control" name="tgl_sertifikat" value="{{ old('tgl_sertifikat') }}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Penggunaan</label>
+                                            <input type="text" class="form-control" name="penggunaan" value="{{ old('penggunaan') }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Asal Usul</label>
+                                            <input type="text" class="form-control" name="asalusul" value="{{ old('asalusul') }}">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Jenis Barang</label>
-                                    <select class="form-control" name="jenis_barang">
-                                        <option value="">--pilih salah satu--</option>
-                                        <option value="aset">Aset</option>
-                                        <option value="barang_habis">Barang Habis</option>
-                                    </select>
+                                    <label>Harga (Rp)</label>
+                                    <input type="number" class="form-control" name="harga" value="{{ $pengadaan->total }}">
                                 </div>
                                 <div class="form-group">
+
                                     <label>Keterangan</label>
-                                    <textarea class="form-control" placeholder="Keteranagan" name="keterangan" readonly>{{ $pengadaan->keterangan }}</textarea>
+                                    <textarea class="form-control" name="keterangan">{{ $pengadaan->keterangan }}</textarea>
                                 </div>
 
                                 <input type="text" name="kategori_id" value="{{$pengadaan->kategori_id}}" hidden="">

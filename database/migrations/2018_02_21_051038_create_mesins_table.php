@@ -31,7 +31,7 @@ class CreateMesinsTable extends Migration
             $table->integer('jumlah');
             $table->double('harga_satuan');
             $table->double('total');
-            $table->text('keterangan');
+            $table->text('keterangan')->nullable();
             $table->string('user_id');
             $table->timestamps();
         });
