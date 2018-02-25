@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateElektronikasTable extends Migration
+class CreateBphsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,17 @@ class CreateElektronikasTable extends Migration
      */
     public function up()
     {
-        Schema::create('elektronikas', function (Blueprint $table) {
+        Schema::create('bphs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('kode_barang');
             $table->string('nama_barang');
+            $table->string('kode_barang');
+            $table->string('no_rek');
             $table->string('merk');
-            $table->string('spesifikasi');
-            $table->string('no_seri')->nullable();
-            $table->double('jumlah');
-            $table->string('satuan');
+            $table->double('jumlah');            
             $table->double('harga_satuan');
             $table->double('total');
-            $table->double('stok');
             $table->string('keterangan');
-            $table->string('jenis_barang');
+            $table->string('user_id');
             $table->timestamps();
         });
     }
@@ -38,6 +35,6 @@ class CreateElektronikasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('elektronikas');
+        Schema::dropIfExists('bphs');
     }
 }

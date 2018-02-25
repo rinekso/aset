@@ -8,6 +8,23 @@ class Mesin extends Model
 {
     protected $table = 'mesins';
     protected $fillable = [
-        'kode_barang', 'nama_barang', 'merk', 'type', 'ukuran', 'bahan', 'no_pabrik', 'no_rangka', 'no_mesin', 'jumlah', 'harga_satuan', 'total', 'lokasi', 'keterangan',
+        'kode_barang',
+        'nama_barang',
+        'no_reg',
+        'merk',
+        'ukuran',
+        'bahan',
+        'tahun_pembelian',
+        'no_pabrik',
+        'no_mesin',
+        'no_rangka',
+        'no_polisi',
+        'no_bpkb',
+        'asalusul',
+        'jumlah',
+        'harga_satuan',
+        'total',
+        'keterangan',
+        'user_id',
     ];
 }

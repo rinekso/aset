@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMesinsTable extends Migration
+class CreateAsettetapsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,23 +13,22 @@ class CreateMesinsTable extends Migration
      */
     public function up()
     {
-        Schema::create('mesins', function (Blueprint $table) {
+        Schema::create('asettetaps', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('kode_barang');
             $table->string('nama_barang');
+            $table->string('kode_barang');
             $table->string('no_reg');
-            $table->string('merk');
-            $table->string('ukuran');
-            $table->string('bahan');
-            $table->string('tahun_pembelian');
-            $table->string('no_pabrik')->nullable();
-            $table->string('no_mesin')->nullable();
-            $table->string('no_rangka')->nullable();
-            $table->string('no_polisi')->nullable();
-            $table->string('no_bpkb')->nullable();
-            $table->string('asalusul')->nullable();
+            $table->string('judul')->nullable();
+            $table->string('spesifikasi')->nullable();
+            $table->string('asal_daerah')->nullable();
+            $table->string('pencipta')->nullable();
+            $table->string('bahan')->nullable();
+            $table->string('jenis')->nullable();
+            $table->string('ukuran')->nullable();
             $table->integer('jumlah');
             $table->double('harga_satuan');
+            $table->string('tahun_cetak')->nullable();
+            $table->string('asalusul');
             $table->double('total');
             $table->text('keterangan');
             $table->string('user_id');
@@ -44,6 +43,6 @@ class CreateMesinsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mesins');
+        Schema::dropIfExists('asettetaps');
     }
 }

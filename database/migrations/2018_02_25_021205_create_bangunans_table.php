@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTanahsTable extends Migration
+class CreateBangunansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,20 @@ class CreateTanahsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tanahs', function (Blueprint $table) {
+        Schema::create('bangunans', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama_barang');
             $table->string('kode_barang');
             $table->string('no_reg');
-            $table->double('luas');
-            $table->integer('tahun_pengadaan');
+            $table->string('kondisi_bangunan');
+            $table->string('bertingkat');
+            $table->string('beton');
+            $table->integer('luas');
             $table->string('lokasi');
-            $table->string('hak');
-            $table->string('no_sertifikat');
-            $table->date('tgl_sertifikat');
-            $table->string('penggunaan');
+            $table->string('no_dokumen')->nullable();
+            $table->date('tgl_dokumen')->nullable();
+            $table->string('status_tanah')->nullable();
+            $table->string('kode_tanah')->nullable();
             $table->string('asalusul');
             $table->double('harga');
             $table->text('keterangan');
@@ -40,6 +42,6 @@ class CreateTanahsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tanahs');
+        Schema::dropIfExists('bangunans');
     }
 }

@@ -4,19 +4,19 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tanah extends Model
+class Jalirja extends Model
 {
-    protected $table = 'tanahs';
     protected $fillable = [
-        'nama_barang',
+	    'nama_barang',
         'kode_barang',
         'no_reg',
+        'kontruksi',
+        'panjang',
+        'lebar',
         'luas',
-        'tahun_pengadaan',
         'lokasi',
-        'hak',
-        'no_sertifikat',
-        'tgl_sertifikat',
+        'no_dokumen',
+        'tgl_dokumen',
         'penggunaan',
         'asalusul',
         'harga',
