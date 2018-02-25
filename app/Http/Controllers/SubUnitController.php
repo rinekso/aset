@@ -197,8 +197,40 @@ class SubUnitController extends Controller
                 'user_id' => Auth::user()->id,
             ]);
 
-        } elseif ($request->kategori_id == 5) {
-            # code...
+        } elseif ($request->kategori_id == 5) {  
+            
+            $this->validate($request, [
+                    'kode_barang' => 'required',
+                    'no_reg' => 'required',
+                    'nama_barang' => 'required',
+                    'jumlah' => 'required',
+                    'harga_satuan' => 'required',
+                    'total' => 'required',
+                    'asalusul' => 'required',
+                ]);
+            Asettetap::create([
+                'kode_barang' => $request->kode_barang,
+                'nama_barang' => $request->nama_barang,
+                'no_reg' => $request->no_reg,
+                'judul' => $request->judul,
+                'spesifikasi' => $request->spesifikasi,
+                'asal_daerah' => $request->asal_daerah,
+                'pencipta' => $request->pencipta,
+                'bahan' => $request->bahan,
+                'jenis' => $request->jenis,
+                'ukuran' => $request->ukuran,
+                'jumlah' => $request->jumlah,
+                'harga_satuan' => $request->harga_satuan,
+                'total' => $request->total,
+                'tahun_cetak' => $request->tahun_cetak,
+                'asalusul' => $request->asalusul,
+                'keterangan' => $request->keterangan,
+                'user_id' => Auth::user()->id,
+            ]);
+        } elseif ($request->kategori_id == 6) {  
+
+        } elseif ($request->kategori_id == 7) {  
+
         }
 
 
