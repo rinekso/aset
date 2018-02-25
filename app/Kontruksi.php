@@ -12,7 +12,6 @@ class Kontruksi extends Model
         'bertingkat',
         'beton',
         'luas',
-        'tahun_pembelian',
         'lokasi',
         'no_dokumen',
         'tgl_dokumen',

@@ -20,7 +20,6 @@ class CreateKontruksisTable extends Migration
             $table->string('bertingkat');
             $table->string('beton');
             $table->integer('luas');
-            $table->string('tahun_pembelian');
             $table->string('lokasi');
             $table->string('no_dokumen')->nullable();
             $table->date('tgl_dokumen')->nullable();

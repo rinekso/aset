@@ -228,9 +228,55 @@ class SubUnitController extends Controller
                 'user_id' => Auth::user()->id,
             ]);
         } elseif ($request->kategori_id == 6) {  
-
+            $this->validate($request, [
+                    'nama_barang' => 'required',
+                    'luas' => 'required',
+                    'lokasi' => 'required',
+                    'tgl_dokumen' => 'required',
+                    'no_dokumen' => 'required',
+                    'tgl_mulai' => 'required',
+                    'nilai_kontrak' => 'required',
+                ]);
+            Kontruksi::create([
+                'nama_barang' => $request->nama_barang,
+                'bangunan' => $request->bangunan,
+                'bertingkat' => $request->bertingkat,
+                'beton' => $request->beton,
+                'luas' => $request->luas,
+                'lokasi' => $request->lokasi,
+                'tgl_dokumen' => $request->tgl_dokumen,
+                'no_dokumen' => $request->no_dokumen,
+                'tgl_mulai' => $request->tgl_mulai,
+                'status_tanah' => $request->status_tanah,
+                'kode_tanah' => $request->kode_tanah,
+                'nilai_kontrak' => $request->nilai_kontrak,
+                'asalusul' => $request->asalusul,
+                'keterangan' => $request->keterangan,
+                'user_id' => Auth::user()->id,
+            ]);
         } elseif ($request->kategori_id == 7) {  
-
+            $this->validate($request, [
+                    'nama_barang' => 'required',
+                    'kode_barang' => 'required',
+                    'no_reg' => 'required',
+                    'merk' => 'required',
+                    'jumlah' => 'required',
+                    'harga_satuan' => 'required',
+                    'total' => 'required',
+                    'nama_barang' => 'required',
+                    
+                ]);
+            Bph::create([
+                'nama_barang' => $request->nama_barang,
+                'kode_barang' => $request->kode_barang,
+                'no_reg' => $request->no_reg,
+                'merk' => $request->merk,
+                'jumlah' => $request->jumlah,
+                'harga_satuan' => $request->harga_satuan,
+                'total' => $request->total,
+                'keterangan' => $request->keterangan,
+                'user_id' => Auth::user()->id,
+            ]);
         }
 
 
