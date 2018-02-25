@@ -1,5 +1,9 @@
 @extends('layouts.master-auth')
 
+@section('title')
+    <title>Pengajuan Pengadaan Barang</title>
+@endsection
+
 @section('content')
 
     <!-- content-wrapper -->
@@ -88,9 +92,20 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Nomor SPK</label>
-                                    <input type="text" name="no_spk" class="form-control" placeholder="Masukkan Nomor SPK" value="{{ old('no_spk') }}">
+                                    <label>Nomor BST</label>
+                                    <input type="text" name="no_bst" class="form-control" placeholder="Masukkan Nomor BST" value="{{ old('no_bst') }}">
                                 </div>
+
+                                <div class="form-group">
+                                    <label>Foto BST</label>
+                                
+                                    <div class="upload-btn-wrapper">
+                                      <button class="btn btn-info">Pilih foto</button>
+                                      <input type="file" name="foto_bst" id="foto_bst">
+                                    </div>
+                                    <img src="" id="showbst" style="max-width:200px;max-height:200px; margin-right: 10px" />
+                                </div>
+
                                 <div class="form-group">
                                     <label>Keterangan</label>
                                     <textarea class="form-control" placeholder="Keteranagan" name="keterangan">{{ old('keterangan') }}</textarea>
@@ -138,6 +153,19 @@
                 document.getElementById('total').value = result;
            }
         }
+
+
+        $("#foto_bst").change(function () {
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#showbst').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
     </script>
 
 

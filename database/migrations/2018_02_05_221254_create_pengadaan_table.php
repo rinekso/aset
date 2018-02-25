@@ -14,7 +14,7 @@ class CreatePengadaanTable extends Migration
     public function up()
     {
         Schema::create('pengadaan', function (Blueprint $table) {
-            $table->increments('id');
+            $table->integer('id');
             $table->string('nama');
             $table->double('jumlah');
             $table->double('harga_satuan');

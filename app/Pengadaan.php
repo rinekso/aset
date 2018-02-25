@@ -8,6 +8,7 @@ class Pengadaan extends Model
 {
     protected $table = 'pengadaan';
     protected $fillable = [
+        'id',
         'nama',
         'jumlah', 
         'harga_satuan', 

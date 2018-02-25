@@ -47,17 +47,26 @@ class PengadaanController extends Controller
                 'harga_satuan' => 'required',
                 // 'total' => 'required',
                 'kategori_id' => 'required',
-                'no_spk' => 'required',
+                'no_bst' => 'required',
                 'keterangan' => 'required',
+                'foto_bst' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
+        $no_pengadaan = Pengadaan::count() + 1;
+
+        // foto bst
+        $file_bst = $request->file('foto_bst');
+        $bst_name = "bst_".Auth::user()->id."_".$no_pengadaan.".".$file_bst->getClientOriginalExtension();
+        $file_bst->move("images/bst/", $bst_name);
 
         Pengadaan::create([
+            'id' => $no_pengadaan,
             'nama' => $request->nama,
             'jumlah' => $request->jumlah,
             'harga_satuan' => $request->harga_satuan,
             'total' => $request->jumlah * $request->harga_satuan,
             'kategori_id' => $request->kategori_id,
-            'no_spk' => $request->no_spk,
+            'no_bst' => $request->no_bst,
+            'foto_bst' => $bst_name,
             'keterangan' => $request->keterangan,
             'status_unit' => '0',
             'status_bidang' => '0',

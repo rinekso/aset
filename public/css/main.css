@@ -239,3 +239,23 @@ table thead tr th {
 }
 
 /*end panel*/
+
+
+/*upload image*/
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  cursor: pointer;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+/*end upload image*/
