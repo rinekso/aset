@@ -91,28 +91,40 @@
                                         <h3>Peralatan dan Mesin</h3>
                                         <table class="table table-hover">
                                             <tr>
-                                                <th>Kode Barang</th>
-
                                                 <th>Nama Barang</th>
-
+                                                <th>Kode Barang</th>
+                                                <th>No Reg</th>
                                                 <th>Merk</th>
-
-                                                <th>Spesifikasi</th>
-                                                
-                                                <th>No Seri</th>
-
-                                                <th>Stok</th>
-
+                                                <th>Ukuran (CC)</th>
+                                                <th>Bahan</th>
+                                                <th>Tahun Pembelian</th>
+                                                <th>No Pabrik</th>
+                                                <th>No Mesin</th>
+                                                <th>No Rangka</th>
+                                                <th>No Polisi</th>
+                                                <th>No BPKB</th>
+                                                <th>Jumlah</th>
+                                                <th>Harga</th>
                                                 <th>Keterangan</th>
-
-                                                <th>Jenis Barang</th>
-
-                                                <th>Terakhir Dirubah</th>
-
                                             </tr>
 
                                         @foreach($mesin as $key => $data)
                                             <tr>
+                                                <td>{{ $data->nama_barang }}</td>
+                                                <td>{{ $data->kode_barang }}</td>
+                                                <td>{{ $data->no_reg }}</td>
+                                                <td>{{ $data->merk }}</td>
+                                                <td>{{ $data->ukuran }}</td>
+                                                <td>{{ $data->bahan }}</td>
+                                                <td>{{ $data->tahun_pembelian }}</td>
+                                                <td>{{ $data->no_pabrik }}</td>
+                                                <td>{{ $data->no_mesin }}</td>
+                                                <td>{{ $data->no_rangka }}</td>
+                                                <td>{{ $data->no_polisi }}</td>
+                                                <td>{{ $data->no_bpkb }}</td>
+                                                <td>{{ $data->jumlah }}</td>
+                                                <td>{{ $data->harga_satuan }}</td>
+                                                <td>{{ $data->keteran }}</td>
                                             </tr>
                                         @endforeach
                                         </table>
@@ -121,34 +133,36 @@
                                         <h3>Gedung dan Bangunan</h3>
                                         <table class="table table-hover">
                                             <tr>
-                                                <th>Kode Barang</th>
-
                                                 <th>Nama Barang</th>
-
-                                                <th>Merk</th>
-
-                                                <th>Tipe</th>
-                                                
-                                                <th>Ukuran</th>
-
-                                                <th>No Pabrik</th>
-
-                                                <th>No Rangka</th>
-
-                                                <th>No Mesin</th>
-
-                                                <th>Jumlah</th>                                                
-
-                                                <th>Keterangan</th>
-
+                                                <th>Kode Barang</th>
+                                                <th>No Reg</th>
+                                                <th>Kondisi Bangunan</th>
+                                                <th>Bertingkat</th>
+                                                <th>Beton</th>
+                                                <th>Luas (m2)</th>
                                                 <th>Lokasi</th>
-
-                                                <th>Terakhir Dirubah</th>
-
+                                                <th>No Dokumen</th>
+                                                <th>Tgl Dokumen</th>
+                                                <th>Harga</th>
+                                                <th>Keterangan</th>
                                             </tr>
 
                                         @foreach($bangunan as $key => $data)
                                             <tr>
+                                                <td>{{ $data->nama_barang }}</td>
+                                                <td>{{ $data->kode_barang }}</td>
+                                                <td>{{ $data->no_reg }}</td>
+                                                <td>{{ $data->kondisi_bangunan }}</td>
+                                                <td>{{ $data->bertingkat }}</td>
+                                                <td>{{ $data->beton }}</td>
+                                                <td>{{ $data->luas }}</td>
+                                                <td>{{ $data->lokasi }}</td>
+                                                <td>{{ $data->no_dokumen }}</td>
+                                                <td>{{ $data->tgl_dokumen }}</td>
+                                                <td>{{ $data->harga }}</td>
+                                                <td>{{ $data->keterangan }}</td>                                               
+
+
                                             </tr>
                                         @endforeach
                                         </table>
@@ -157,28 +171,38 @@
                                         <h3>Jalan, Irigasi dan Jaringan</h3>
                                         <table class="table table-hover">
                                             <tr>
-                                                <th>Kode Barang</th>
-
                                                 <th>Nama Barang</th>
-
-                                                <th>Merk</th>
-
-                                                <th>Tipe</th>
-                                                
-                                                <th>Ukuran</th>
-
-                                                <th>Jumlah</th>                                                
-
-                                                <th>Keterangan</th>
-
+                                                <th>Kode Barang</th>
+                                                <th>No Reg</th>
+                                                <th>Kontruksi</th>
+                                                <th>Panjang (km)</th>
+                                                <th>Lebar (m)</th>
+                                                <th>Luas (m2)</th>
                                                 <th>Lokasi</th>
-
-                                                <th>Terakhir Dirubah</th>
-
+                                                <th>No Dokumen</th>
+                                                <th>Tgl Dokumen</th>
+                                                <th>Penggunaan</th>
+                                                <th>Asal Usul</th>
+                                                <th>Harga</th>
+                                                <th>Keterangan</th>
                                             </tr>
 
                                         @foreach($jalirja as $key => $data)
                                             <tr>
+                                                <td>{{ $data->nama_barang }}</td>
+                                                <td>{{ $data->kode_barang }}</td>
+                                                <td>{{ $data->no_reg }}</td>
+                                                <td>{{ $data->kontruksi }}</td>
+                                                <td>{{ $data->panjang }}</td>
+                                                <td>{{ $data->lebar }}</td>
+                                                <td>{{ $data->luas }}</td>
+                                                <td>{{ $data->lokasi}}</td>
+                                                <td>{{ $data->no_dokumen }}</td>
+                                                <td>{{ $data->tgl_dokumen }}</td>
+                                                <td>{{ $data->penggunaan }}</td>
+                                                <td>{{ $data->asalusul }}</td>
+                                                <td>{{ $data->harga }}</td>
+                                                <td>{{ $data->keterangan }}</td>
                                             </tr>
                                         @endforeach
                                         </table>
@@ -187,28 +211,40 @@
                                         <h3>Aset Tetap Lainnya</h3>
                                         <table class="table table-hover">
                                             <tr>
-                                                <th>Kode Barang</th>
-
                                                 <th>Nama Barang</th>
-
-                                                <th>No Sertifikat</th>
-
-                                                <th>Tipe</th>
-                                                
+                                                <th>Kode Barang</th>
+                                                <th>No Reg</th>
+                                                <th>Judul</th>
+                                                <th>Spesifikasi</th>
+                                                <th>Asal</th>
+                                                <th>Pencipta</th>
+                                                <th>Bahan</th>
+                                                <th>Jenis</th>
                                                 <th>Ukuran</th>
-
-                                                <th>Satuan</th>                                             
-
-                                                <th>Lokasi</th>
-
+                                                <th>Jumlah</th>
+                                                <th>Tahun Cetak</th>
+                                                <th>Asal Usul</th>
+                                                <th>Harga</th>
                                                 <th>Keterangan</th>
-
-                                                <th>Terakhir Dirubah</th>
-
                                             </tr>
 
                                         @foreach($aset as $key => $data)
                                             <tr>
+                                                <td>{{ $data->nama_barang }}</td>
+                                                <td>{{ $data->kode_barang }}</td>
+                                                <td>{{ $data->no_reg }}</td>
+                                                <td>{{ $data->judul }}</td>
+                                                <td>{{ $data->spesifikasi }}</td>
+                                                <td>{{ $data->asal_daerah }}</td>
+                                                <td>{{ $data->pencipta }}</td>
+                                                <td>{{ $data->bahan}}</td>
+                                                <td>{{ $data->jenis }}</td>
+                                                <td>{{ $data->ukuran }}</td>
+                                                <td>{{ $data->jumlah }}</td>
+                                                <td>{{ $data->tahun_cetak }}</td>
+                                                <td>{{ $data->asalusul }}</td>
+                                                <td>{{ $data->total }}</td>
+                                                <td>{{ $data->keterangan }}</td>
                                             </tr>
                                         @endforeach
                                         </table>
@@ -217,28 +253,39 @@
                                         <h3>Kontruksi dalam Pengerjaan</h3>
                                         <table class="table table-hover">
                                             <tr>
-                                                <th>Kode Barang</th>
-
                                                 <th>Nama Barang</th>
-
-                                                <th>No Sertifikat</th>
-
-                                                <th>Tipe</th>
-                                                
-                                                <th>Ukuran</th>
-
-                                                <th>Satuan</th>                                             
-
+                                                <th>Bangunan (P, SP, D)</th>
+                                                <th>Bertingkat</th>
+                                                <th>Beton</th>
+                                                <th>Luas (m2)</th>
                                                 <th>Lokasi</th>
-
+                                                <th>No Dokumen</th>
+                                                <th>Tgl Dokumen</th>
+                                                <th>Tgl Mulai</th>
+                                                <th>Status Tanah</th>
+                                                <th>Kode Tanah</th>
+                                                <th>Asal Usul Pembiayaan</th>
+                                                <th>Nilai Kontrak</th>
                                                 <th>Keterangan</th>
-
-                                                <th>Terakhir Dirubah</th>
-
                                             </tr>
 
                                         @foreach($kontruksi as $key => $data)
                                             <tr>
+                                                <td>{{ $data->nama_barang }}</td>
+                                                <td>{{ $data->bangunan }}</td>
+                                                <td>{{ $data->bertingkat }}</td>
+                                                <td>{{ $data->beton }}</td>
+                                                <td>{{ $data->luas }}</td>
+                                                <td>{{ $data->tahun_pembelian }}</td>
+                                                <td>{{ $data->lokasi }}</td>
+                                                <td>{{ $data->no_dokumen }}</td>
+                                                <td>{{ $data->tgl_dokumen }}</td>
+                                                <td>{{ $data->tgl_mulai }}</td>
+                                                <td>{{ $data->status_tanah }}</td>
+                                                <td>{{ $data->kode_tanah }}</td>
+                                                <td>{{ $data->asalusul }}</td>
+                                                <td>{{ $data->nilai_kontrak }}</td>
+                                                <td>{{ $data->keterangan }}</td>
                                             </tr>
                                         @endforeach
                                         </table>
@@ -247,28 +294,26 @@
                                         <h3>Barang Pakai Habis</h3>
                                         <table class="table table-hover">
                                             <tr>
-                                                <th>Kode Barang</th>
-
                                                 <th>Nama Barang</th>
-
-                                                <th>No Sertifikat</th>
-
-                                                <th>Tipe</th>
-                                                
-                                                <th>Ukuran</th>
-
-                                                <th>Satuan</th>                                             
-
-                                                <th>Lokasi</th>
-
+                                                <th>Kode Barang</th>
+                                                <th>No Reg</th>
+                                                <th>Merk</th>
+                                                <th>Jumlah</th>
+                                                <th>Harga Satuan</th>
+                                                <th>Total</th>
                                                 <th>Keterangan</th>
-
-                                                <th>Terakhir Dirubah</th>
-
                                             </tr>
 
                                         @foreach($bph as $key => $data)
                                             <tr>
+                                                <td>{{ $data->nama_barang }}</td>
+                                                <td>{{ $data->kode_barang }}</td>
+                                                <td>{{ $data->no_reg }}</td>
+                                                <td>{{ $data->merk }}</td>
+                                                <td>{{ $data->jumlah }}</td>
+                                                <td>{{ $data->harga_satuan }}</td>
+                                                <td>{{ $data->total }}</td>
+                                                <td>{{ $data->keterangan }}</td>
                                             </tr>
                                         @endforeach
                                         </table>

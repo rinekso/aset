@@ -6,10 +6,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Pengadaan;
-use App\ATK;
-use App\Elektronika;
-use App\Mesin;
 use App\Tanah;
+use App\Mesin;
+use App\Bangunan;
+use App\Jalirja;
+use App\Asettetap;
+use App\Kontruksi;
+use App\Bph;
 
 class SubUnitController extends Controller
 {
@@ -132,11 +135,68 @@ class SubUnitController extends Controller
 
         } elseif ($request->kategori_id == 3) {
             
-            
-
+            $this->validate($request, [
+                    'kode_barang' => 'required',
+                    'no_reg' => 'required',
+                    'nama_barang' => 'required',
+                    'luas' => 'required',
+                    'lokasi' => 'required',
+                    'no_dokumen' => 'required',
+                    'tgl_dokumen' => 'required',
+                    'harga' => 'required',
+                ]);
+            Bangunan::create([
+                'kode_barang' => $request->kode_barang,
+                'nama_barang' => $request->nama_barang,
+                'no_reg' => $request->no_reg,
+                'kondisi_bangunan' => $request->kondisi,
+                'bertingkat' => $request->bertingkat,
+                'beton' => $request->beton,
+                'luas' => $request->luas,
+                'lokasi' => $request->lokasi,
+                'no_dokumen' => $request->no_dokumen,
+                'tgl_dokumen' => $request->tgl_dokumen,
+                'no_polisi' => $request->no_polisi,
+                'harga' => $request->harga,
+                'keterangan' => $request->keterangan,
+                'user_id' => Auth::user()->id,
+            ]);
 
         } elseif ($request->kategori_id == 4) {
-            # code...
+            
+            $this->validate($request, [
+                    'kode_barang' => 'required',
+                    'no_reg' => 'required',
+                    'nama_barang' => 'required',
+                    'kontruksi' => 'required',
+                    'panjang' => 'required',
+                    'lebar' => 'required',
+                    'luas' => 'required',
+                    'lokasi' => 'required',
+                    'no_dokumen' => 'required',
+                    'tgl_dokumen' => 'required',
+                    'penggunaan' => 'required',
+                    'asalusul' => 'required',
+                    'harga' => 'required',
+                ]);
+            Jalirja::create([
+                'kode_barang' => $request->kode_barang,
+                'nama_barang' => $request->nama_barang,
+                'no_reg' => $request->no_reg,
+                'kontruksi' => $request->kontruksi,
+                'panjang' => $request->panjang,
+                'lebar' => $request->lebar,
+                'luas' => $request->luas,
+                'lokasi' => $request->lokasi,
+                'no_dokumen' => $request->no_dokumen,
+                'tgl_dokumen' => $request->tgl_dokumen,
+                'penggunaan' => $request->penggunaan,
+                'asalusul' => $request->asalusul,
+                'harga' => $request->harga,
+                'keterangan' => $request->keterangan,
+                'user_id' => Auth::user()->id,
+            ]);
+
         } elseif ($request->kategori_id == 5) {
             # code...
         }

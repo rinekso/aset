@@ -25,9 +25,6 @@ class CreateBangunansTable extends Migration
             $table->string('lokasi');
             $table->string('no_dokumen')->nullable();
             $table->date('tgl_dokumen')->nullable();
-            $table->string('status_tanah')->nullable();
-            $table->string('kode_tanah')->nullable();
-            $table->string('asalusul');
             $table->double('harga');
             $table->text('keterangan')->nullable();
             $table->string('user_id');
