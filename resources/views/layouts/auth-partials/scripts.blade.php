@@ -8,3 +8,5 @@
 <script src="{{asset('/dist/js/app.min.js')}}"></script>
 
 <script src="{{ asset('/js/app.js') }}"></script>
+
+<script src="{{asset('DataTables/datatables.min.js')}}"></script>

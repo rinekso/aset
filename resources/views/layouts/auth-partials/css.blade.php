@@ -12,5 +12,7 @@
 -->
 <link rel="stylesheet" href="{{asset('/dist/css/skins/skin-blue.min.css')}}">
 
+<link rel="stylesheet" href="{{asset('DataTables/datatables.min.css')}}">
+
 <!-- Custom Styles -->
 <link rel="stylesheet" href="{{ asset('/css/main.css') }}">
