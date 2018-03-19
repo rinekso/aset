@@ -27,6 +27,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/storePengadaan', 'PengadaanController@store');
 
     Route::get('/listBarang', 'BarangController@index');
+    Route::get('/data-tanah', 'BrangController@dataTanah');
 
     /**
      * Route untuk subunit

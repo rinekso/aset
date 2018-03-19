@@ -24,4 +24,13 @@ class BarangController extends Controller
     	$bph = Bph::all();
     	return view('pages.list_barang', compact('tanah', 'mesin', 'bangunan', 'jalirja', 'kontruksi', 'aset', 'bph'));
     }
+
+    public function dataTanah(){
+        $pengadaan = DB::table('pengadaan as p')
+                ->select('p.*')
+                ->get();
+
+        return Datatables::of($pengadaan)->make(true);
+    }
+
 }
