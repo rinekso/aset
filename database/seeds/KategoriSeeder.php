@@ -15,24 +15,32 @@ class KategoriSeeder extends Seeder
         Kategori::insert([
         	[
         		'id' => '1',
-        		'nama_kategori' => 'ATK',
+        		'nama_kategori' => 'Tanah',
         	],
         	[
         		'id' => '2',
-        		'nama_kategori' => 'Elektronika',
+        		'nama_kategori' => 'Peralatan dan Mesin',
         	],
         	[
         		'id' => '3',
-        		'nama_kategori' => 'Mesin',
+        		'nama_kategori' => 'Gedung dan Bangunan',
         	],
         	[
         		'id' => '4',
-        		'nama_kategori' => 'Meuble',
+        		'nama_kategori' => 'Jalan, Irigasi dan Jaringan',
         	],
         	[
         		'id' => '5',
-        		'nama_kategori' => 'Tanah',
+        		'nama_kategori' => 'Aset Tetap dan Lainnya',
         	],
+            [
+                'id' => '6',
+                'nama_kategori' => 'Kontruksi dan Pengerjaan',
+            ],
+            [
+                'id' => '7',
+                'nama_kategori' => 'Barang Pakai Habis',
+            ],
         ]);
     }
 }

@@ -14,14 +14,15 @@ class CreatePengadaanTable extends Migration
     public function up()
     {
         Schema::create('pengadaan', function (Blueprint $table) {
-            $table->increments('id');
+            $table->integer('id');
             $table->string('nama');
             $table->double('jumlah');
             $table->double('harga_satuan');
             $table->double('total');
             $table->integer('kategori_id')->unsigned();
             $table->text('keterangan');
-            $table->string('no_spk');
+            $table->string('no_bst');
+            $table->string('foto_bst');
             $table->integer('status_unit');
             $table->integer('status_bidang');
             $table->string('user_id');

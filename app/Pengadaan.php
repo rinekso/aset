@@ -8,7 +8,18 @@ class Pengadaan extends Model
 {
     protected $table = 'pengadaan';
     protected $fillable = [
-        'nama', 'jumlah', 'harga_satuan', 'total', 'kategori_id', 'keterangan', 'no_spk', 'status_unit', 'status_bidang', 'user_id',
+        'id',
+        'nama',
+        'jumlah', 
+        'harga_satuan', 
+        'total', 
+        'kategori_id', 
+        'keterangan', 
+        'no_bst',
+        'foto_bst', 
+        'status_unit', 
+        'status_bidang', 
+        'user_id',
     ];
 
     public function user(){
