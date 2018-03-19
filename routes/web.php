@@ -39,6 +39,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/inputBarang', 'SubUnitController@inputBarang');
         Route::get('/formInputBarang/{id}', 'SubUnitController@formInputBarang')->name('.formInputBarang');
         Route::post('/storeBarang', 'SubUnitController@storeBarang');
+        Route::get('/data-pengadaan', 'SubUnitController@dataPengadaan');
     });
 
 	/**

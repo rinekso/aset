@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use DataTables;
 use App\Pengadaan;
 use App\Tanah;
 use App\Mesin;
@@ -27,10 +29,19 @@ class SubUnitController extends Controller
         return view('pages.subunit_home');
     }
 
+    public function dataPengadaan(){
+        $pengadaan = DB::table('pengadaan as p')
+                ->select('p.*')
+                ->get();
+
+        return Datatables::of($pengadaan)->make(true);
+    }
+
     public function listPengadaan(){
-        $pengadaan = Pengadaan::where('user_id', Auth::user()->id)->get();
+        // $pengadaan = Pengadaan::where('user_id', Auth::user()->id)->get();
         
-        return view('subunit.list_pengadaan', compact('pengadaan'));
+        // return view('subunit.list_pengadaan', compact('pengadaan'));
+        return view('subunit.list');
     }
 
     public function inputBarang(){
