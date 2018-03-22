@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Bidang extends Model
+class Kodebarang extends Model
 {
     //
 }

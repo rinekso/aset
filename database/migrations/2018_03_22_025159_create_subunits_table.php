@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBidangsTable extends Migration
+class CreateSubunitsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateBidangsTable extends Migration
      */
     public function up()
     {
-        Schema::create('bidangs', function (Blueprint $table) {
+        Schema::create('subunits', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nama_bidang');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ class CreateBidangsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bidangs');
+        Schema::dropIfExists('subunits');
     }
 }

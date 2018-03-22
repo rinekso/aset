@@ -85,3 +85,28 @@
 
 @endsection
 
+@section('scripts')
+
+    <script>
+        function changeRole(){
+            if (document.getElementById("role").value === "1") {
+                document.getElementById("induk").classList.remove('hidden');
+                document.getElementById("unit").classList.remove('hidden');
+                document.getElementById("subunit").classList.remove('hidden');
+            } else if (document.getElementById("role").value === "2") {
+                document.getElementById("induk").classList.remove('hidden');
+                document.getElementById("unit").classList.remove('hidden');
+                document.getElementById("subunit").classList.add('hidden');
+            } else if(document.getElementById("role").value === "3"){
+                document.getElementById("induk").classList.remove('hidden');
+                document.getElementById("unit").classList.add('hidden');
+                document.getElementById("subunit").classList.add('hidden');
+            } else {
+                document.getElementById("induk").classList.add('hidden');
+                document.getElementById("unit").classList.add('hidden');
+                document.getElementById("subunit").classList.add('hidden');
+            }
+        }
+    </script>
+
+@endsection

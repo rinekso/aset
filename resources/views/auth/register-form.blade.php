@@ -1,29 +1,31 @@
 <form method="POST"
-      action="{{ url('/register') }}">
+      action="{{ url('/register') }}"
+      class="form-horizontal">
 
       {{ csrf_field() }}
 
     <!-- id pegawai input -->
 
     <div class="form-group has-feedback{{ $errors->has('id') ? ' has-error' : '' }}">
+        <div class="col-md-12">
+          <input id="id"
+                 name="id"
+                 type="text"
+                 class="form-control"
+                 value="{{ old('id') }}"
+                 placeholder="ID Pegawai"
+                 required autofocus>
 
-        <input id="id"
-               name="id"
-               type="text"
-               class="form-control"
-               value="{{ old('id') }}"
-               placeholder="ID Pegawai"
-               required autofocus>
+          {{-- <span class="glyphicon glyphicon-user form-control-feedback"></span> --}}
 
-        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+          @if ($errors->has('id'))
 
-        @if ($errors->has('id'))
+              <span class="help-block">
+                  <strong>{{ $errors->first('id') }}</strong>
+              </span>
 
-            <span class="help-block">
-                <strong>{{ $errors->first('id') }}</strong>
-            </span>
-
-        @endif
+          @endif
+        </div>
 
     </div>
 
@@ -32,7 +34,7 @@
     <!-- name input -->
 
     <div class="form-group has-feedback{{ $errors->has('name') ? ' has-error' : '' }}">
-
+      <div class="col-md-12">
         <input id="name"
                name="name"
                type="text"
@@ -50,6 +52,7 @@
             </span>
 
         @endif
+      </div>
 
     </div>
 
@@ -58,7 +61,7 @@
     <!-- email input -->
 
     <div class="form-group has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
-
+      <div class="col-md-12">
         <input id="email"
                type="email"
                name="email"
@@ -76,7 +79,7 @@
             </span>
 
         @endif
-
+      </div>
     </div>
 
     <!-- end email input -->
@@ -84,7 +87,7 @@
     <!-- password input -->
 
     <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
-
+      <div class="col-md-12">
         <input id="password"
                type="password"
                name="password"
@@ -101,7 +104,7 @@
             </span>
 
         @endif
-
+      </div>
     </div>
 
     <!-- end password input -->
@@ -109,7 +112,7 @@
     <!-- password confirmation -->
 
     <div class="form-group has-feedback">
-
+      <div class="col-md-12">
         <input id="password-confirm"
                name="password_confirmation"
                type="password"
@@ -118,20 +121,55 @@
                required>
 
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
-
+      </div>
     </div>
 
     <!-- end password confirmation -->
 
-    <div class="form-group has-feedback{{ $errors->has('password') ? ' has-error' : '' }}">
-
-        <select class="form-control" name="role">
+    <div class="form-group">
+      <div class="col-md-12">
+        <select class="form-control" id="role" name="role" onChange="changeRole();">
           <option value="">--pilih jabatan--</option>
           <option value="1">Sub Unit</option>
           <option value="2">Unit</option>
-          <option value="3">Bidang</option>
+          <option value="3">Induk</option>
         </select>
+      </div>
+    </div>
 
+    <div class="form-group hidden" id="induk">
+        <label class="col-md-4 control-label">Nama Induk</label>
+        <div class="col-md-8">
+          <select class="form-control">
+          <option value="">--induk--</option>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          </select>
+        </div>
+    </div>
+
+    <div class="form-group hidden" id="unit">
+        <label class="col-md-4 control-label">Nama Unit</label>
+        <div class="col-md-8">
+          <select class="form-control">
+          <option value="">--unit--</option>
+          <option value="Aa">Aa</option>
+          <option value="Ab">Ab</option>
+          <option value="Ac">Ac</option>
+          </select>
+        </div>
+    </div>
+
+    <div class="form-group hidden" id="subunit">
+        <label class="col-md-4 control-label">Nama SubUnit</label>
+        <div class="col-md-8">
+          <select class="form-control">
+          <option value="">--subunit--</option>
+          <option value="Aa1">Aa1</option>
+          <option value="Aa2">Aa2</option>
+          <option value="Aa3">Aa3</option>
+          </select>
+        </div>
     </div>
 
     <div class="row">
