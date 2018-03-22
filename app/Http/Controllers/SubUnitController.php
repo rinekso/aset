@@ -48,16 +48,16 @@ class SubUnitController extends Controller
             ]);
 
         Kegiatan::insert([
-            'id' => $request->kode_kegiatan,
+            'kode' => $request->kode_kegiatan,
             'nama_kegiatan' => $request->nama_kegiatan,
             'user_id' => Auth::id(),
         ]);
 
-        if (Kegiatan::find($request->kode_kegiatan) != null) {
+        if (Kegiatan::where('kode', $request->kode_kegiatan) != null) {
             Session::flash('flash_message', 'Data Berhasil Disimpan');
             return redirect('subunit/kegiatan/'.$request->kode_kegiatan);
         } else {
-            return redirect()->back();
+            return redirect('subunit/input-kegiatan');
         }
     }
 
