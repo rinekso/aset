@@ -13,7 +13,8 @@
 
 // Authentication routes
 
-Route::get('/', 'SubUnitController@index');	
+Route::get('/', 'SubUnitController@index');
+Route::get('/home', 'SubUnitController@index'); 	
 
 Auth::routes();
 
@@ -23,7 +24,6 @@ Route::get('/logout', function(){
 });
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/pengadaan', 'PengadaanController@index');
     Route::post('/storePengadaan', 'PengadaanController@store');
 
     Route::get('/listBarang', 'BarangController@index');
@@ -37,6 +37,10 @@ Route::group(['middleware' => ['auth']], function () {
     	Route::get('/home', 'SubUnitController@index');
 		Route::get('/', 'SubUnitController@index');
         Route::get('/input-kegiatan', 'SubUnitController@inputKegiatan');
+        Route::post('/store-kegiatan', 'SubUnitController@storeKegiatan');
+        Route::get('/kegiatan/{id}', 'SubUnitController@kegiatanPengadaan');
+        Route::get('/pengadaan/{id}', 'SubUnitController@pengadaan');
+        Route::post('/store-pengadaan', 'SubUnitController@storePengadaan');
         Route::get('/listPengadaan', 'SubUnitController@listPengadaan');
         Route::get('/inputBarang', 'SubUnitController@inputBarang');
         Route::get('/formInputBarang/{id}', 'SubUnitController@formInputBarang')->name('.formInputBarang');

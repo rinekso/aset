@@ -16,7 +16,8 @@ class CreateInduksTable extends Migration
         Schema::create('induks', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama_induk');
-            $table->timestamps();
+            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 

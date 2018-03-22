@@ -26,7 +26,8 @@ class CreateProfilesTable extends Migration
             $table->integer('unit_id')->nullable()->unsigned();
             $table->integer('induk_id')->nullable()->unsigned();
             $table->integer('jabatan');
-            $table->timestamps();
+            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 

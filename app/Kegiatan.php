@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Kegiatan extends Model
 {
     protected $fillable = [
-    	'id',
-    	'nama_kegiatan';
+    	'kode',
+    	'nama_kegiatan',
     ];
 
     public function pengadaan(){

@@ -35,8 +35,8 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="/pengadaan">Ajukan Pengadaan</a></li>
-                    <li><a href="/subunit/listPengadaan">List Pengadaan</a></li>
+                    <li><a href="/subunit/input-kegiatan">Kegiatan Baru</a></li>
+                    <li><a href="/subunit/listPengadaan">List Kegiatan</a></li>
                 </ul>
             </li>
             <li>

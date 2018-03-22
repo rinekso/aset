@@ -14,12 +14,13 @@ class CreateKegiatansTable extends Migration
     public function up()
     {
         Schema::create('kegiatans', function (Blueprint $table) {
-            $table->string('id');
+            $table->string('kode');
             $table->string('nama_kegiatan');
             $table->string('user_id');
-            $table->timestamps();
+            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamp('created_at')->useCurrent();
 
-            $table->primary('id');
+            $table->primary('kode');
         });
     }
 

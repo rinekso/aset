@@ -27,7 +27,8 @@ class CreatePengadaanTable extends Migration
             $table->integer('status_unit');
             $table->integer('status_bidang');
             $table->string('user_id');
-            $table->timestamps();
+            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamp('created_at')->useCurrent();
 
             $table->primary('id');
         });

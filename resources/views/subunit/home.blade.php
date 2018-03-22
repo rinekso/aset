@@ -17,18 +17,12 @@
                 Dashboard Sub Unit
                 <small>you are logged in!</small>
             </h1>
-
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-                <li class="active">User Dashboard</li>
-            </ol>
-
         </section>
         <!-- end content-header section -->
         
         <!-- content -->
         <section class="content">
-            <div class="box">
+            <div class="box col-md-6">
                 <div class="box-header with-border">
                     <h3 class="box-title">Profile</h3>
 
@@ -40,7 +34,7 @@
                     </div>
                 </div>
                 <div class="box-body">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <table class="table">
                             <tr>
                                 <td class="col-sm-1">Nama</td>

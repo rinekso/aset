@@ -16,7 +16,8 @@ class CreateKodebphsTable extends Migration
         Schema::create('kodebphs', function (Blueprint $table) {
             $table->string('kode');
             $table->string('deskripsi');
-            $table->timestamps();
+            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamp('created_at')->useCurrent();
 
             $table->primary('kode');
         });

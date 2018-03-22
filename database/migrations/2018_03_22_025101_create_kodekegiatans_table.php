@@ -17,7 +17,8 @@ class CreateKodekegiatansTable extends Migration
             $table->increments('id');
             $table->string('kode');
             $table->string('nama_kegiatan');
-            $table->timestamps();
+            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 

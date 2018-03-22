@@ -11,6 +11,7 @@ use App\Profile;
 use App\Kegiatan;
 use App\Kodekegiatan;
 use App\Pengadaan;
+use App\Kategori;
 use App\Tanah;
 use App\Mesin;
 use App\Bangunan;
@@ -35,9 +36,87 @@ class SubUnitController extends Controller
     }
 
     public function inputKegiatan(){
-        $kodkeg = Kodekegiatan::all();
-        return view('subunit.input_kegiatan', compact('kodekeg'));
+        $kodekeg = Kodekegiatan::all();
+        $banyakkeg = str_pad(Kegiatan::count()+1, 4, 0, STR_PAD_LEFT);
+        return view('subunit.input_kegiatan', compact('kodekeg', 'banyakkeg'));
     }
+
+    public function storeKegiatan(Request $request){
+        $this->validate($request, [
+                'kode_kegiatan' => 'required',
+                'nama_kegiatan' => 'required',
+            ]);
+
+        Kegiatan::insert([
+            'id' => $request->kode_kegiatan,
+            'nama_kegiatan' => $request->nama_kegiatan,
+            'user_id' => Auth::id(),
+        ]);
+
+        if (Kegiatan::find($request->kode_kegiatan) != null) {
+            Session::flash('flash_message', 'Data Berhasil Disimpan');
+            return redirect('subunit/kegiatan/'.$request->kode_kegiatan);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function kegiatanPengadaan($id){
+
+        $kegiatan = Kegiatan::where('kode', $id)->first();
+        return view('subunit.kegiatan_pengadaan', compact('kegiatan'));
+    
+    }
+
+    public function pengadaan($id){
+    
+        $kategori = Kategori::all();
+        $kegiatan = Kegiatan::where('kode', $id)->first();
+
+        return view('subunit/pengadaan', compact('kategori', 'kegiatan'));
+    
+    }
+
+    public function storePengadaan(Request $request){
+        $this->validate($request, [
+                'nama' => 'required',
+                'jumlah' => 'required',
+                'harga_satuan' => 'required',
+                // 'total' => 'required',
+                'kategori_id' => 'required',
+                'no_bst' => 'required',
+                'keterangan' => 'required',
+                'foto_bst' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+        $no_pengadaan = Pengadaan::count() + 1;
+
+        // foto bst
+        $file_bst = $request->file('foto_bst');
+        $bst_name = "bst_".Auth::user()->id."_".$no_pengadaan.".".$file_bst->getClientOriginalExtension();
+        $file_bst->move("images/bst/", $bst_name);
+
+        Pengadaan::create([
+            'id' => $no_pengadaan,
+            'nama' => $request->nama,
+            'jumlah' => $request->jumlah,
+            'harga_satuan' => $request->harga_satuan,
+            'total' => $request->jumlah * $request->harga_satuan,
+            'kategori_id' => $request->kategori_id,
+            'no_bst' => $request->no_bst,
+            'foto_bst' => $bst_name,
+            'keterangan' => $request->keterangan,
+            'status_unit' => '0',
+            'status_bidang' => '0',
+            'user_id' => Auth::user()->id,
+            'kegiatan_id' => $request->kegiatan_id,
+        ]);
+
+        Session::flash('flash_message', 'Data Berhasil Disimpan');
+        return redirect('subunit/kegiatan/'.$request->kegiatan_id);
+    }
+
+
+
 
     public function dataPengadaan(){
         $pengadaan = DB::table('pengadaan as p')

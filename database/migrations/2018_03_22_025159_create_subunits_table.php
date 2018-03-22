@@ -17,7 +17,8 @@ class CreateSubunitsTable extends Migration
             $table->increments('id');
             $table->string('nama_subunit');
             $table->integer('unit_id');
-            $table->timestamps();
+            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 

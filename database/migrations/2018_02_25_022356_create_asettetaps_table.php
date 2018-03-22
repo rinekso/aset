@@ -32,7 +32,8 @@ class CreateAsettetapsTable extends Migration
             $table->double('total');
             $table->text('keterangan')->nullable();
             $table->string('user_id');
-            $table->timestamps();
+            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 
