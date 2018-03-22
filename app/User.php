@@ -66,4 +66,8 @@ class User extends Authenticatable
     public function bph(){
         return $this->hasMany(Bph::class);   
     }
+
+    public function kegiatan(){
+        return $this->hasMAny(Kegiatan::class);
+    }
 }

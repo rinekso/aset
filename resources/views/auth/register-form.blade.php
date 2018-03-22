@@ -140,10 +140,10 @@
     <div class="form-group hidden" id="induk">
         <label class="col-md-4 control-label">Nama Induk</label>
         <div class="col-md-8">
-          <select class="form-control">
-          <option value="">--induk--</option>
-          <option value="A">A</option>
-          <option value="B">B</option>
+          <select class="form-control" name="induk">
+            <option value="">--induk--</option>
+            <option value="1">A</option>
+            <option value="2">B</option>
           </select>
         </div>
     </div>
@@ -151,11 +151,11 @@
     <div class="form-group hidden" id="unit">
         <label class="col-md-4 control-label">Nama Unit</label>
         <div class="col-md-8">
-          <select class="form-control">
-          <option value="">--unit--</option>
-          <option value="Aa">Aa</option>
-          <option value="Ab">Ab</option>
-          <option value="Ac">Ac</option>
+          <select class="form-control" name="unit">
+            <option value="">--unit--</option>
+            <option value="1">Aa</option>
+            <option value="2">Ab</option>
+            <option value="3">Ac</option>
           </select>
         </div>
     </div>
@@ -163,11 +163,11 @@
     <div class="form-group hidden" id="subunit">
         <label class="col-md-4 control-label">Nama SubUnit</label>
         <div class="col-md-8">
-          <select class="form-control">
-          <option value="">--subunit--</option>
-          <option value="Aa1">Aa1</option>
-          <option value="Aa2">Aa2</option>
-          <option value="Aa3">Aa3</option>
+          <select class="form-control" name="subunit">
+            <option value="">--subunit--</option>
+            <option value="1">Aa1</option>
+            <option value="2">Aa2</option>
+            <option value="3">Aa3</option>
           </select>
         </div>
     </div>

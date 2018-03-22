@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use DataTables;
+use App\Profile;
+use App\Kegiatan;
+use App\Kodekegiatan;
 use App\Pengadaan;
 use App\Tanah;
 use App\Mesin;
@@ -26,7 +29,14 @@ class SubUnitController extends Controller
     }
     public function index()
     {
-        return view('pages.subunit_home');
+        $id = Auth::id();
+        $profile = Profile::where('user_id', $id)->first();
+        return view('subunit.home', compact('profile'));
+    }
+
+    public function inputKegiatan(){
+        $kodkeg = Kodekegiatan::all();
+        return view('subunit.input_kegiatan', compact('kodekeg'));
     }
 
     public function dataPengadaan(){

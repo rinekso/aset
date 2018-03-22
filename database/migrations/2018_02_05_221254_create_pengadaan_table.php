@@ -15,6 +15,7 @@ class CreatePengadaanTable extends Migration
     {
         Schema::create('pengadaan', function (Blueprint $table) {
             $table->integer('id');
+            $table->string('kegiatan_id');
             $table->string('nama');
             $table->double('jumlah');
             $table->double('harga_satuan');
@@ -27,6 +28,8 @@ class CreatePengadaanTable extends Migration
             $table->integer('status_bidang');
             $table->string('user_id');
             $table->timestamps();
+
+            $table->primary('id');
         });
     }
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateKodebarangsTable extends Migration
+class CreateKodemesinsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateKodebarangsTable extends Migration
      */
     public function up()
     {
-        Schema::create('kodebarangs', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('kodemesins', function (Blueprint $table) {
+            $table->string('kode');
+            $table->string('deskripsi');
             $table->timestamps();
+
+            $table->primary('kode');
         });
     }
 
@@ -26,6 +29,6 @@ class CreateKodebarangsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kodebarangs');
+        Schema::dropIfExists('kodemesins');
     }
 }

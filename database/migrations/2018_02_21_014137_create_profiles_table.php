@@ -22,9 +22,10 @@ class CreateProfilesTable extends Migration
             $table->date('tgl_lahir')->nullable();
             $table->text('alamat')->nullable();
             $table->char('no_telp', 20)->nullable();
+            $table->integer('subunit_id')->nullable()->unsigned();
             $table->integer('unit_id')->nullable()->unsigned();
-            $table->integer('bidang_id')->nullable()->unsigned();
-            $table->string('jabatan')->nullable();
+            $table->integer('induk_id')->nullable()->unsigned();
+            $table->integer('jabatan');
             $table->timestamps();
         });
     }

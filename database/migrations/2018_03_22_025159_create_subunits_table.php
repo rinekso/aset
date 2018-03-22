@@ -15,6 +15,8 @@ class CreateSubunitsTable extends Migration
     {
         Schema::create('subunits', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nama_subunit');
+            $table->integer('unit_id');
             $table->timestamps();
         });
     }

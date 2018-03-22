@@ -9,6 +9,7 @@ class Pengadaan extends Model
     protected $table = 'pengadaan';
     protected $fillable = [
         'id',
+        'kegiatan_id',
         'nama',
         'jumlah', 
         'harga_satuan', 
@@ -28,6 +29,10 @@ class Pengadaan extends Model
 
     public function kategori(){
     	return $this->belongsTo(Kategori::class);
+    }
+
+    public function kegiatan(){
+        return $this->belongsTo(Kegiatan::class);
     }
 
 }

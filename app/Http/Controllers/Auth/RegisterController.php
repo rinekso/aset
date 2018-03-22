@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Profile;
+use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -68,6 +70,17 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $data['is_subscribed'] = empty($data['is_subscribed']) ? 0 : 1;
+
+        Profile::create([
+            'user_id' => $data['id'],
+            'nama' => $data['name'],
+            'subunit_id' => $data['subunit'],
+            'unit_id' => $data['unit'],
+            'induk_id' => $data['induk'],
+            'jabatan' => $data['role'],
+        ]);
+
+        Session::flash('success', 'User successfully created.');
 
         return User::create([
             'id' => $data['id'],

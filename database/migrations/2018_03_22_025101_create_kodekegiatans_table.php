@@ -15,6 +15,8 @@ class CreateKodekegiatansTable extends Migration
     {
         Schema::create('kodekegiatans', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('kode');
+            $table->string('nama_kegiatan');
             $table->timestamps();
         });
     }

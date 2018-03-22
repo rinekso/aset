@@ -36,6 +36,7 @@ Route::group(['middleware' => ['auth']], function () {
     {
     	Route::get('/home', 'SubUnitController@index');
 		Route::get('/', 'SubUnitController@index');
+        Route::get('/input-kegiatan', 'SubUnitController@inputKegiatan');
         Route::get('/listPengadaan', 'SubUnitController@listPengadaan');
         Route::get('/inputBarang', 'SubUnitController@inputBarang');
         Route::get('/formInputBarang/{id}', 'SubUnitController@formInputBarang')->name('.formInputBarang');
