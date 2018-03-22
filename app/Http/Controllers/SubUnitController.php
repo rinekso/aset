@@ -115,15 +115,31 @@ class SubUnitController extends Controller
         return redirect('subunit/kegiatan/'.$request->kegiatan_id);
     }
 
-
-
-
-    public function dataPengadaan(){
+    public function dataPengadaan($id){
         $pengadaan = DB::table('pengadaan as p')
+        ->where('kegiatan_id', '=',  $id)
                 ->select('p.*')
                 ->get();
 
         return Datatables::of($pengadaan)->make(true);
+    }
+
+    public function listKegiatan(){
+        $kegiatan = Kegiatan::where('user_id', Auth::id())->first();
+        return view('subunit.list_kegiatan');
+    }
+
+    public function dataKegiatan(){
+        $kegiatan = DB::table('kegiatans as k')
+                ->where('user_id', '=',  Auth::id())
+                ->select('k.*')
+                ->get();
+
+        return Datatables::of($kegiatan)
+            ->addColumn('action', function ($kegiatan) {
+                return '<a class="btn btn-info btn-sm" href="'.url("subunit/kegiatan/$kegiatan->kode").'">Select</a>';
+            })           
+            ->make(true);
     }
 
     public function listPengadaan(){

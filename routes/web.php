@@ -41,11 +41,13 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/kegiatan/{id}', 'SubUnitController@kegiatanPengadaan');
         Route::get('/pengadaan/{id}', 'SubUnitController@pengadaan');
         Route::post('/store-pengadaan', 'SubUnitController@storePengadaan');
+        Route::get('/data-pengadaan/{id}', 'SubUnitController@dataPengadaan');
+        Route::get('/list-kegiatan', 'SubUnitController@listKegiatan');
+        Route::get('/data-kegiatan', 'SubUnitController@dataKegiatan');
         Route::get('/listPengadaan', 'SubUnitController@listPengadaan');
         Route::get('/inputBarang', 'SubUnitController@inputBarang');
         Route::get('/formInputBarang/{id}', 'SubUnitController@formInputBarang')->name('.formInputBarang');
         Route::post('/storeBarang', 'SubUnitController@storeBarang');
-        Route::get('/data-pengadaan', 'SubUnitController@dataPengadaan');
     });
 
 	/**

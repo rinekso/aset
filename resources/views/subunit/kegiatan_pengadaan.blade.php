@@ -115,7 +115,7 @@
                 processing: true,
                 responsive: true,
                 ajax: {
-                    url: '{{ url("subunit/data-pengadaan") }}'
+                    url: '{{ url("subunit/data-pengadaan/".$kegiatan->kode) }}'
                 },
                 dom: 'Bflrtip',
                 buttons: [
