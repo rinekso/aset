@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'id', 'name', 'email', 'password', 'role',
+        'nip', 'name', 'email', 'password', 'role',
     ];
 
     /**
@@ -28,7 +28,7 @@ class User extends Authenticatable
     ];
 
     public function profile(){
-        return $this->hasOne(Profile::class);
+        return $this->hasOne(Profile::class, 'nip', 'nip');
     }
 
     public function pengadaan(){

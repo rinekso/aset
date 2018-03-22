@@ -8,7 +8,7 @@ class Profile extends Model
 {
     protected $table = 'profiles';
     protected $fillable = [
-        'user_id', 
+        'nip', 
         'nama', 
         'jenis_kelamin', 
         'tempat_lahir', 
@@ -22,7 +22,7 @@ class Profile extends Model
     ];
 
     public function user(){
-    	return $this->belongsTo(User::class);
+    	return $this->belongsTo(User::class, 'nip', 'nip');
     }
 
     public function subunit() {

@@ -1,7 +1,7 @@
 @extends('subunit.layouts.master-auth')
 
 @section('title')
-    <title>Input Kegiatan Baru</title>
+    <title>Data Kegiatan: {{$kegiatan->nama_kegiatan}}</title>
 @endsection
 
 @section('content')

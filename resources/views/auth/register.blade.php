@@ -19,16 +19,6 @@
             <!-- content-header has breadcrumbs -->
 
             <section class="content-header">
-
-
-                <ol class="breadcrumb">
-
-                    <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li><a href="/register">Register</a></li>
-                    <li class="active">Register</li>
-
-                </ol>
-
             </section>
 
             <!-- end content-header section -->

@@ -72,7 +72,7 @@ class RegisterController extends Controller
         $data['is_subscribed'] = empty($data['is_subscribed']) ? 0 : 1;
 
         Profile::create([
-            'user_id' => $data['id'],
+            'nip' => $data['id'],
             'nama' => $data['name'],
             'subunit_id' => $data['subunit'],
             'unit_id' => $data['unit'],
@@ -83,7 +83,7 @@ class RegisterController extends Controller
         Session::flash('success', 'User successfully created.');
 
         return User::create([
-            'id' => $data['id'],
+            'nip' => $data['id'],
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),

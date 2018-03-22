@@ -30,8 +30,8 @@ class SubUnitController extends Controller
     }
     public function index()
     {
-        $id = Auth::id();
-        $profile = Profile::where('user_id', $id)->first();
+        $nip = Auth::user()->nip;
+        $profile = Profile::where('nip', $nip)->first();
         return view('subunit.home', compact('profile'));
     }
 
@@ -50,7 +50,7 @@ class SubUnitController extends Controller
         Kegiatan::insert([
             'kode' => $request->kode_kegiatan,
             'nama_kegiatan' => $request->nama_kegiatan,
-            'user_id' => Auth::id(),
+            'user_id' => Auth::user()->nip,
         ]);
 
         if (Kegiatan::where('kode', $request->kode_kegiatan) != null) {
@@ -82,7 +82,6 @@ class SubUnitController extends Controller
                 'nama' => 'required',
                 'jumlah' => 'required',
                 'harga_satuan' => 'required',
-                // 'total' => 'required',
                 'kategori_id' => 'required',
                 'no_bst' => 'required',
                 'keterangan' => 'required',
@@ -92,7 +91,7 @@ class SubUnitController extends Controller
 
         // foto bst
         $file_bst = $request->file('foto_bst');
-        $bst_name = "bst_".Auth::user()->id."_".$no_pengadaan.".".$file_bst->getClientOriginalExtension();
+        $bst_name = "bst_".Auth::user()->nip."_".$no_pengadaan.".".$file_bst->getClientOriginalExtension();
         $file_bst->move("images/bst/", $bst_name);
 
         Pengadaan::create([
@@ -107,7 +106,7 @@ class SubUnitController extends Controller
             'keterangan' => $request->keterangan,
             'status_unit' => '0',
             'status_bidang' => '0',
-            'user_id' => Auth::user()->id,
+            'user_id' => Auth::user()->nip,
             'kegiatan_id' => $request->kegiatan_id,
         ]);
 
@@ -128,13 +127,13 @@ class SubUnitController extends Controller
     }
 
     public function listKegiatan(){
-        $kegiatan = Kegiatan::where('user_id', Auth::id())->first();
+        $kegiatan = Kegiatan::where('user_id', Auth::user()->nip)->first();
         return view('subunit.list_kegiatan');
     }
 
     public function dataKegiatan(){
         $kegiatan = DB::table('kegiatans as k')
-                ->where('user_id', '=',  Auth::id())
+                ->where('user_id', '=',  Auth::user()->nip)
                 ->select('k.*')
                 ->get();
 
@@ -146,15 +145,12 @@ class SubUnitController extends Controller
     }
 
     public function listPengadaan(){
-        // $pengadaan = Pengadaan::where('user_id', Auth::user()->id)->get();
-        
-        // return view('subunit.list_pengadaan', compact('pengadaan'));
         return view('subunit.list');
     }
 
     public function inputBarang(){
         $pengadaan = Pengadaan::where([
-                        ['user_id', '=', Auth::user()->id],
+                        ['user_id', '=', Auth::user()->nip],
                         ['status_unit', '=', '1'],
                         ['status_bidang', '=', '1'],
                     ])->get();
@@ -213,7 +209,7 @@ class SubUnitController extends Controller
                 'asalusul' => $request->asalusul,
                 'harga' => $request->harga,
                 'keterangan' => $request->keterangan,
-                'user_id' => Auth::user()->id,
+                'user_id' => Auth::user()->nip,
                 
             ]);
         } elseif ($request->kategori_id == 2) {
@@ -249,7 +245,7 @@ class SubUnitController extends Controller
                 'harga_satuan' => $request->harga_satuan,
                 'total' => $request->total,
                 'keterangan' => $request->keterangan,
-                'user_id' => Auth::user()->id,
+                'user_id' => Auth::user()->nip,
             ]);
 
         } elseif ($request->kategori_id == 3) {
@@ -278,7 +274,7 @@ class SubUnitController extends Controller
                 'no_polisi' => $request->no_polisi,
                 'harga' => $request->harga,
                 'keterangan' => $request->keterangan,
-                'user_id' => Auth::user()->id,
+                'user_id' => Auth::user()->nip,
             ]);
 
         } elseif ($request->kategori_id == 4) {
@@ -313,7 +309,7 @@ class SubUnitController extends Controller
                 'asalusul' => $request->asalusul,
                 'harga' => $request->harga,
                 'keterangan' => $request->keterangan,
-                'user_id' => Auth::user()->id,
+                'user_id' => Auth::user()->nip,
             ]);
 
         } elseif ($request->kategori_id == 5) {  
@@ -344,7 +340,7 @@ class SubUnitController extends Controller
                 'tahun_cetak' => $request->tahun_cetak,
                 'asalusul' => $request->asalusul,
                 'keterangan' => $request->keterangan,
-                'user_id' => Auth::user()->id,
+                'user_id' => Auth::user()->nip,
             ]);
         } elseif ($request->kategori_id == 6) {  
             $this->validate($request, [
@@ -371,7 +367,7 @@ class SubUnitController extends Controller
                 'nilai_kontrak' => $request->nilai_kontrak,
                 'asalusul' => $request->asalusul,
                 'keterangan' => $request->keterangan,
-                'user_id' => Auth::user()->id,
+                'user_id' => Auth::user()->nip,
             ]);
         } elseif ($request->kategori_id == 7) {  
             $this->validate($request, [
@@ -394,7 +390,7 @@ class SubUnitController extends Controller
                 'harga_satuan' => $request->harga_satuan,
                 'total' => $request->total,
                 'keterangan' => $request->keterangan,
-                'user_id' => Auth::user()->id,
+                'user_id' => Auth::user()->nip,
             ]);
         }
 

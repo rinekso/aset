@@ -38,27 +38,30 @@
                         <table class="table">
                             <tr>
                                 <td class="col-sm-1">Nama</td>
-                                <td class="col-sm-1">:</td>
                                 <th>{{ $profile->nama }}</td>
                             </tr>
                             <tr>
+                                <td>NIP</td>
+                                <th>{{ $profile->nip }}</th>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <th>{{ $profile->user->email }}</th>
+                            </tr>
+                            <tr>
                                 <td>Jabatan</td>
-                                <td>:</td>
                                 <th>{{ $profile->role->role }}</td>
                             </tr>
                             <tr>
                                 <td>Subunit</td>
-                                <td>:</td>
                                 <th>{{ $profile->subunit->nama_subunit }}</td>
                             </tr>
                             <tr>
                                 <td>Unit</td>
-                                <td>:</td>
                                 <th>{{ $profile->unit->nama_unit }}</td>
                             </tr>
                             <tr>
                                 <td>Induk</td>
-                                <td>:</td>
                                 <th>{{ $profile->induk->nama_induk }}</td>
                             </tr>
                         </table>
