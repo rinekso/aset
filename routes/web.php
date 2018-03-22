@@ -56,10 +56,10 @@ Route::group(['middleware' => ['auth']], function () {
     {
     	Route::get('/home', 'UnitController@index');
 		Route::get('/', 'UnitController@index');
-        Route::get('/list-kegiatan', 'UnitController@listKegiatan');
-        Route::get('/data-kegiatan', 'UnitController@dataKegiatan');
-        Route::get('/kegiatan/{id}', 'UnitController@kegiatanPengadaan');
-        Route::get('/data-pengadaan/{id}', 'UnitController@dataPengadaan');
+        Route::get('/list-kegiatan', 'UnitController@listKegiatan')->name('.list-kegiatan');
+        Route::get('/data-kegiatan', 'UnitController@dataKegiatan')->name('.data-kegiatan');
+        Route::get('/kegiatan/{id}', 'UnitController@kegiatanPengadaan')->name('.kegiatan');
+        Route::get('/data-pengadaan/{id}', 'UnitController@dataPengadaan')->name('.data-pengadaan');
         Route::get('/approve/{id}', 'UnitController@approve')->name('.approve');
         Route::get('/tolak/{id}', 'UnitController@tolak')->name('.tolak');
         // Route::get('/getData', 'UnitController@getDataPengadaan');
@@ -71,10 +71,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => 'bidang', 'prefix' => 'bidang', 'as' => 'bidang'], function() {
         Route::get('/home', 'BidangController@index');
         Route::get('/', 'BidangController@index'); 
-        Route::get('/list-kegiatan', 'BidangController@listKegiatan');
-        Route::get('/data-kegiatan', 'BidangController@dataKegiatan');
-        Route::get('/kegiatan/{id}', 'BidangController@kegiatanPengadaan');
-        Route::get('/data-pengadaan/{id}', 'BidangController@dataPengadaan');
+        Route::get('/list-kegiatan', 'BidangController@listKegiatan')->name('.list-kegiatan');
+        Route::get('/data-kegiatan', 'BidangController@dataKegiatan')->name('.data-kegiatan');
+        Route::get('/kegiatan/{id}', 'BidangController@kegiatanPengadaan')->name('.kegiatan');
+        Route::get('/data-pengadaan/{id}', 'BidangController@dataPengadaan')->name('.data-pengadaan');
         Route::get('/approve/{id}', 'BidangController@approve')->name('.approve');
         Route::get('/tolak/{id}', 'BidangController@tolak')->name('.tolak');
     });  
