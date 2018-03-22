@@ -1,4 +1,4 @@
-@extends('subunit.layouts.master-auth')
+@extends('unit.layouts.master-auth')
 
 @section('title')
     <title>Data Kegiatan: {{$kegiatan->nama_kegiatan}}</title>
@@ -67,8 +67,7 @@
             <div class="row"></div>
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">List Pengadaan Barang |</h3>
-                    <a href="/subunit/pengadaan/{{$kegiatan->kode}}" class="btn btn-info btn-xs">Tambah Pengadaan</a>
+                    <h3 class="box-title">List Pengadaan Barang</h3>
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                             <i class="fa fa-minus"></i></button>
@@ -88,6 +87,7 @@
                                     <th>Keterangan</th>
                                     <th>Status Unit</th>
                                     <th>Status Induk</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                         </table>
@@ -115,7 +115,7 @@
                 processing: true,
                 responsive: true,
                 ajax: {
-                    url: '{{ url("subunit/data-pengadaan/".$kegiatan->kode) }}'
+                    url: '{{ url("unit/data-pengadaan/".$kegiatan->kode) }}'
                 },
                 dom: 'Bflrtip',
                 buttons: [
@@ -158,6 +158,7 @@
                             }
                         }
                     },
+                    { data:'action', name:'action'},
                 ],
             });
         });

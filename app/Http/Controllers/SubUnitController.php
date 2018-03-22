@@ -123,7 +123,12 @@ class SubUnitController extends Controller
                         ->where('kegiatan_id', '=',  $id)
                         ->select('pengadaan.*');
 
-        return Datatables::of($pengadaan)->make(true);
+        return Datatables::of($pengadaan)
+                // ->addColumn('status', function($pengadaan){
+                //     if($pengadaan->status_unit == 0)
+                //         return '<font color="orange">Belum dikonfirmasi</font>';
+                // })
+                ->make(true);
     }
 
     public function listKegiatan(){
@@ -142,10 +147,6 @@ class SubUnitController extends Controller
                 return '<a class="btn btn-success btn-sm" href="'.url("subunit/kegiatan/$kegiatan->kode").'">Buka</a>';
             })           
             ->make(true);
-    }
-
-    public function listPengadaan(){
-        return view('subunit.list');
     }
 
     public function inputBarang(){

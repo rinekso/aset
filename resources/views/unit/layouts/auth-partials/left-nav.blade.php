@@ -27,23 +27,16 @@
                 </a>
             </li>
             <li>
-                <a href="/">
+                <a href="/unit/list-kegiatan">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span>Request Pengadaan</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
                     <i class="fa fa-archive"></i>
                     <span>Barang</span>
                 </a>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-shopping-cart"></i>
-                    <span>Pengadaan</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="/pengadaan">Ajukan Pengadaan</a></li>
-                    <li><a href="/unit/listPengadaan">List Pengadaan</a></li>
-                </ul>
             </li>
         </ul>
         <!-- /.sidebar-menu -->
