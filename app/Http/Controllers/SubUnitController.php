@@ -116,10 +116,13 @@ class SubUnitController extends Controller
     }
 
     public function dataPengadaan($id){
-        $pengadaan = DB::table('pengadaan as p')
-        ->where('kegiatan_id', '=',  $id)
-                ->select('p.*')
-                ->get();
+        // $pengadaan = DB::table('pengadaan as p')
+        //         ->where('kegiatan_id', '=',  $id)
+        //         ->select('p.*')
+        //         ->get();
+        $pengadaan = Pengadaan::with('kategori')
+                        ->where('kegiatan_id', '=',  $id)
+                        ->select('pengadaan.*');
 
         return Datatables::of($pengadaan)->make(true);
     }

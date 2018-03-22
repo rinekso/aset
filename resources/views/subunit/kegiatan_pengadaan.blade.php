@@ -129,7 +129,7 @@
                   {data: 'jumlah', name: 'jumlah'},
                   {data: 'harga_satuan', name: 'harga_satuan'},
                   {data: 'total', name: 'total'},
-                  {data: 'kategori_id', name: 'kategori_id'},
+                  {data: 'kategori.nama_kategori', name: 'kategori.nama_kategori'},
                   {data: 'no_bst', name: 'no_bst'},
                   {data: 'keterangan', name: 'keterangan'},
                   {data: 'status_unit', name: 'status_unit'},
