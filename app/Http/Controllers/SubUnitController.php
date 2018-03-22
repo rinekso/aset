@@ -137,7 +137,7 @@ class SubUnitController extends Controller
 
         return Datatables::of($kegiatan)
             ->addColumn('action', function ($kegiatan) {
-                return '<a class="btn btn-info btn-sm" href="'.url("subunit/kegiatan/$kegiatan->kode").'">Select</a>';
+                return '<a class="btn btn-success btn-sm" href="'.url("subunit/kegiatan/$kegiatan->kode").'">Buka</a>';
             })           
             ->make(true);
     }

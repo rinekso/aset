@@ -1,4 +1,4 @@
-@extends('layouts.master-auth')
+@extends('subunit.layouts.master-auth')
 
 @section('title')
     <title>Pengajuan Pengadaan Barang</title>
