@@ -47,6 +47,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/inputBarang', 'SubUnitController@inputBarang');
         Route::get('/formInputBarang/{id}', 'SubUnitController@formInputBarang')->name('.formInputBarang');
         Route::post('/storeBarang', 'SubUnitController@storeBarang');
+
+        Route::get('/pdf-pengadaan', 'SubUnitController@pdfPengadaan')->name('.pdfPengadaan');
     });
 
 	/**
@@ -79,46 +81,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/tolak/{id}', 'BidangController@tolak')->name('.tolak');
     });  
 });
-
-
-
-
-
-
-// Profile
-
-Route::get('show-profile', 'ProfileController@showProfileToUser')->name('show-profile');
-
-Route::get('determine-profile-route', 'ProfileController@determineProfileRoute')->name('determine-profile-route');
-
-Route::resource('profile', 'ProfileController');
-
-// Username route
-
-Route::get('/username', 'UsernameController@show')->middleware('auth');
-
-// Settings routes
-
-Route::get('settings', 'SettingsController@edit');
-
-Route::post('settings', 'SettingsController@update')->name('user-update');
-
-// Terms route
-
-Route::get('/terms', 'PagesController@terms')->name('terms');
-
-// User routes
-
-Route::resource('user', 'UserController');
-
-
-// Widget routes
-
-Route::get('widget/create',  'WidgetController@create')->name('widget.create');
-
-Route::get('widget/{widget}-{slug?}', 'WidgetController@show')->name('widget.show');
-
-Route::resource('widget', 'WidgetController', ['except' => ['show', 'create']]);
 
 
 /*
