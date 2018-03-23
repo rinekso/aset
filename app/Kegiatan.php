@@ -18,4 +18,8 @@ class Kegiatan extends Model
     public function user(){
     	return $this->belongsTo(User::class, 'user_id', 'nip');
     }
+
+    public function profile(){
+        return $this->belongsTo(Profile::class, 'user_id', 'nip');
+    }    
 }

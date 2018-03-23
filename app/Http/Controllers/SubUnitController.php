@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use DataTables;
+use PDF;
 use App\Profile;
 use App\Kegiatan;
 use App\Kodekegiatan;
@@ -405,5 +406,16 @@ class SubUnitController extends Controller
 
         Session::flash('flash_message', 'Data Berhasil Disimpan');
         return redirect('/subunit/inputBarang');
+    }
+
+    public function pdfPengadaan(Request $request){
+        $kegiatan = Kegiatan::where('kode', $request->kode_kegiatan)->first();
+        $pengadaan = Pengadaan::where('kegiatan_id', $request->kode_kegiatan)->get();
+
+        $pdf = PDF::loadView('subunit.pdfview', compact('kegiatan', 'pengadaan'))
+            ->setPaper('a4');
+        // $pdf->download('pdfview.pdf');
+        return $pdf->stream('pdfview.pdf');
+        // return view('subunit.pdfview', compact('kegiatan', 'pengadaan'));
     }
 }

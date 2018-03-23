@@ -33,38 +33,53 @@
 
         <!-- content -->
         <section class="content">
-            <div class="box box-primary col-md-6">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Detail</h3>
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-                            <i class="fa fa-minus"></i></button>
-                    </div>
-                </div>
-                <div class="box-body">
-                    <div class="col-md-12">
-                        <table class="table table-condensed">
-                            <tr>
-                                <td class="col-sm-4">Kode Kegiatan</td>
-                                <th class="text-left">{{$kegiatan->kode}}</td>
-                            </tr>
-                            <tr>
-                                <td>Nama Kegiatan</td>
-                                <th class="text-left">{{$kegiatan->nama_kegiatan}}</td>
-                            </tr>
-                            <tr>
-                                <td>User</td>
-                                <th class="text-left">{{$kegiatan->user->name}}</td>
-                            </tr>
-                            <tr>
-                                <td>Tanggal Dibuat</td>
-                                <th class="text-left">{{$kegiatan->created_at}}</td>
-                            </tr>
-                        </table>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Detail</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                    <i class="fa fa-minus"></i></button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="col-md-6">
+                                <table class="table table-condensed">
+                                    <tr>
+                                        <td class="col-sm-4">Kode Kegiatan</td>
+                                        <th class="text-left">{{$kegiatan->kode}}</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Nama Kegiatan</td>
+                                        <th class="text-left">{{$kegiatan->nama_kegiatan}}</th>
+                                    </tr>
+                                    <tr>
+                                        <td>User</td>
+                                        <th class="text-left">{{$kegiatan->user->name}}</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Tanggal Dibuat</td>
+                                        <th class="text-left">{{$kegiatan->created_at}}</th>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="{{ route('subunit.pdfPengadaan',['kode_kegiatan'=> $kegiatan->kode]) }}" class="btn btn-success"><i class="fa fa-print"></i> Cetak Berita Acara</a>
+                                {{-- <form role="form" action="/subunit/pdf-pengadaan" method="POST" enctype="multipart/form-data">
+                                    {{ csrf_field() }}
+                                    <input type="text" name="kode_kegiatan" hidden value="{{$kegiatan->kode}}">
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="fa fa-print"></i> Cetak Berita Acara
+                                    </button>
+                                </form> --}}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row"></div>
+            
+
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title">List Pengadaan Barang |</h3>

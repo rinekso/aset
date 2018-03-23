@@ -40,5 +40,9 @@ class Profile extends Model
     public function role() {
         return $this->belongsTo(Role::class, 'jabatan');
     }
+
+    public function kegiatan() {
+        return $this->hasMany(Kegiatan::class, 'nip', 'user_id');
+    }
 }
 

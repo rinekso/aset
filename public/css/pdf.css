@@ -1,0 +1,86 @@
+body {
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.logo {
+  width: 20%;
+  float: left;
+}
+
+.judul {
+  width: 80%;
+  float: left;
+  text-align: center;
+  
+}
+
+.judul p {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.content {
+  margin-top: 120px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.content .jud {
+  text-align: center;
+}
+
+.jud p {
+  margin: 2px;
+}
+
+table#pengadaan {
+  border-collapse: collapse;
+  width: 100%;
+  
+}
+
+
+table#pengadaan td, th {
+    border: 1px solid black;
+    padding: 3px 7px;
+}
+
+table#pengadaan th {
+  text-align: center;
+}
+
+.ttd {
+  margin-top: 50px;
+}
+
+.kiri {
+  width: 50%;
+  float: left;
+  text-align: center;
+}
+
+.kanan {
+  width: 50%;
+  float: left;
+  text-align: center;
+}
+
+.kiri p, .kanan p {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
