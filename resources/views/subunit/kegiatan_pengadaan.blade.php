@@ -37,8 +37,9 @@
                 <div class="col-md-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Detail</h3>
+                            <h3 class="box-title">Detail</h3> 
                             <div class="box-tools pull-right">
+                                <a href="{{ route('subunit.pdfPengadaan',['kode_kegiatan'=> $kegiatan->kode]) }}" class="btn btn-success btn-sm"><i class="fa fa-print"></i> Cetak Berita Acara</a>
                                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                                     <i class="fa fa-minus"></i></button>
                             </div>
@@ -65,15 +66,28 @@
                                 </table>
                             </div>
                             <div class="col-md-6">
-                                <a href="{{ route('subunit.pdfPengadaan',['kode_kegiatan'=> $kegiatan->kode]) }}" class="btn btn-success"><i class="fa fa-print"></i> Cetak Berita Acara</a>
-                                {{-- <form role="form" action="/subunit/pdf-pengadaan" method="POST" enctype="multipart/form-data">
-                                    {{ csrf_field() }}
-                                    <input type="text" name="kode_kegiatan" hidden value="{{$kegiatan->kode}}">
-                                    <button type="submit" class="btn btn-success">
-                                        <i class="fa fa-print"></i> Cetak Berita Acara
-                                    </button>
-                                </form> --}}
+                                <div class="foto">
+                                    <img src="{{ asset('/images/kegiatan/'.$kegiatan->foto)}}" style="max-height: 200px; max-width: 200px;">
+                                </div>
+                                <div class="upload-foto">
+                                    
+                                    <form role="form" action="/subunit/upload-berita-acara" method="POST" enctype="multipart/form-data">
+                                        {{ csrf_field() }}
+                                        <div class="form-group">
+                                            <div class="upload-btn-wrapper">
+                                              <button class="btn btn-info btn-sm">Upload Berita Acara</button>
+                                              <input type="file" name="foto_beritaacara" id="foto_beritaacara">
+                                            </div>
+                                            <img src="" id="show_beritaacara" style="max-width:200px;max-height:200px; margin-right: 10px" />
+                                        </div>
+                                        <input type="text" name="kode_kegiatan" hidden value="{{$kegiatan->kode}}">
+                                        <button type="submit" class="btn btn-success btn-sm">
+                                            <i class="fa fa-print"></i> Upload
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -175,6 +189,17 @@
                     },
                 ],
             });
+        });
+        $("#foto_beritaacara").change(function () {
+            if (this.files && this.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#show_beritaacara').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(this.files[0]);
+            }
         });
     </script>
 

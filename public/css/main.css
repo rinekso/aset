@@ -259,3 +259,16 @@ table thead tr th {
 }
 
 /*end upload image*/
+
+/*foto berita acara*/
+
+.foto {
+  float: left
+}
+
+.upload-foto {
+  margin-left: 10px;
+  float: left;
+}
+
+/*end foto berita acara*/

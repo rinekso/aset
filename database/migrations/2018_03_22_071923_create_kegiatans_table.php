@@ -16,6 +16,7 @@ class CreateKegiatansTable extends Migration
         Schema::create('kegiatans', function (Blueprint $table) {
             $table->string('kode');
             $table->string('nama_kegiatan');
+            $table->string('foto')->nullable();
             $table->string('user_id');
             $table->timestamp('updated_at')->useCurrent();
             $table->timestamp('created_at')->useCurrent();

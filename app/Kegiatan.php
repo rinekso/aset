@@ -9,6 +9,7 @@ class Kegiatan extends Model
     protected $fillable = [
     	'kode',
     	'nama_kegiatan',
+        'foto',
     ];
 
     public function pengadaan(){

@@ -48,7 +48,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/formInputBarang/{id}', 'SubUnitController@formInputBarang')->name('.formInputBarang');
         Route::post('/storeBarang', 'SubUnitController@storeBarang');
 
-        Route::get('/pdf-pengadaan', 'SubUnitController@pdfPengadaan')->name('.pdfPengadaan');
+       Route::get('/pdf-pengadaan', 'SubUnitController@pdfPengadaan')->name('.pdfPengadaan');
+       Route::post('/upload-berita-acara', 'SubUnitController@uploadBeritaAcara');
     });
 
 	/**

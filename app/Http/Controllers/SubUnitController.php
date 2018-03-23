@@ -418,4 +418,22 @@ class SubUnitController extends Controller
         return $pdf->stream('pdfview.pdf');
         // return view('subunit.pdfview', compact('kegiatan', 'pengadaan'));
     }
+
+    public function uploadBeritaAcara(Request $request){
+        $this->validate($request, [
+            'foto_beritaacara' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $kegiatan = Kegiatan::where('kode', $request->kode_kegiatan)->first();
+
+        // foto bst
+        $file_foto = $request->file('foto_beritaacara');
+        $ba_name = "ba_".Auth::user()->nip."_".$kegiatan->kode.".".$file_foto->getClientOriginalExtension();
+        $file_foto->move("images/kegiatan/", $ba_name);
+
+        Kegiatan::where('kode', $request->kode_kegiatan)->update(['foto' => $ba_name]);
+
+        Session::flash('flash_message', 'Foto berhasil diupload');
+        return redirect()->back();
+    }
 }
