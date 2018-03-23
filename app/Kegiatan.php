@@ -22,5 +22,33 @@ class Kegiatan extends Model
 
     public function profile(){
         return $this->belongsTo(Profile::class, 'user_id', 'nip');
+    }
+
+    public function asettetap(){
+        return $this->hasMany(Asettetap::class, 'kode', 'kegiatan_id');
+    }    
+
+    public function bangunan(){
+        return $this->hasMany(Bangunan::class, 'kode', 'kegiatan_id');
+    }    
+
+    public function bph(){
+        return $this->hasMany(Bph::class, 'kode', 'kegiatan_id');
+    }    
+
+    public function jalirja(){
+        return $this->hasMany(Jalirja::class, 'kode', 'kegiatan_id');
+    }    
+
+    public function kontruksi(){
+        return $this->hasMany(Kontruksi::class, 'kode', 'kegiatan_id');
+    }    
+
+    public function mesin(){
+        return $this->hasMany(Mesin::class, 'kode', 'kegiatan_id');
+    }    
+
+    public function tanah(){
+        return $this->hasMany(Tanah::class, 'kode', 'kegiatan_id');
     }    
 }

@@ -26,9 +26,14 @@ class Mesin extends Model
         'total',
         'keterangan',
         'user_id',
+        'kegiatan_id',
     ];
     
     public function user(){
         return $this->belongsTo(User::class);
+    }
+
+    public function kegiatan(){
+        return $this->belongsTo(Kegiatan::class, 'kegiatan_id', 'kode');
     }
 }

@@ -28,6 +28,12 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/listBarang', 'BarangController@index');
     Route::get('/data-tanah', 'BarangController@dataTanah');
+    Route::get('/data-mesin', 'BarangController@dataMesin');
+    Route::get('/data-bangunan', 'BarangController@dataBangunan');
+    Route::get('/data-jalirja', 'BarangController@dataJalirja');
+    Route::get('/data-aset', 'BarangController@dataAset');
+    Route::get('/data-kontruksi', 'BarangController@dataKontruksi');
+    Route::get('/data-bph', 'BarangController@dataBph');
 
     /**
      * Route untuk subunit
@@ -44,12 +50,17 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/data-pengadaan/{id}', 'SubUnitController@dataPengadaan');
         Route::get('/list-kegiatan', 'SubUnitController@listKegiatan');
         Route::get('/data-kegiatan', 'SubUnitController@dataKegiatan');
-        Route::get('/inputBarang', 'SubUnitController@inputBarang');
+        // Route::get('/inputBarang', 'SubUnitController@inputBarang');
         Route::get('/formInputBarang/{id}', 'SubUnitController@formInputBarang')->name('.formInputBarang');
         Route::post('/storeBarang', 'SubUnitController@storeBarang');
 
        Route::get('/pdf-pengadaan', 'SubUnitController@pdfPengadaan')->name('.pdfPengadaan');
        Route::post('/upload-berita-acara', 'SubUnitController@uploadBeritaAcara');
+
+       Route::get('/input-barang-kegiatan', 'SubUnitController@inputBarangKegiatan');
+       Route::get('/data-barang-kegiatan', 'SubUnitController@dataBarangKegiatan');
+       Route::get('/barang-kegiatan/{id}', 'SubUnitController@barangKegiatan');
+       Route::get('/data-barang-pengadaan/{id}', 'SubUnitController@dataBarangPengadaan');
     });
 
 	/**
@@ -160,5 +171,4 @@ Route::get('/top-nav', 'StyleExamplesController@topNav')->name('top-nav');
 Route::get('/ui-general', 'StyleExamplesController@uiGeneral')->name('ui-general');
 
 Route::get('/widgets-examples', 'StyleExamplesController@widgets')->name('widgets');
-
 

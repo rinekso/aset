@@ -30,11 +30,52 @@ class BarangController extends Controller
     }
 
     public function dataTanah(){
-        $tanah = DB::table('tanahs as t')
-                ->select('t.*')
-                ->get();
+        $tanah = Tanah::with('kegiatan')
+                ->select('tanahs.*');
 
         return Datatables::of($tanah)->make(true);
+    }
+
+    public function dataMesin(){
+        $mesin = Mesin::with('kegiatan')
+                ->select('mesins.*');
+
+        return Datatables::of($mesin)->make(true);
+    }
+
+    public function dataBangunan(){
+        $bangunan = Bangunan::with('kegiatan')
+                ->select('bangunans.*');
+
+        return Datatables::of($bangunan)->make(true);
+    }
+
+    public function dataJalirja(){
+        $jalirja = Jalirja::with('kegiatan')
+                ->select('jalirjas.*');
+
+        return Datatables::of($jalirja)->make(true);
+    }
+
+    public function dataAset(){
+        $aset = Asettetap::with('kegiatan')
+                ->select('asettetaps.*');
+
+        return Datatables::of($aset)->make(true);
+    }
+
+    public function dataKontruksi(){
+        $kontruksi = Kontruksi::with('kegiatan')
+                ->select('kontruksis.*');
+
+        return Datatables::of($kontruksi)->make(true);
+    }
+
+    public function dataBph(){
+        $bph = Bph::with('kegiatan')
+                ->select('bphs.*');
+
+        return Datatables::of($bph)->make(true);
     }
 
 }

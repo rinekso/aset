@@ -29,6 +29,7 @@ class CreateTanahsTable extends Migration
             $table->double('harga');
             $table->text('keterangan')->nullable();
             $table->string('user_id');
+            $table->string('kegiatan_id');
             $table->timestamp('updated_at')->useCurrent();
             $table->timestamp('created_at')->useCurrent();
         });

@@ -39,7 +39,6 @@
                         <div class="box-header with-border">
                             <h3 class="box-title">Detail</h3> 
                             <div class="box-tools pull-right">
-                                <a href="{{ route('subunit.pdfPengadaan',['kode_kegiatan'=> $kegiatan->kode]) }}" class="btn btn-success btn-sm"><i class="fa fa-print"></i> Cetak Berita Acara</a>
                                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                                     <i class="fa fa-minus"></i></button>
                             </div>
@@ -69,23 +68,6 @@
                                 <div class="foto">
                                     <img src="{{ asset('/images/kegiatan/'.$kegiatan->foto)}}" style="max-height: 200px; max-width: 200px;">
                                 </div>
-                                <div class="upload-foto">
-                                    
-                                    <form role="form" action="/subunit/upload-berita-acara" method="POST" enctype="multipart/form-data">
-                                        {{ csrf_field() }}
-                                        <div class="form-group">
-                                            <div class="upload-btn-wrapper">
-                                              <button class="btn btn-info btn-sm">Upload Berita Acara</button>
-                                              <input type="file" name="foto_beritaacara" id="foto_beritaacara">
-                                            </div>
-                                            <img src="" id="show_beritaacara" style="max-width:200px;max-height:200px; margin-right: 10px" />
-                                        </div>
-                                        <input type="text" name="kode_kegiatan" hidden value="{{$kegiatan->kode}}">
-                                        <button type="submit" class="btn btn-success btn-sm">
-                                            <i class="fa fa-print"></i> Upload
-                                        </button>
-                                    </form>
-                                </div>
                             </div>
                             
                         </div>
@@ -96,8 +78,7 @@
 
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">List Pengadaan Barang |</h3>
-                    <a href="/subunit/pengadaan/{{$kegiatan->kode}}" class="btn btn-info btn-xs">Tambah Pengadaan</a>
+                    <h3 class="box-title">List Pengadaan Barang <strong>Approved</strong></h3>
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                             <i class="fa fa-minus"></i></button>
@@ -115,8 +96,7 @@
                                     <th>Kategori</th>
                                     <th>Nomor BST</th>
                                     <th>Keterangan</th>
-                                    <th>Status Unit</th>
-                                    <th>Status Induk</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                         </table>
@@ -144,7 +124,7 @@
                 processing: true,
                 responsive: true,
                 ajax: {
-                    url: '{{ url("subunit/data-pengadaan/".$kegiatan->kode) }}'
+                    url: '{{ url("subunit/data-barang-pengadaan/".$kegiatan->kode) }}'
                 },
                 dom: 'Bflrtip',
                 buttons: [
@@ -161,49 +141,9 @@
                     {data: 'kategori.nama_kategori', name: 'kategori.nama_kategori'},
                     {data: 'no_bst', name: 'no_bst'},
                     {data: 'keterangan', name: 'keterangan'},
-                    { 
-                        data: 'status_unit', 
-                        name: 'status_unit', 
-                        render: function ( data, type, row, meta ) {
-                            if (data == 0) {
-                                return '<font color="orange">Unconfirmed</font>';
-                            } else if (data == 1) {
-                                return '<font color="green">Approved</font>';
-                            } else if (data == 2) {
-                                return '<font color="red">Declined</font>';
-                            } else {
-                                return '<font color="black">Inputted</font>';
-                            }
-                        }
-                    },
-                    {
-                        data: 'status_bidang', 
-                        name: 'status_bidang',
-                        render: function ( data, type, row, meta ) {
-                            if (data == 0) {
-                                return '<font color="orange">Unconfirmed</font>';
-                            } else if (data == 1) {
-                                return '<font color="green">Approved</font>';
-                            } else if (data == 2) {
-                                return '<font color="red">Declined</font>';
-                            } else {
-                                return '<font color="black">Inputted</font>';
-                            }
-                        }
-                    },
+                    {data: 'action', name: 'action'},
                 ],
             });
-        });
-        $("#foto_beritaacara").change(function () {
-            if (this.files && this.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('#show_beritaacara').attr('src', e.target.result);
-                }
-
-                reader.readAsDataURL(this.files[0]);
-            }
         });
     </script>
 

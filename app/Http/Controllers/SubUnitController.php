@@ -11,6 +11,13 @@ use PDF;
 use App\Profile;
 use App\Kegiatan;
 use App\Kodekegiatan;
+use App\Kodeasettetap;
+use App\Kodebangunan;
+use App\Kodebph;
+use App\Kodejalirja;
+use App\Kodekontruksi;
+use App\Kodemesin;
+use App\Kodetanah;
 use App\Pengadaan;
 use App\Kategori;
 use App\Tanah;
@@ -116,19 +123,11 @@ class SubUnitController extends Controller
     }
 
     public function dataPengadaan($id){
-        // $pengadaan = DB::table('pengadaan as p')
-        //         ->where('kegiatan_id', '=',  $id)
-        //         ->select('p.*')
-        //         ->get();
         $pengadaan = Pengadaan::with('kategori')
                         ->where('kegiatan_id', '=',  $id)
                         ->select('pengadaan.*');
 
         return Datatables::of($pengadaan)
-                // ->addColumn('status', function($pengadaan){
-                //     if($pengadaan->status_unit == 0)
-                //         return '<font color="orange">Belum dikonfirmasi</font>';
-                // })
                 ->make(true);
     }
 
@@ -139,7 +138,7 @@ class SubUnitController extends Controller
 
     public function dataKegiatan(){
         $kegiatan = DB::table('kegiatans as k')
-                ->where('user_id', '=',  Auth::user()->nip)
+                ->where('user_id', Auth::user()->nip)
                 ->select('k.*')
                 ->get();
 
@@ -164,24 +163,37 @@ class SubUnitController extends Controller
         $kategori = Pengadaan::find($id)->kategori_id;
         $pengadaan = Pengadaan::find($id);
         if ($kategori == 1) {
-            return view('subunit.barang.input_tanah', compact('pengadaan'));
+            $kode = Kodetanah::all();
+            $banyak = Tanah::count();
+            return view('subunit.barang.input_tanah', compact('pengadaan', 'kode', 'banyak'));
         } elseif ($kategori == 2) {
-            return view('subunit.barang.input_mesin', compact('pengadaan'));
+            $kode = Kodemesin::all();
+            $banyak = Mesin::count();
+            return view('subunit.barang.input_mesin', compact('pengadaan', 'kode', 'banyak'));
         } elseif ($kategori == 3) {
-            return view('subunit.barang.input_bangunan', compact('pengadaan'));
+            $kode = Kodebangunan::all();
+            $banyak = Bangunan::count();
+            return view('subunit.barang.input_bangunan', compact('pengadaan', 'kode', 'banyak'));
         } elseif ($kategori == 4) {
-            return view('subunit.barang.input_jalirja', compact('pengadaan'));
+            $kode = Kodejalirja::all();
+            $banyak = Jalirja::count();
+            return view('subunit.barang.input_jalirja', compact('pengadaan', 'kode', 'banyak'));
         } elseif ($kategori == 5) {
-            return view('subunit.barang.input_aset', compact('pengadaan'));
+            $kode = Kodeasettetap::all();
+            $banyak = Asettetap::count();
+            return view('subunit.barang.input_aset', compact('pengadaan', 'kode', 'banyak'));
         } elseif ($kategori == 6) {
-            return view('subunit.barang.input_kontruksi', compact('pengadaan'));
+            $kode = Kodekontruksi::all();
+            $banyak = Kontruksi::count();
+            return view('subunit.barang.input_kontruksi', compact('pengadaan', 'kode', 'banyak'));
         } elseif ($kategori == 7) {
-            return view('subunit.barang.input_bph', compact('pengadaan'));
+            $kode = Kodebph::all();
+            $banyak = Bph::count();
+            return view('subunit.barang.input_bph', compact('pengadaan', 'kode', 'banyak'));
         }
     }
 
-    public function storeBarang(Request $request)
-    {
+    public function storeBarang(Request $request){
         if ($request->kategori_id == 1) {
             $this->validate($request, [
                     'kode_barang' => 'required',
@@ -212,6 +224,7 @@ class SubUnitController extends Controller
                 'harga' => $request->harga,
                 'keterangan' => $request->keterangan,
                 'user_id' => Auth::user()->nip,
+                'kegiatan_id' => $request->kegiatan_id,
                 
             ]);
         } elseif ($request->kategori_id == 2) {
@@ -248,6 +261,7 @@ class SubUnitController extends Controller
                 'total' => $request->total,
                 'keterangan' => $request->keterangan,
                 'user_id' => Auth::user()->nip,
+                'kegiatan_id' => $request->kegiatan_id,
             ]);
 
         } elseif ($request->kategori_id == 3) {
@@ -277,6 +291,7 @@ class SubUnitController extends Controller
                 'harga' => $request->harga,
                 'keterangan' => $request->keterangan,
                 'user_id' => Auth::user()->nip,
+                'kegiatan_id' => $request->kegiatan_id,
             ]);
 
         } elseif ($request->kategori_id == 4) {
@@ -312,6 +327,7 @@ class SubUnitController extends Controller
                 'harga' => $request->harga,
                 'keterangan' => $request->keterangan,
                 'user_id' => Auth::user()->nip,
+                'kegiatan_id' => $request->kegiatan_id,
             ]);
 
         } elseif ($request->kategori_id == 5) {  
@@ -343,6 +359,7 @@ class SubUnitController extends Controller
                 'asalusul' => $request->asalusul,
                 'keterangan' => $request->keterangan,
                 'user_id' => Auth::user()->nip,
+                'kegiatan_id' => $request->kegiatan_id,
             ]);
         } elseif ($request->kategori_id == 6) {  
             $this->validate($request, [
@@ -370,6 +387,7 @@ class SubUnitController extends Controller
                 'asalusul' => $request->asalusul,
                 'keterangan' => $request->keterangan,
                 'user_id' => Auth::user()->nip,
+                'kegiatan_id' => $request->kegiatan_id,
             ]);
         } elseif ($request->kategori_id == 7) {  
             $this->validate($request, [
@@ -393,10 +411,9 @@ class SubUnitController extends Controller
                 'total' => $request->total,
                 'keterangan' => $request->keterangan,
                 'user_id' => Auth::user()->nip,
+                'kegiatan_id' => $request->kegiatan_id,
             ]);
         }
-
-
 
         Pengadaan::find($request->id)
             ->update([
@@ -405,7 +422,7 @@ class SubUnitController extends Controller
             ]);      
 
         Session::flash('flash_message', 'Data Berhasil Disimpan');
-        return redirect('/subunit/inputBarang');
+        return redirect('/subunit/barang-kegiatan/'.$request->kegiatan_id);
     }
 
     public function pdfPengadaan(Request $request){
@@ -436,4 +453,44 @@ class SubUnitController extends Controller
         Session::flash('flash_message', 'Foto berhasil diupload');
         return redirect()->back();
     }
+
+    public function inputBarangKegiatan(){
+        $kegiatan = Kegiatan::where('user_id', Auth::user()->nip)->first();
+        return view('subunit.list_barang_kegiatan');
+    }
+
+    public function dataBarangKegiatan(){
+        $kegiatan = DB::table('kegiatans as k')
+                ->where('user_id',  Auth::user()->nip)
+                ->select('k.*')
+                ->get();
+
+        return Datatables::of($kegiatan)
+            ->addColumn('action', function ($kegiatan) {
+                return '<a class="btn btn-success btn-sm" href="'.url("subunit/barang-kegiatan/$kegiatan->kode").'">Buka</a>';
+            })           
+            ->make(true);
+    }
+
+    public function barangKegiatan($id){
+
+        $kegiatan = Kegiatan::where('kode', $id)->first();
+        return view('subunit.barang_kegiatan', compact('kegiatan'));
+    
+    }
+
+    public function dataBarangPengadaan($id){
+        $pengadaan = Pengadaan::with('kategori')
+                        ->where('kegiatan_id',  $id)
+                        ->where('status_unit',  1)
+                        ->where('status_bidang',  1)
+                        ->select('pengadaan.*');
+
+        return Datatables::of($pengadaan)
+                ->addColumn('action', function ($pengadaan) {
+                    return '<a class="btn btn-info btn-sm" href="'.url("subunit/formInputBarang/$pengadaan->id").'">Input</a>';
+                })    
+                ->make(true);
+    }
+
 }

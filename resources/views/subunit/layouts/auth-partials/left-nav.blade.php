@@ -48,7 +48,7 @@
                     </span>
                     <ul class="treeview-menu">
                         <li><a href="/listBarang">List Barang</a></li>
-                        <li><a href="/subunit/inputBarang">Input Barang</a></li>
+                        <li><a href="/subunit/input-barang-kegiatan">Input Barang</a></li>
                     </ul>
                 </a>
             </li>
