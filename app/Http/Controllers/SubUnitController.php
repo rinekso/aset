@@ -135,7 +135,7 @@ class SubUnitController extends Controller
         return Datatables::of($pengadaan)
                 ->addColumn('action', function ($pengadaan) {
                     if ($pengadaan->status_unit == 1 || $pengadaan->status_bidang == 1) {
-                        return '<a class="btn btn-warning btn-sm" disabled href="#">Edit</a>';
+                        return '<button class="btn btn-warning btn-sm" disabled >Edit</button>';
                     } else {
                         return '<a class="btn btn-success btn-sm" href="'.url("subunit/edit-pengadaan/$pengadaan->id").'">Edit</a>';
                     }
