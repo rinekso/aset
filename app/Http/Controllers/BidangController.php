@@ -85,4 +85,9 @@ class BidangController extends Controller
     	Pengadaan::find($id)->update(['status_bidang' => 2]);
     	return redirect()->back();
     }
+
+    public function getUsers(){
+        return view('unit.list-users');
+
+    }
 }

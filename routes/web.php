@@ -82,6 +82,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/data-pengadaan/{id}', 'UnitController@dataPengadaan')->name('.data-pengadaan');
         Route::get('/approve/{id}', 'UnitController@approve')->name('.approve');
         Route::get('/tolak/{id}', 'UnitController@tolak')->name('.tolak');
+
+        Route::get('/list-barang', 'BarangController@unit')->name('.listBarang');
         // Route::get('/getData', 'UnitController@getDataPengadaan');
     });    
 
@@ -97,6 +99,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/data-pengadaan/{id}', 'BidangController@dataPengadaan')->name('.data-pengadaan');
         Route::get('/approve/{id}', 'BidangController@approve')->name('.approve');
         Route::get('/tolak/{id}', 'BidangController@tolak')->name('.tolak');
+        Route::get('/list-users', 'BidangController@getUsers')->name('.listUsers');
+        Route::get('/list-barang', 'BarangController@bidang')->name('.listBarang');
     });  
 });
 

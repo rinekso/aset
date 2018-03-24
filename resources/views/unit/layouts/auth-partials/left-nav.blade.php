@@ -33,7 +33,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/unit/list-barang">
                     <i class="fa fa-archive"></i>
                     <span>Barang</span>
                 </a>
