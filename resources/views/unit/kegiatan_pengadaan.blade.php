@@ -46,7 +46,7 @@
                         <table class="table table-condensed">
                             <tr>
                                 <td class="col-sm-4">Kode Kegiatan</td>
-                                <th class="text-left">{{$kegiatan->kode}}</td>
+                                <th class="text-left">{{$kegiatan->kode_kegiatan}}</td>
                             </tr>
                             <tr>
                                 <td>Nama Kegiatan</td>
@@ -57,8 +57,8 @@
                                 <th class="text-left">{{$kegiatan->user->name}}</td>
                             </tr>
                             <tr>
-                                <td>Tanggal Dibuat</td>
-                                <th class="text-left">{{$kegiatan->created_at}}</td>
+                                <td>Tanggal Kegiatan</td>
+                                <th class="text-left">{{$kegiatan->tgl_kegiatan}}</td>
                             </tr>
                         </table>
                     </div>
@@ -80,6 +80,7 @@
                                 <tr>
                                     <th>Nama Barang</th>
                                     <th>Jumlah</th>
+                                    <th>Satuan</th>
                                     <th>Harga Satuan</th>
                                     <th>Total</th>
                                     <th>Kategori</th>
@@ -127,6 +128,7 @@
                 columns: [
                     {data: 'nama', name: 'nama'},
                     {data: 'jumlah', name: 'jumlah'},
+                    {data: 'satuan', name: 'satuan'},
                     {data: 'harga_satuan', name: 'harga_satuan'},
                     {data: 'total', name: 'total'},
                     {data: 'kategori.nama_kategori', name: 'kategori.nama_kategori'},

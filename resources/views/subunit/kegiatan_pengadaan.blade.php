@@ -110,6 +110,7 @@
                                 <tr>
                                     <th>Nama Barang</th>
                                     <th>Jumlah</th>
+                                    <th>Satuan</th>
                                     <th>Harga Satuan</th>
                                     <th>Total</th>
                                     <th>Kategori</th>
@@ -117,6 +118,7 @@
                                     <th>Keterangan</th>
                                     <th>Status Unit</th>
                                     <th>Status Induk</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                         </table>
@@ -156,6 +158,7 @@
                 columns: [
                     {data: 'nama', name: 'nama'},
                     {data: 'jumlah', name: 'jumlah'},
+                    {data: 'satuan', name: 'satuan'},
                     {data: 'harga_satuan', name: 'harga_satuan'},
                     {data: 'total', name: 'total'},
                     {data: 'kategori.nama_kategori', name: 'kategori.nama_kategori'},
@@ -191,6 +194,7 @@
                             }
                         }
                     },
+                    { data: 'action', name:'action'},
                 ],
             });
         });

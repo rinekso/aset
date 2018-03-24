@@ -133,6 +133,13 @@ class SubUnitController extends Controller
                         ->select('pengadaan.*');
 
         return Datatables::of($pengadaan)
+                ->addColumn('action', function ($kegiatan) {
+                    if ($kegiatan->status_unit == 1 || $kegiatan->status_bidang == 1) {
+                        return '<a class="btn btn-warning btn-sm" disabled href="#">Edit</a>';
+                    } else {
+                        return '<a class="btn btn-success btn-sm" href="'.url("subunit/kegiatan/$kegiatan->kode").'">Edit</a>';
+                    }
+                }) 
                 ->make(true);
     }
 

@@ -41,8 +41,9 @@
                                         <tr>
                                             <th>Kode Kegiatan</th>
                                             <th>Nama Kegiatan</th>
-                                            <th>Tanggal Dibuat</th>
+                                            <th>Tanggal Kegiatan</th>
                                             <th>Pengaju</th>
+                                            <th>Tanggal Dibuat</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -80,10 +81,11 @@
                 { extend: 'excel', exportOptions: {columns: ':visible'} }, 
             ],
             columns: [
-              {data: 'kode', name: 'kode'},
+              {data: 'kode_kegiatan', name: 'kode_kegiatan'},
               {data: 'nama_kegiatan', name: 'nama_kegiatan'},
-              {data: 'created_at', name: 'created_at'},
+              {data: 'tgl_kegiatan', name: 'tgl_kegiatan'},
               {data: 'user.name', name: 'user.name'},
+              {data: 'created_at', name: 'created_at'},
               {data: 'action', name: 'action'},
             ],
         });
