@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use DataTables;
+use App\User;
 use App\Profile;
 use App\Kegiatan;
 use App\Kodekegiatan;
@@ -87,7 +88,54 @@ class BidangController extends Controller
     }
 
     public function getUsers(){
-        return view('unit.list-users');
+        return view('bidang.list-users');
+
+    }
+
+    public function dataUserSubunit(){
+        
+        $user = User::with('profile.subunit', 'profile.unit')
+            ->where('role', 1)
+            ->select('users.*');
+
+        return Datatables::of($user)
+            ->addColumn('action', function ($user) {
+                if ($user->status == 1) {
+                    return '<a class="btn btn-danger btn-sm" href="'.url("bidang/nonaktif/$user->nip").'">Nonaktifkan</a>';
+                } else {
+                    return '<a class="btn btn-success btn-sm" href="'.url("bidang/aktif/$user->nip").'">Aktifkan</a>';
+                }
+            }) 
+            ->make(true);
+    }
+
+    public function dataUserUnit(){
+        $user = User::with('profile.unit')
+            ->where('role', 2)
+            ->select('users.*');
+
+        return Datatables::of($user)
+            ->addColumn('action', function ($user) {
+                if ($user->status == 1) {
+                    return '<a class="btn btn-danger btn-sm" href="'.url("bidang/nonaktif/$user->nip").'">Nonaktifkan</a>';
+                } else {
+                    return '<a class="btn btn-success btn-sm" href="'.url("bidang/aktif/$user->nip").'">Aktifkan</a>';
+                }
+            }) 
+            ->make(true);
+    }
+
+    public function aktif($id){
+
+        User::where('nip', $id)->update(['status' => 1]);
+        return redirect('bidang/list-users');
+
+    }
+
+    public function nonaktif($id){
+
+        User::where('nip', $id)->update(['status' => 2]);
+        return redirect('bidang/list-users');
 
     }
 }
