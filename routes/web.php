@@ -63,6 +63,10 @@ Route::group(['middleware' => ['auth']], function () {
        Route::get('/data-barang-pengadaan/{id}', 'SubUnitController@dataBarangPengadaan');
 
        Route::get('/export-word', 'WordController@exportWord')->name('.exportWord');
+
+       Route::get('/edit-pengadaan/{id}', 'SubUnitController@editPengadaan');
+       Route::get('/update-pengadaan', 'SubUnitController@updatePengadaan');
+       Route::post('/update-pengadaan', 'SubUnitController@updatePengadaan')->name('.updatePengadaan');
     });
 
 	/**
