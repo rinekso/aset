@@ -33,9 +33,15 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/bidang/list-barang">
                     <i class="fa fa-archive"></i>
                     <span>Barang</span>
+                </a>
+            </li>
+            <li>
+                <a href="/bidang/list-users">
+                    <i class="fa fa-users"></i>
+                    <span>Manajemen User</span>
                 </a>
             </li>
         </ul>

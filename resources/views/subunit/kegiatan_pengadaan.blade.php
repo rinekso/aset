@@ -39,7 +39,8 @@
                         <div class="box-header with-border">
                             <h3 class="box-title">Detail</h3> 
                             <div class="box-tools pull-right">
-                                <a href="{{ route('subunit.pdfPengadaan',['kode_kegiatan'=> $kegiatan->kode]) }}" class="btn btn-success btn-sm"><i class="fa fa-print"></i> Cetak Berita Acara</a>
+                                {{-- <a href="{{ route('subunit.pdfPengadaan',['kode_kegiatan'=> $kegiatan->kode]) }}" class="btn btn-success btn-sm"><i class="fa fa-print"></i> Cetak Berita Acara</a> --}}
+                                <a href="{{ route('subunit.exportWord',['kode'=> $kegiatan->kode]) }}" class="btn btn-success btn-sm"><i class="fa fa-print"></i> Cetak Berita Acara</a>
                                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                                     <i class="fa fa-minus"></i></button>
                             </div>

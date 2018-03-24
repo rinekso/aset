@@ -63,31 +63,31 @@
 @section('scripts')
 
     <script>
-      $(function() {
-        var table = $('#table-kegiatan').DataTable({
-            processing: true,
-            serverSide: true,
-            processing: true,
-            responsive: true,
-            ajax: {
-                url: '{{ url("bidang/data-kegiatan") }}'
-            },
-            dom: 'Bflrtip',
-            buttons: [
-                { extend: 'colvis', postfixButtons: [ 'colvisRestore' ] },
-                { extend: 'pdf', exportOptions: {columns: ':visible'} }, 
-                { extend: 'print', exportOptions: {columns: ':visible'} },
-                { extend: 'excel', exportOptions: {columns: ':visible'} }, 
-            ],
-            columns: [
-              {data: 'kode', name: 'kode'},
-              {data: 'nama_kegiatan', name: 'nama_kegiatan'},
-              {data: 'created_at', name: 'created_at'},
-              {data: 'user.name', name: 'user.name'},
-              {data: 'action', name: 'action'},
-            ],
+        $(function() {
+            var table = $('#table-kegiatan').DataTable({
+                processing: true,
+                serverSide: true,
+                processing: true,
+                responsive: true,
+                ajax: {
+                    url: '{{ url("bidang/data-kegiatan") }}'
+                },
+                dom: 'Bflrtip',
+                buttons: [
+                    { extend: 'colvis', postfixButtons: [ 'colvisRestore' ] },
+                    { extend: 'pdf', exportOptions: {columns: ':visible'} }, 
+                    { extend: 'print', exportOptions: {columns: ':visible'} },
+                    { extend: 'excel', exportOptions: {columns: ':visible'} }, 
+                ],
+                columns: [
+                  {data: 'kode', name: 'kode'},
+                  {data: 'nama_kegiatan', name: 'nama_kegiatan'},
+                  {data: 'created_at', name: 'created_at'},
+                  {data: 'user.name', name: 'user.name'},
+                  {data: 'action', name: 'action'},
+                ],
+            });
         });
-    });
     </script>
 
 

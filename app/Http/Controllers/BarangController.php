@@ -29,6 +29,30 @@ class BarangController extends Controller
         return view('pages.list_barang2', compact('tanah', 'mesin', 'bangunan', 'jalirja', 'kontruksi', 'aset', 'bph'));
     }
 
+    public function unit(){
+        $tanah = Tanah::all();
+        $mesin = Mesin::all();
+        $bangunan = Bangunan::all();
+        $jalirja = Jalirja::all();
+        $kontruksi = Kontruksi::all();
+        $aset = Asettetap::all();
+        $bph = Bph::all();
+        // return view('pages.list_barang', compact('tanah', 'mesin', 'bangunan', 'jalirja', 'kontruksi', 'aset', 'bph'));
+        return view('unit.list_barang', compact('tanah', 'mesin', 'bangunan', 'jalirja', 'kontruksi', 'aset', 'bph'));
+    }
+
+    public function bidang(){
+        $tanah = Tanah::all();
+        $mesin = Mesin::all();
+        $bangunan = Bangunan::all();
+        $jalirja = Jalirja::all();
+        $kontruksi = Kontruksi::all();
+        $aset = Asettetap::all();
+        $bph = Bph::all();
+        // return view('pages.list_barang', compact('tanah', 'mesin', 'bangunan', 'jalirja', 'kontruksi', 'aset', 'bph'));
+        return view('bidang.list_barang', compact('tanah', 'mesin', 'bangunan', 'jalirja', 'kontruksi', 'aset', 'bph'));
+    }
+
     public function dataTanah(){
         $tanah = Tanah::with('kegiatan')
                 ->select('tanahs.*');

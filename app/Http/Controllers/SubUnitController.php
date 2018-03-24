@@ -133,11 +133,11 @@ class SubUnitController extends Controller
                         ->select('pengadaan.*');
 
         return Datatables::of($pengadaan)
-                ->addColumn('action', function ($kegiatan) {
-                    if ($kegiatan->status_unit == 1 || $kegiatan->status_bidang == 1) {
-                        return '<a class="btn btn-warning btn-sm" disabled href="#">Edit</a>';
+                ->addColumn('action', function ($pengadaan) {
+                    if ($pengadaan->status_unit == 1 || $pengadaan->status_bidang == 1) {
+                        return '<button class="btn btn-warning btn-sm" disabled >Edit</button>';
                     } else {
-                        return '<a class="btn btn-success btn-sm" href="'.url("subunit/kegiatan/$kegiatan->kode").'">Edit</a>';
+                        return '<a class="btn btn-success btn-sm" href="'.url("subunit/edit-pengadaan/$pengadaan->id").'">Edit</a>';
                     }
                 }) 
                 ->make(true);
@@ -503,6 +503,50 @@ class SubUnitController extends Controller
                     return '<a class="btn btn-info btn-sm" href="'.url("subunit/formInputBarang/$pengadaan->id").'">Input</a>';
                 })    
                 ->make(true);
+    }
+
+    public function editPengadaan($id){
+        $kategori = Kategori::all();
+        $pengadaan = Pengadaan::where('id', $id)->first();
+
+        // return $pengadaan->foto_bst;
+        return view('subunit/edit-pengadaan', compact('kategori', 'pengadaan'));
+    }
+
+     public function updatePengadaan(Request $request){
+        $this->validate($request, [
+                'nama' => 'required',
+                'jumlah' => 'required',
+                'harga_satuan' => 'required',
+                'satuan' => 'required',
+                'kategori_id' => 'required',
+                'no_bst' => 'required',
+                'keterangan' => 'required',
+            ]);
+        $pengadaan = Pengadaan::where('id', $request->id)->first();
+        // foto bst
+        // $file_bst = $request->file('foto_bst');
+        // $bst_name = $pengadaan->foto_bst;
+        //$file_bst->move("images/bst/", $bst_name);
+
+        Pengadaan::find($request->id)
+        ->update([
+            'nama' => $request->nama,
+            'jumlah' => $request->jumlah,
+            'satuan' => $request->satuan,
+            'harga_satuan' => $request->harga_satuan,
+            'total' => $request->jumlah * $request->harga_satuan,
+            'kategori_id' => $request->kategori_id,
+            'no_bst' => $request->no_bst,
+            'keterangan' => $request->keterangan,
+            'status_unit' => '0',
+            'status_bidang' => '0',
+            'user_id' => Auth::user()->nip,
+        ]);
+
+        Session::flash('flash_message', 'Data Berhasil Disimpan');
+        // return $pengadaan;
+        return redirect('subunit/kegiatan/'.$pengadaan->kegiatan_id);
     }
 
 }
