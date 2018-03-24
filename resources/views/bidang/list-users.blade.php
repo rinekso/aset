@@ -38,6 +38,7 @@
                                                 <tr>
                                                     <th>NIP</th>
                                                     <th>Nama</th>
+                                                    <th>Email</th>
                                                     <th>Subunit</th>
                                                     <th>Unit</th>
                                                     <th>Status</th>
@@ -53,6 +54,7 @@
                                                 <tr>
                                                     <th>NIP</th>
                                                     <th>Nama</th>
+                                                    <th>Email</th>
                                                     <th>Unit</th>
                                                     <th>Status</th>
                                                     <th>Action</th>
@@ -94,6 +96,7 @@
                 columns: [
                   {data: 'nip', name: 'nip'},
                   {data: 'name', name: 'name'},
+                  {data: 'email', name: 'email'},
                   {data: 'profile.subunit.nama_subunit', name: 'profile.subunit.nama_subunit'},
                   {data: 'profile.unit.nama_unit', name: 'profile.unit.nama_unit'},
                   { 
@@ -128,6 +131,7 @@
                 columns: [
                   {data: 'nip', name: 'nip'},
                   {data: 'name', name: 'name'},
+                  {data: 'email', name: 'email'},
                   {data: 'profile.unit.nama_unit', name: 'profile.unit.nama_unit'},
                   { 
                     data: 'status', 
