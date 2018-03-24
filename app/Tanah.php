@@ -12,6 +12,7 @@ class Tanah extends Model
         'kode_barang',
         'no_reg',
         'luas',
+        'satuan',
         'tahun_pengadaan',
         'lokasi',
         'hak',

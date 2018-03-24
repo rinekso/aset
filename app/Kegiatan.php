@@ -8,7 +8,9 @@ class Kegiatan extends Model
 {
     protected $fillable = [
     	'kode',
+        'kode_kegiatan',
     	'nama_kegiatan',
+        'tgl_kegiatan',
         'foto',
     ];
 
@@ -50,5 +52,9 @@ class Kegiatan extends Model
 
     public function tanah(){
         return $this->hasMany(Tanah::class, 'kode', 'kegiatan_id');
-    }    
+    }
+
+    public function kodekegiatan(){
+        return $this->belongsTo(Kodekegiatan::class, 'kode_kegiatan', 'kode');
+    }
 }

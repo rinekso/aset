@@ -14,6 +14,7 @@ class Bangunan extends Model
         'bertingkat',
         'beton',
         'luas',
+        'satuan',
         'lokasi',
         'no_dokumen',
         'tgl_dokumen',

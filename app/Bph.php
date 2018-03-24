@@ -12,6 +12,7 @@ class Bph extends Model
         'no_reg',
         'merk',
         'jumlah',
+        'satuan',
         'harga_satuan',
         'total',
         'keterangan',

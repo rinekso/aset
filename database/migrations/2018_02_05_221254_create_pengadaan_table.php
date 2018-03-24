@@ -18,6 +18,7 @@ class CreatePengadaanTable extends Migration
             $table->string('kegiatan_id');
             $table->string('nama');
             $table->double('jumlah');
+            $table->string('satuan')->nullable();
             $table->double('harga_satuan');
             $table->double('total');
             $table->integer('kategori_id')->unsigned();

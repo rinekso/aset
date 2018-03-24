@@ -19,6 +19,7 @@ class CreateTanahsTable extends Migration
             $table->string('kode_barang');
             $table->string('no_reg');
             $table->double('luas');
+            $table->string('satuan')->nullable();
             $table->integer('tahun_pengadaan');
             $table->string('lokasi');
             $table->string('hak');

@@ -15,15 +15,7 @@ class IndukSeeder extends Seeder
         Induk::insert([
         	[
         		'id' => 1,
-        		'nama_induk' => 'A',
-        	],
-        	[
-        		'id' => 2,
-        		'nama_induk' => 'B',
-        	],
-        	[
-        		'id' => 3,
-        		'nama_induk' => 'C',
+        		'nama_induk' => 'DISPARBUDPORA',
         	],
         ]);
     }

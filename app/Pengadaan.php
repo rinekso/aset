@@ -12,6 +12,7 @@ class Pengadaan extends Model
         'kegiatan_id',
         'nama',
         'jumlah', 
+        'satuan'
         'harga_satuan', 
         'total', 
         'kategori_id', 

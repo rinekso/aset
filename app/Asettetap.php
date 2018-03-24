@@ -18,6 +18,7 @@ class Asettetap extends Model
         'jenis',
         'ukuran',
         'jumlah',
+        'satuan',
         'harga_satuan',
         'tahun_cetak',
         'asalusul',

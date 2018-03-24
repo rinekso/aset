@@ -22,6 +22,7 @@ class CreateJalirjasTable extends Migration
             $table->double('panjang');
             $table->double('lebar');
             $table->double('luas');
+            $table->string('satuan')->nullable();
             $table->string('lokasi');
             $table->string('no_dokumen');
             $table->date('tgl_dokumen');

@@ -26,6 +26,7 @@ class CreateAsettetapsTable extends Migration
             $table->string('jenis')->nullable();
             $table->string('ukuran')->nullable();
             $table->integer('jumlah');
+            $table->string('satuan')->nullable();
             $table->double('harga_satuan');
             $table->string('tahun_cetak')->nullable();
             $table->string('asalusul');

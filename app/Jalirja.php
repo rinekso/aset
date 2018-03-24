@@ -14,6 +14,7 @@ class Jalirja extends Model
         'panjang',
         'lebar',
         'luas',
+        'satuan',
         'lokasi',
         'no_dokumen',
         'tgl_dokumen',

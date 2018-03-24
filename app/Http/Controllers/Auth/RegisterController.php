@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Profile;
+use App\Unit;
+use App\Subunit;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -76,7 +78,7 @@ class RegisterController extends Controller
             'nama' => $data['name'],
             'subunit_id' => $data['subunit'],
             'unit_id' => $data['unit'],
-            'induk_id' => $data['induk'],
+            'induk_id' => '1',
             'jabatan' => $data['role'],
         ]);
 
@@ -89,5 +91,12 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
             'role' => $data['role'],
         ]);
+    }
+
+    public function showRegistrationForm(){
+        $unit = Unit::all();
+        $subunit = Subunit::all();        
+        return view('auth.register', compact('unit', 'subunit'));
+    
     }
 }

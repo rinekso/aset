@@ -15,38 +15,38 @@ class UnitSeeder extends Seeder
         Unit::insert([
         	[
         		'id' => 1,
-        		'nama_unit' => 'Aa',
+        		'nama_unit' => 'Sekretariat',
         		'induk_id' => 1,
         	],
         	[
         		'id' => 2,
-        		'nama_unit' => 'Ab',
+        		'nama_unit' => 'Bidang Pariwisata',
         		'induk_id' => 1,
         	],
         	[
         		'id' => 3,
-        		'nama_unit' => 'Ac',
+        		'nama_unit' => 'Bidang Kebudayaan',
         		'induk_id' => 1,
         	],
         	[
         		'id' => 4,
-        		'nama_unit' => 'Ba',
-        		'induk_id' => 2,
+        		'nama_unit' => 'Bidang Pemuda dan Olahraga',
+        		'induk_id' => 1,
         	],
         	[
         		'id' => 5,
-        		'nama_unit' => 'Bb',
-        		'induk_id' => 2,
+        		'nama_unit' => 'Bidang Pemasaran',
+        		'induk_id' => 1,
         	],
         	[
         		'id' => 6,
-        		'nama_unit' => 'Ca',
-        		'induk_id' => 3,
+        		'nama_unit' => 'UPT Museum',
+        		'induk_id' => 1,
         	],
         	[
         		'id' => 7,
-        		'nama_unit' => 'Cb',
-        		'induk_id' => 3,
+        		'nama_unit' => 'UPT Destinasi',
+        		'induk_id' => 1,
         	],
         ]);
     }

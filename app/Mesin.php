@@ -22,6 +22,7 @@ class Mesin extends Model
         'no_bpkb',
         'asalusul',
         'jumlah',
+        'satuan',
         'harga_satuan',
         'total',
         'keterangan',

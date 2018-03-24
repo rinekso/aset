@@ -19,7 +19,8 @@ class CreateBphsTable extends Migration
             $table->string('kode_barang');
             $table->string('no_reg');
             $table->string('merk');
-            $table->double('jumlah');            
+            $table->double('jumlah');  
+            $table->string('satuan')->nullable();          
             $table->double('harga_satuan');
             $table->double('total');
             $table->string('keterangan')->nullable();

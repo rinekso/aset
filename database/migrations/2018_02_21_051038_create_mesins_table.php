@@ -29,6 +29,7 @@ class CreateMesinsTable extends Migration
             $table->string('no_bpkb')->nullable();
             $table->string('asalusul')->nullable();
             $table->integer('jumlah');
+            $table->string('satuan')->nullable();
             $table->double('harga_satuan');
             $table->double('total');
             $table->text('keterangan')->nullable();

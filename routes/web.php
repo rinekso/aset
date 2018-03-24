@@ -14,7 +14,7 @@
 // Authentication routes
 
 Route::get('/', 'SubUnitController@index');
-Route::get('/home', 'SubUnitController@index'); 	
+Route::get('/home', 'SubUnitController@index');
 
 Auth::routes();
 

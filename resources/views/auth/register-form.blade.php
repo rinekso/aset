@@ -13,7 +13,7 @@
                  type="text"
                  class="form-control"
                  value="{{ old('id') }}"
-                 placeholder="ID Pegawai"
+                 placeholder="NIP Pegawai"
                  required autofocus>
 
           {{-- <span class="glyphicon glyphicon-user form-control-feedback"></span> --}}
@@ -136,26 +136,14 @@
         </select>
       </div>
     </div>
-
-    <div class="form-group hidden" id="induk">
-        <label class="col-md-4 control-label">Nama Induk</label>
-        <div class="col-md-8">
-          <select class="form-control" name="induk">
-            <option value="">--induk--</option>
-            <option value="1">A</option>
-            <option value="2">B</option>
-          </select>
-        </div>
-    </div>
-
     <div class="form-group hidden" id="unit">
         <label class="col-md-4 control-label">Nama Unit</label>
         <div class="col-md-8">
-          <select class="form-control" name="unit">
-            <option value="">--unit--</option>
-            <option value="1">Aa</option>
-            <option value="2">Ab</option>
-            <option value="3">Ac</option>
+          <select class="form-control" name="unit" id="unitselect" onChange="selectSubunit()">
+            <option value="">--pilih salah satu--</option>
+            @foreach ($unit as $key => $data)
+            <option value="{{ $data->id }}">{{ $data->nama_unit }}</option>
+            @endforeach
           </select>
         </div>
     </div>
@@ -163,12 +151,20 @@
     <div class="form-group hidden" id="subunit">
         <label class="col-md-4 control-label">Nama SubUnit</label>
         <div class="col-md-8">
-          <select class="form-control" name="subunit">
-            <option value="">--subunit--</option>
-            <option value="1">Aa1</option>
-            <option value="2">Aa2</option>
-            <option value="3">Aa3</option>
+          <select class="form-control" name="subunit" id="subunitselect">
+            <option value="">--pilih salah satu--</option>
+            @foreach ($subunit as $key => $data)
+            <option value="{{ $data->id }}">{{ $data->nama_subunit }}</option>
+            @endforeach
           </select>
+
+          <select class="form-control hidden" name="s2" id="sub2">
+            <option value="">--pilih salah satu--</option>
+            @foreach ($subunit as $key => $data)
+            <option value="{{ $data->unit_id }}">{{ $data->nama_subunit }}</option>
+            @endforeach
+          </select>
+
         </div>
     </div>
 
