@@ -40,7 +40,7 @@
 
             <section class="content">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                         <div class="box box-primary">
                             <div class="box-header with-border">
                                 <h3 class="box-title">Masukkan data</h3>
@@ -48,25 +48,34 @@
                             <div class="box-body">
                                 <form role="form" action="/subunit/store-kegiatan" method="POST" enctype="multipart/form-data">
                                 {{ csrf_field() }}
-                                <div class="form-group">
-                                    <label>Jenis Kegiatan</label>
-                                    <input type="text" class="form-control" list="keg" id="kegiatan" onkeyup="generateKode();" onchange="generateKode();">
-                                    <datalist id="keg">
-                                    @foreach($kodekeg as $key => $data)
-                                        <option value="{{$data->kode}}" label="{{$data->nama_kegiatan}}"></option>
-                                    @endforeach
-                                    </datalist>
-                                    <p id="namakeg"></p>
-                                </div>
-                                <div class="form-group">
-                                    <label>Kode Kegiatan (otomatis)</label>
-                                    <input type="text" class="form-control" id="kode_kegiatan" name="kode_kegiatan" readonly>
-                                </div>
-                                <div class="form-group">
+                                <div class="form-group col-md-12">
                                     <label>Nama Kegiatan</label>
-                                    <input type="text" name="nama_kegiatan" value="{{ old('nama_kegiatan')}}" class="form-control" placeholder="Isi Nama Kegiatan">
+                                    <input type="text" list="nama_keg" id="nama_kegiatan" name="nama_kegiatan" value="{{ old('nama_kegiatan')}}" class="form-control" onkeyup="kegi();" onchange="kegi();">
+                                    <datalist id="nama_keg">
+                                        @foreach($kodekeg as $key => $data)
+                                            <option value="{{$data->nama_kegiatan}}" label="{{$data->kode}}"></option>
+                                        @endforeach
+                                    </datalist>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group col-md-12">
+                                    <label>Kode Kegiatan</label>
+                                        <input type="text" class="form-control" list="keg" id="kode_kegiatan" name="kode_kegiatan" onkeyup="kegi();" onchange="kegi();" readonly>
+                                        <datalist id="keg">
+                                        @foreach($kodekeg as $key => $data)
+                                            <option value="{{$data->kode}}" label="{{$data->nama_kegiatan}}"></option>
+                                        @endforeach
+                                        </datalist>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label>Tanggal Kegiatan</label>
+                                    <input type="date" name="tgl_kegiatan" class="form-control" value="{{old('tgl_kegiatan')}}">
+                                </div>
+                                <div class="col-md-8"></div>
+                                <div class="form-group col-md-12 hidden">
+                                    <label>Kode Kegiatan (otomatis)</label>
+                                    <input type="text" class="form-control" id="kode" name="kode" readonly>
+                                </div>
+                                <div class="form-group col-md-12">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                                 </form>
@@ -74,7 +83,6 @@
                         </div>
                     </div>
                 </div>
-
             </section>
 
             <!-- end content section -->
@@ -91,18 +99,13 @@
 
 
 @section('scripts')
-
     <script>
         function generateKode(){
-            var kode = document.getElementById('kegiatan').value.toString();
+            var kode = document.getElementById('kode_kegiatan').value.toString();
             var banyakkeg = pad({{ $banyakkeg }}, 4);
             var newkode = kode+banyakkeg;
             
-            document.getElementById('kode_kegiatan').value = newkode;
-
-            // var keg = document.getElementById('keg').selectedIndex;
-            // var text = document.getElementsByTagName("option")[keg].label;
-            // console.log(text);
+            document.getElementById('kode').value = newkode;
         }
 
         function pad(number, length) {
@@ -112,10 +115,29 @@
             }
            
             return str;
+        }
+
+        function kegi(){
+            generateKode();
+            var banyak = document.getElementById('keg').options.length;
+            for (var i = 0; banyak ; i++) {
+                if (document.getElementById('nama_kegiatan').value == document.getElementById('keg').options[i].label) {
+                    document.getElementById('kode_kegiatan').value = document.getElementById('keg').options[i].value
+                }
+            }
+
+            // var banyak = document.getElementById('keg').options.length;
+            // for (var i = 0; banyak ; i++) {
+            //     if (document.getElementById('kegiatan').value == document.getElementById('nama_keg').options[i].label) {
+            //         document.getElementById('nama_kegiatan').value = document.getElementById('nama_keg').options[i].value
+            //     }
+            // }
 
         }
 
     </script>
+
+    
 
 
 @endsection

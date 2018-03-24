@@ -53,17 +53,20 @@ class SubUnitController extends Controller
         $this->validate($request, [
                 'kode_kegiatan' => 'required',
                 'nama_kegiatan' => 'required',
+                'tgl_kegiatan' => 'required',
             ]);
 
         Kegiatan::insert([
-            'kode' => $request->kode_kegiatan,
             'nama_kegiatan' => $request->nama_kegiatan,
+            'kode_kegiatan' => $request->kode_kegiatan,
+            'kode' => $request->kode,
+            'tgl_kegiatan' => $request->tgl_kegiatan,
             'user_id' => Auth::user()->nip,
         ]);
 
         if (Kegiatan::where('kode', $request->kode_kegiatan) != null) {
             Session::flash('flash_message', 'Data Berhasil Disimpan');
-            return redirect('subunit/kegiatan/'.$request->kode_kegiatan);
+            return redirect('subunit/kegiatan/'.$request->kode);
         } else {
             return redirect('subunit/input-kegiatan');
         }
@@ -90,6 +93,7 @@ class SubUnitController extends Controller
                 'nama' => 'required',
                 'jumlah' => 'required',
                 'harga_satuan' => 'required',
+                'satuan' => 'required',
                 'kategori_id' => 'required',
                 'no_bst' => 'required',
                 'keterangan' => 'required',
@@ -106,6 +110,7 @@ class SubUnitController extends Controller
             'id' => $no_pengadaan,
             'nama' => $request->nama,
             'jumlah' => $request->jumlah,
+            'satuan' => $request->satuan,
             'harga_satuan' => $request->harga_satuan,
             'total' => $request->jumlah * $request->harga_satuan,
             'kategori_id' => $request->kategori_id,

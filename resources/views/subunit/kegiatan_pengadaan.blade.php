@@ -49,7 +49,7 @@
                                 <table class="table table-condensed">
                                     <tr>
                                         <td class="col-sm-4">Kode Kegiatan</td>
-                                        <th class="text-left">{{$kegiatan->kode}}</th>
+                                        <th class="text-left">{{$kegiatan->kode_kegiatan}}</th>
                                     </tr>
                                     <tr>
                                         <td>Nama Kegiatan</td>
@@ -60,8 +60,8 @@
                                         <th class="text-left">{{$kegiatan->user->name}}</th>
                                     </tr>
                                     <tr>
-                                        <td>Tanggal Dibuat</td>
-                                        <th class="text-left">{{$kegiatan->created_at}}</th>
+                                        <td>Tanggal Kegiatan</td>
+                                        <th class="text-left">{{$kegiatan->tgl_kegiatan}}</th>
                                     </tr>
                                 </table>
                             </div>

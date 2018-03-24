@@ -72,11 +72,21 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Nama Barang</label>
-                                    <input type="text" class="form-control" placeholder="Misal: Mesin Jahit" name="nama" value="{{ old('nama') }}">
+                                    <input type="text" class="form-control" placeholder="Misal: Mesin Perontok Padi" name="nama" value="{{ old('nama') }}">
                                 </div>
-                                <div class="form-group">
-                                    <label>Jumlah</label>
-                                    <input type="number" class="form-control" id="jumlah" name="jumlah" placeholder="Misal: 8" onkeyup="sum();" value="{{ old('jumlah') }}">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Jumlah</label>
+                                            <input type="number" class="form-control" id="jumlah" name="jumlah" placeholder="Misal: 8" onkeyup="sum();" value="{{ old('jumlah') }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Satuan</label>
+                                            <input type="text" class="form-control" name="satuan" placeholder="Misal: buah" value="{{ old('satuan') }}">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
