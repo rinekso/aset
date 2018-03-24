@@ -61,6 +61,8 @@ Route::group(['middleware' => ['auth']], function () {
        Route::get('/data-barang-kegiatan', 'SubUnitController@dataBarangKegiatan');
        Route::get('/barang-kegiatan/{id}', 'SubUnitController@barangKegiatan');
        Route::get('/data-barang-pengadaan/{id}', 'SubUnitController@dataBarangPengadaan');
+
+       Route::get('/export-word', 'WordController@exportWord')->name('.exportWord');
     });
 
 	/**
