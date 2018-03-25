@@ -56,6 +56,7 @@ class BidangController extends Controller
     public function kegiatanPengadaan($id){
 
         $kegiatan = Kegiatan::where('kode', $id)->first();
+
         return view('bidang.kegiatan_pengadaan', compact('kegiatan'));
     
     }
@@ -68,9 +69,38 @@ class BidangController extends Controller
         return Datatables::of($pengadaan)
                 ->addColumn('action', function($pengadaan){
                     if($pengadaan->status_bidang == 0) {
+
                         return '<a href="'.url("bidang/approve/$pengadaan->id").'" class="btn btn-success btn-xs">Approve</a><a href="'.url("bidang/tolak/$pengadaan->id").'" class="btn btn-danger btn-xs" style="margin-top:2px">Decline</a>';
+
                     } else if($pengadaan->status_bidang == 1) {
-                        return '<a href="'.url("bidang/tolak/$pengadaan->id").'" class="btn btn-danger btn-xs" style="margin-top:2px">Decline</a>';
+                        
+                        if($pengadaan->kategori_id == 2 || $pengadaan->kategori_id == 5) {
+                            return '<a class="btn btn-info btn-xs" href="#kirPopup'.$pengadaan->id.'">KIR</a>
+                            <a href="'.url("bidang/tolak/$pengadaan->id").'" class="btn btn-danger btn-xs" style="margin-top:2px">Decline</a>
+                            <div id="kirPopup'.$pengadaan->id.'" class="overlay">
+                                <div class="popup">
+                                    <h4>Lokasi Penempatan <strong>'.$pengadaan->nama.'</strong></h4>
+                                    <a class="close" href="#">&times;</a>
+                                    <div class="contentPopup">
+                                        <form role="form" action="/bidang/store-lokasi" method="POST" enctype="multipart/form-data">'.
+                                            csrf_field()
+                                            .'<div class="form-group">
+                                                <label>Lokasi</label>
+                                                <input name="id" value="'.$pengadaan->id.'" hidden>
+                                                <input type="text" class="form-control" name="lokasi_kir" value="'.$pengadaan->lokasi_kir.'">
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            ';
+                        } else{
+                            return '<a href="'.url("bidang/tolak/$pengadaan->id").'" class="btn btn-danger btn-xs" style="margin-top:2px">Decline</a>';
+                        }
+
                     } else if($pengadaan->status_bidang == 2) {
                         return '<a href="'.url("bidang/approve/$pengadaan->id").'" class="btn btn-success btn-xs">Approve</a>';
                     }
@@ -137,5 +167,15 @@ class BidangController extends Controller
         User::where('nip', $id)->update(['status' => 2]);
         return redirect('bidang/list-users');
 
+    }
+
+    public function storeLokasi(Request $request){
+        Pengadaan::find($request->id)
+            ->update(['lokasi_kir' => $request->lokasi_kir]);
+
+        $kegiatan = Pengadaan::find($request->id)->kegiatan_id;
+
+        Session::flash('flash_message', 'Data Berhasil Disimpan');
+        return redirect('bidang/kegiatan/'.$kegiatan);
     }
 }

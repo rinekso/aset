@@ -21,6 +21,7 @@ class Pengadaan extends Model
         'foto_bst', 
         'status_unit', 
         'status_bidang', 
+        'lokasi_kir',
         'user_id',
     ];
 

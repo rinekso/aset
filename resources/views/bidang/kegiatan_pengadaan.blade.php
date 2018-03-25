@@ -95,10 +95,9 @@
                 </div>
             </div>
         </section>
-
         <!-- end content section -->
-
     </div>
+    
 
     <!-- end content-wrapper -->
 
