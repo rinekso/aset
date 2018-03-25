@@ -105,6 +105,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/data-user-unit', 'BidangController@dataUserUnit')->name('.dataUserUnit');
         Route::get('/aktif/{id}', 'BidangController@aktif')->name('.aktif');
         Route::get('/nonaktif/{id}', 'BidangController@nonaktif')->name('.nonaktif');
+        ROute::get('store-lokasi', 'BidangController@storelokasi');
+        Route::post('store-lokasi', 'BidangController@storelokasi')->name('/storeLokasi');
     });  
 });
 

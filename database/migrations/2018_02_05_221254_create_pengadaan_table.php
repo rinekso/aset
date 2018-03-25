@@ -27,6 +27,7 @@ class CreatePengadaanTable extends Migration
             $table->string('foto_bst');
             $table->integer('status_unit');
             $table->integer('status_bidang');
+            $table->string('lokasi_kir')->nullable();
             $table->string('user_id');
             $table->timestamp('updated_at')->useCurrent();
             $table->timestamp('created_at')->useCurrent();
