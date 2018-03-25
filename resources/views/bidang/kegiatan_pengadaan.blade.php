@@ -141,6 +141,8 @@
                                 return '<font color="green">Approved</font>';
                             } else if (data == 2) {
                                 return '<font color="red">Declined</font>';
+                            } else if (data == 3) {
+                                return '<font color="black">Inputter</font>';
                             }
                         }
                     },
@@ -154,6 +156,8 @@
                                 return '<font color="green">Approved</font>';
                             } else if (data == 2) {
                                 return '<font color="red">Declined</font>';
+                            } else if (data == 3) {
+                                return '<font color="black">Inputter</font>';
                             }
                         }
                     },
