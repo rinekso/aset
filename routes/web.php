@@ -55,6 +55,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::post('/storeBarang', 'SubUnitController@storeBarang');
 
             Route::get('/pdf-pengadaan', 'SubUnitController@pdfPengadaan')->name('.pdfPengadaan');
+            Route::get('/berita-acara/{id}', 'SubUnitController@beritaAcara')->name('.beritaAcara');
             Route::post('/upload-berita-acara', 'SubUnitController@uploadBeritaAcara');
 
             Route::get('/input-barang-kegiatan', 'SubUnitController@inputBarangKegiatan');
@@ -63,6 +64,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('/data-barang-pengadaan/{id}', 'SubUnitController@dataBarangPengadaan');
 
             Route::get('/export-word', 'WordController@exportWord')->name('.exportWord');
+            Route::post('/cetak-bast', 'WordController@cetakBast')->name('.cetakBast');
 
             Route::get('/edit-pengadaan/{id}', 'SubUnitController@editPengadaan');
             Route::get('/update-pengadaan', 'SubUnitController@updatePengadaan');
@@ -101,11 +103,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/tolak/{id}', 'BidangController@tolak')->name('.tolak');
         Route::get('/list-users', 'BidangController@getUsers')->name('.listUsers');
         Route::get('/list-barang', 'BarangController@bidang')->name('.listBarang');
+        Route::get('/list-aset', 'BarangController@aset')->name('.listAset');
         Route::get('/data-user-subunit', 'BidangController@dataUserSubunit')->name('.dataUserSubunit');
         Route::get('/data-user-unit', 'BidangController@dataUserUnit')->name('.dataUserUnit');
         Route::get('/aktif/{id}', 'BidangController@aktif')->name('.aktif');
         Route::get('/nonaktif/{id}', 'BidangController@nonaktif')->name('.nonaktif');
-        ROute::get('store-lokasi', 'BidangController@storelokasi')->name('/storelokasi');
+        Route::get('store-lokasi', 'BidangController@storelokasi')->name('/storelokasi');
         Route::post('store-lokasi', 'BidangController@storelokasi')->name('/storeLokasi');
     });  
 });

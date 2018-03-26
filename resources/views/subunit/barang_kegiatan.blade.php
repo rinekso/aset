@@ -86,7 +86,7 @@
                 </div>
                 <div class="box-body">
                     <div class="col-md-12">
-                        <table class="table" id="table-pengadaan">
+                        <table class="stripe" id="table-pengadaan">
                             <thead>
                                 <tr>
                                     <th>Nama Barang</th>
@@ -94,7 +94,7 @@
                                     <th>Harga Satuan</th>
                                     <th>Total</th>
                                     <th>Kategori</th>
-                                    <th>Nomor BST</th>
+                                    <th>Nomor BAST</th>
                                     <th>Keterangan</th>
                                     <th>Action</th>
                                 </tr>

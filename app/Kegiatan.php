@@ -57,4 +57,8 @@ class Kegiatan extends Model
     public function kodekegiatan(){
         return $this->belongsTo(Kodekegiatan::class, 'kode_kegiatan', 'kode');
     }
+
+    public function bast(){
+        return $this->hasMany(Kegiatan::class, 'kode', 'kegiatan_id');
+    }
 }

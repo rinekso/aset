@@ -27,6 +27,7 @@ use App\Jalirja;
 use App\Asettetap;
 use App\Kontruksi;
 use App\Bph;
+use App\Bast;
 
 class SubUnitController extends Controller
 {
@@ -123,6 +124,11 @@ class SubUnitController extends Controller
             'kegiatan_id' => $request->kegiatan_id,
         ]);
 
+        Bast::firstOrCreate([
+            'bast' => $request->no_bst,
+            'kegiatan_id' => $request->kegiatan_id,
+        ]);
+
         Session::flash('flash_message', 'Data Berhasil Disimpan');
         return redirect('subunit/kegiatan/'.$request->kegiatan_id);
     }
@@ -134,7 +140,7 @@ class SubUnitController extends Controller
 
         return Datatables::of($pengadaan)
                 ->addColumn('action', function ($pengadaan) {
-                    if ($pengadaan->status_unit == 1 || $pengadaan->status_bidang == 1) {
+                    if ($pengadaan->status_unit == 1 || $pengadaan->status_bidang == 1 || $pengadaan->status_unit == 3 || $pengadaan->status_bidang == 3) {
                         return '<button class="btn btn-warning btn-sm" disabled >Edit</button>';
                     } else {
                         return '<a class="btn btn-success btn-sm" href="'.url("subunit/edit-pengadaan/$pengadaan->id").'">Edit</a>';
@@ -494,13 +500,17 @@ class SubUnitController extends Controller
     public function dataBarangPengadaan($id){
         $pengadaan = Pengadaan::with('kategori')
                         ->where('kegiatan_id',  $id)
-                        ->where('status_unit',  1)
-                        ->where('status_bidang',  1)
+                        ->where('status_unit',  1)->orWhere('status_unit', 3)
+                        ->where('status_bidang',  1)->orWhere('status_bidang', 3)
                         ->select('pengadaan.*');
 
         return Datatables::of($pengadaan)
                 ->addColumn('action', function ($pengadaan) {
-                    return '<a class="btn btn-info btn-sm" href="'.url("subunit/formInputBarang/$pengadaan->id").'">Input</a>';
+                    if ($pengadaan->status_bidang ==3) {
+                        return '<font color="green">Inputted</font>';
+                    } else {
+                        return '<a class="btn btn-info btn-sm" href="'.url("subunit/formInputBarang/$pengadaan->id").'">Input</a>';
+                    }
                 })    
                 ->make(true);
     }
@@ -547,6 +557,13 @@ class SubUnitController extends Controller
         Session::flash('flash_message', 'Data Berhasil Disimpan');
         // return $pengadaan;
         return redirect('subunit/kegiatan/'.$pengadaan->kegiatan_id);
+    }
+
+    public function beritaAcara($id){
+        $bast = Bast::where('kegiatan_id', $id)->get();
+        $pengadaan = Pengadaan::where('kegiatan_id', $id)->get();
+
+        return view('subunit.berita_acara', compact('bast', 'pengadaan'));
     }
 
 }

@@ -40,14 +40,15 @@
                             <h3 class="box-title">Detail</h3> 
                             <div class="box-tools pull-right">
                                 {{-- <a href="{{ route('subunit.pdfPengadaan',['kode_kegiatan'=> $kegiatan->kode]) }}" class="btn btn-success btn-sm"><i class="fa fa-print"></i> Cetak Berita Acara</a> --}}
-                                <a href="{{ route('subunit.exportWord',['kode'=> $kegiatan->kode]) }}" class="btn btn-success btn-sm"><i class="fa fa-print"></i> Cetak Berita Acara</a>
+                                {{-- <a href="{{ route('subunit.exportWord',['kode'=> $kegiatan->kode]) }}" class="btn btn-success btn-sm"><i class="fa fa-print"></i> Cetak Berita Acara</a> --}}
+                                <a href="/subunit/berita-acara/{{$kegiatan->kode}}" class="btn btn-success btn-sm"><i class="fa fa-print"></i> Cetak Berita Acara</a>
                                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                                     <i class="fa fa-minus"></i></button>
                             </div>
                         </div>
                         <div class="box-body">
                             <div class="col-md-6">
-                                <table class="table table-condensed">
+                                <table class="table table-condensed" class="stripe">
                                     <tr>
                                         <td class="col-sm-4">Kode Kegiatan</td>
                                         <th class="text-left">{{$kegiatan->kode_kegiatan}}</th>
@@ -115,7 +116,7 @@
                                     <th>Harga Satuan</th>
                                     <th>Total</th>
                                     <th>Kategori</th>
-                                    <th>Nomor BST</th>
+                                    <th>Nomor BAST</th>
                                     <th>Keterangan</th>
                                     <th>Status Unit</th>
                                     <th>Status Induk</th>
@@ -156,6 +157,7 @@
                     { extend: 'print', exportOptions: {columns: ':visible'} },
                     { extend: 'excel', exportOptions: {columns: ':visible'} }, 
                 ],
+                order: [[ 6, 'asc' ], [0, 'asc']],
                 columns: [
                     {data: 'nama', name: 'nama'},
                     {data: 'jumlah', name: 'jumlah'},

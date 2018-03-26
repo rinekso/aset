@@ -13,6 +13,7 @@ use App\Jalirja;
 use App\Kontruksi;
 use App\Asettetap;
 use App\Bph;
+use App\Kir;
 
 
 class BarangController extends Controller
@@ -53,6 +54,13 @@ class BarangController extends Controller
         return view('bidang.list_barang', compact('tanah', 'mesin', 'bangunan', 'jalirja', 'kontruksi', 'aset', 'bph'));
     }
 
+    public function aset(){
+        $mesin = Mesin::all();
+        $aset = Asettetap::all();
+        $kir = Kir::all();
+        return view('bidang.list_aset', compact('mesin','aset'));
+    }
+
     public function dataTanah(){
         $tanah = Tanah::with('kegiatan')
                 ->select('tanahs.*');
@@ -64,7 +72,31 @@ class BarangController extends Controller
         $mesin = Mesin::with('kegiatan')
                 ->select('mesins.*');
 
-        return Datatables::of($mesin)->make(true);
+        return Datatables::of($mesin)
+            ->addColumn('action', function ($mesin) {
+                return '<a class="btn btn-info btn-xs" href="#kirPopup'.$mesin->kode_barang.'">Lokasi</a>
+                        <div id="kirPopup'.$mesin->kode_barang.'" class="overlay">
+                            <div class="popup">
+                                <h4>Lokasi Penempatan <strong>'.$mesin->nama_barang.'</strong></h4>
+                                <a class="close" href="#">&times;</a>
+                                <div class="contentPopup">
+                                    <form role="form" action="/bidang/store-lokasi-aset" method="POST" enctype="multipart/form-data">'.
+                                        csrf_field()
+                                        .'<div class="form-group">
+                                            <label>Lokasi</label>
+                                            <input name="kode_barang" value="'.$mesin->kode_barang.'" hidden>
+                                            <input type="text" class="form-control" name="lokasi_kir" value="'.$mesin->kir->lokasi.'">
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        ';
+            }) 
+            ->make(true);
     }
 
     public function dataBangunan(){

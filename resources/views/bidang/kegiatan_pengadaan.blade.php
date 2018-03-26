@@ -83,7 +83,7 @@
                                     <th>Harga Satuan</th>
                                     <th>Total</th>
                                     <th>Kategori</th>
-                                    <th>Nomor BST</th>
+                                    <th>Nomor BAST</th>
                                     <th>Keterangan</th>
                                     <th>Status Unit</th>
                                     <th>Status Induk</th>

@@ -35,4 +35,8 @@ class Asettetap extends Model
     public function kegiatan(){
         return $this->belongsTo(Kegiatan::class, 'kegiatan_id', 'kode');
     }
+
+    public function kir(){
+        return $this->belongsTo(Kir::class, 'kode_barang', 'kode_barang');
+    }
 }
