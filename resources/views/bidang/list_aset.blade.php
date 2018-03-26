@@ -10,6 +10,7 @@
 
 @section('content')
 
+
     <!-- content-wrapper -->
 
     <div class="content-wrapper">
@@ -17,6 +18,20 @@
         <!-- container -->
 
         <div class="container">
+
+@if($errors->any())
+  <div class="alert alert-danger">
+    @foreach($errors->all() as $error)
+      <p>{{ $error }}</p>
+    @endforeach
+  </div>
+@endif
+
+@if(Session::has('flash_message'))
+  <div class="alert alert-success">
+    {{ Session::get('flash_message') }}
+  </div>
+@endif
 
             <!-- content-header has breadcrumbs -->
 
@@ -64,6 +79,7 @@
                                                     <th>Jumlah</th>
                                                     <th>Harga</th>
                                                     <th>Keterangan</th>
+                                                    <th>Lokasi</th>
                                                     <th>Kegiatan</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -90,7 +106,9 @@
                                                     <th>Asal Usul</th>
                                                     <th>Harga</th>
                                                     <th>Keterangan</th>
+                                                    <th>Lokasi</th>
                                                     <th>Kegiatan</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                         </table>
@@ -137,7 +155,7 @@
                 ],
                 columnDefs: [
 
-                    { targets: [5, 6, 7, 8, 9, 10, 11], visible: false }
+                    { targets: [5, 6, 7, 8, 9, 10, 11, 14], visible: false }
 
                 ],
                 columns: [
@@ -156,8 +174,9 @@
                   {data: 'jumlah', name: 'jumlah'},
                   {data: 'harga_satuan', name: 'harga_satuan'},
                   {data: 'keterangan', name: 'keterangan'},
+                  {data: 'kir.lokasi', name: 'kir.lokasi'},
                   {data: 'kegiatan.nama_kegiatan', name: 'kegiatan.nama_kegiatan'},
-                  {data: 'action' name: 'action'},
+                  {data: 'action', name: 'action'},
                 ],
             });
             var table_aset = $('#table-aset').DataTable({
@@ -175,6 +194,11 @@
                     { extend: 'print', exportOptions: {columns: ':visible'} },
                     { extend: 'excel', exportOptions: {columns: ':visible'} }, 
                 ],
+                columnDefs: [
+
+                    { targets: [4, 5, 6, 7, 8, 9, 11, 14], visible: false }
+
+                ],
                 columns: [
                   {data: 'nama_barang', name: 'nama_barang'},
                   {data: 'kode_barang', name: 'kode_barang'},
@@ -191,7 +215,9 @@
                   {data: 'asalusul', name: 'asalusul'},
                   {data: 'harga_satuan', name: 'harga_satuan'},
                   {data: 'keterangan', name: 'keterangan'},
+                  {data: 'kir.lokasi', name: 'kir.lokasi'},
                   {data: 'kegiatan.nama_kegiatan', name: 'kegiatan.nama_kegiatan'},
+                  {data: 'action', name: 'action'},
                 ],
             });
 

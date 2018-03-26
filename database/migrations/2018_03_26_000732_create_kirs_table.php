@@ -15,7 +15,7 @@ class CreateKirsTable extends Migration
     {
         Schema::create('kirs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('lokasi');
+            $table->string('lokasi')->nullable();
             $table->string('kode_barang');
             $table->integer('kategori_id');
             $table->timestamp('updated_at')->useCurrent();

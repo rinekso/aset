@@ -69,7 +69,7 @@ class BarangController extends Controller
     }
 
     public function dataMesin(){
-        $mesin = Mesin::with('kegiatan')
+        $mesin = Mesin::with('kegiatan', 'kir')
                 ->select('mesins.*');
 
         return Datatables::of($mesin)
@@ -84,6 +84,7 @@ class BarangController extends Controller
                                         csrf_field()
                                         .'<div class="form-group">
                                             <label>Lokasi</label>
+                                            <input name="id" value="'.$mesin->kegiatan_id.'" hidden>
                                             <input name="kode_barang" value="'.$mesin->kode_barang.'" hidden>
                                             <input type="text" class="form-control" name="lokasi_kir" value="'.$mesin->kir->lokasi.'">
                                         </div>
@@ -114,10 +115,35 @@ class BarangController extends Controller
     }
 
     public function dataAset(){
-        $aset = Asettetap::with('kegiatan')
+        $aset = Asettetap::with('kegiatan', 'kir')
                 ->select('asettetaps.*');
 
-        return Datatables::of($aset)->make(true);
+        return Datatables::of($aset)
+            ->addColumn('action', function ($aset) {
+                return '<a class="btn btn-info btn-xs" href="#kirPopup'.$aset->kode_barang.'">Lokasi</a>
+                        <div id="kirPopup'.$aset->kode_barang.'" class="overlay">
+                            <div class="popup">
+                                <h4>Lokasi Penempatan <strong>'.$aset->nama_barang.'</strong></h4>
+                                <a class="close" href="#">&times;</a>
+                                <div class="contentPopup">
+                                    <form role="form" action="/bidang/store-lokasi-aset" method="POST" enctype="multipart/form-data">'.
+                                        csrf_field()
+                                        .'<div class="form-group">
+                                            <label>Lokasi</label>
+                                            <input name="id" value="'.$aset->kegiatan_id.'" hidden>
+                                            <input name="kode_barang" value="'.$aset->kode_barang.'" hidden>
+                                            <input type="text" class="form-control" name="lokasi_kir" value="'.$aset->kir->lokasi.'">
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        ';
+            }) 
+            ->make(true);
     }
 
     public function dataKontruksi(){

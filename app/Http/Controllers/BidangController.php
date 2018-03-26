@@ -20,6 +20,7 @@ use App\Jalirja;
 use App\Asettetap;
 use App\Kontruksi;
 use App\Bph;
+use App\Kir;
 
 class BidangController extends Controller
 {
@@ -179,5 +180,13 @@ class BidangController extends Controller
 
         Session::flash('flash_message', 'Data Berhasil Disimpan');
         return redirect('bidang/kegiatan/'.$kegiatan);
+    }
+
+    public function storeLokasiAset(Request $request){
+        Kir::where('kode_barang', $request->kode_barang)
+            ->update(['lokasi' => $request->lokasi_kir]);
+
+        Session::flash('flash_message', 'Data Berhasil Disimpan');
+        return redirect()->back();
     }
 }

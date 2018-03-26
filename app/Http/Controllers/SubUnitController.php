@@ -28,6 +28,7 @@ use App\Asettetap;
 use App\Kontruksi;
 use App\Bph;
 use App\Bast;
+use App\Kir;
 
 class SubUnitController extends Controller
 {
@@ -282,6 +283,11 @@ class SubUnitController extends Controller
                 'kegiatan_id' => $request->kegiatan_id,
             ]);
 
+            Kir::create([
+                'kode_barang' => $request->kode_barang,
+                'kategori_id' => 2,
+            ]);
+
         } elseif ($request->kategori_id == 3) {
             
             $this->validate($request, [
@@ -379,6 +385,12 @@ class SubUnitController extends Controller
                 'user_id' => Auth::user()->nip,
                 'kegiatan_id' => $request->kegiatan_id,
             ]);
+
+            Kir::create([
+                'kode_barang' => $request->kode_barang,
+                'kategori_id' => 5,
+            ]);
+
         } elseif ($request->kategori_id == 6) {  
             $this->validate($request, [
                     'nama_barang' => 'required',
