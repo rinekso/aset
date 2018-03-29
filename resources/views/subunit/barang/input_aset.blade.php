@@ -56,6 +56,16 @@
                             {{ csrf_field() }}
                             <div class="box-body">
                                 <div class="form-group">
+                                    <label>Jenis Barang</label>
+                                    <input type="text" class="form-control" list="kodelist" id="barang" onkeyup="generateKode();" onchange="generateKode();">
+                                    <datalist id="kodelist">
+                                    @foreach($kode as $key => $data)
+                                        <option value="{{$data->kode}}" label="{{$data->deskripsi}}"></option>
+                                    @endforeach
+                                    </datalist>
+                                </div>
+                                <input type="text" name="kegiatan_id" hidden="" value="{{$pengadaan->kegiatan_id}}">
+                                <div class="form-group">
                                     <label>Nama Barang</label>
                                     <input type="text" class="form-control" name="nama_barang" value="{{ $pengadaan->nama }}">
                                 </div>
@@ -63,7 +73,7 @@
                                     <div class="col-md-6">    
                                         <div class="form-group">
                                             <label>Kode Barang</label>
-                                            <input type="text" class="form-control" name="kode_barang" value="{{ old('kode_barang') }}">
+                                            <input type="text" class="form-control" id="kode_barang" name="kode_barang" value="{{ old('kode_barang') }}" readonly="">
                                         </div>
                                     </div>
                                     <div class="col-md-6">    
@@ -209,6 +219,24 @@
             if (!isNaN(result)) {
                 document.getElementById('total').value = result;
            }
+        }
+
+        function generateKode(){
+            var kode = document.getElementById('barang').value.toString();
+            var banyak = pad({{ $banyak }}+1, 4);
+            var newkode = kode+banyak;
+            
+            document.getElementById('kode_barang').value = newkode;
+        }
+
+        function pad(number, length) {
+            var str = '' + number;
+            while (str.length < length) {
+                str = '0' + str;
+            }
+           
+            return str;
+
         }
     </script>
 

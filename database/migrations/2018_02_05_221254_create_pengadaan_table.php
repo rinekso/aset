@@ -15,8 +15,10 @@ class CreatePengadaanTable extends Migration
     {
         Schema::create('pengadaan', function (Blueprint $table) {
             $table->integer('id');
+            $table->string('kegiatan_id');
             $table->string('nama');
             $table->double('jumlah');
+            $table->string('satuan')->nullable();
             $table->double('harga_satuan');
             $table->double('total');
             $table->integer('kategori_id')->unsigned();
@@ -25,8 +27,12 @@ class CreatePengadaanTable extends Migration
             $table->string('foto_bst');
             $table->integer('status_unit');
             $table->integer('status_bidang');
+            $table->string('lokasi_kir')->nullable();
             $table->string('user_id');
-            $table->timestamps();
+            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamp('created_at')->useCurrent();
+
+            $table->primary('id');
         });
     }
 

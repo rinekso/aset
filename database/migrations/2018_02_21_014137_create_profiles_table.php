@@ -15,17 +15,19 @@ class CreateProfilesTable extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('user_id');
+            $table->string('nip');
             $table->string('nama');
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan'])->nullable();
             $table->string('tempat_lahir')->nullable();
             $table->date('tgl_lahir')->nullable();
             $table->text('alamat')->nullable();
             $table->char('no_telp', 20)->nullable();
+            $table->integer('subunit_id')->nullable()->unsigned();
             $table->integer('unit_id')->nullable()->unsigned();
-            $table->integer('bidang_id')->nullable()->unsigned();
-            $table->string('jabatan')->nullable();
-            $table->timestamps();
+            $table->integer('induk_id')->nullable()->unsigned();
+            $table->integer('jabatan');
+            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 

@@ -16,8 +16,9 @@ class CreateUnitsTable extends Migration
         Schema::create('units', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama_unit');
-            $table->string('bidang_id');
-            $table->timestamps();
+            $table->integer('induk_id');
+            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 

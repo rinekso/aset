@@ -12,6 +12,7 @@ class Tanah extends Model
         'kode_barang',
         'no_reg',
         'luas',
+        'satuan',
         'tahun_pengadaan',
         'lokasi',
         'hak',
@@ -22,9 +23,14 @@ class Tanah extends Model
         'harga',
         'keterangan',
         'user_id',
+        'kegiatan_id',
     ];
 
     public function user(){
         return $this->belongsTo(User::class);
+    }
+
+    public function kegiatan(){
+        return $this->belongsTo(Kegiatan::class, 'kegiatan_id', 'kode');
     }
 }

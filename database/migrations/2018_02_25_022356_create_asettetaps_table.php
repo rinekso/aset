@@ -26,13 +26,16 @@ class CreateAsettetapsTable extends Migration
             $table->string('jenis')->nullable();
             $table->string('ukuran')->nullable();
             $table->integer('jumlah');
+            $table->string('satuan')->nullable();
             $table->double('harga_satuan');
             $table->string('tahun_cetak')->nullable();
             $table->string('asalusul');
             $table->double('total');
             $table->text('keterangan')->nullable();
             $table->string('user_id');
-            $table->timestamps();
+            $table->string('kegiatan_id');
+            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 

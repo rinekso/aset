@@ -19,6 +19,7 @@ class CreateTanahsTable extends Migration
             $table->string('kode_barang');
             $table->string('no_reg');
             $table->double('luas');
+            $table->string('satuan')->nullable();
             $table->integer('tahun_pengadaan');
             $table->string('lokasi');
             $table->string('hak');
@@ -29,7 +30,9 @@ class CreateTanahsTable extends Migration
             $table->double('harga');
             $table->text('keterangan')->nullable();
             $table->string('user_id');
-            $table->timestamps();
+            $table->string('kegiatan_id');
+            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 

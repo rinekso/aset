@@ -9,7 +9,7 @@
 
         <!-- Optionally, you can add icons to the links -->
 
-        <li><a href="/determine-profile-route"><i class="fa fa-user"></i> <span>Profile</span></a></li>
+        <li><a href="/subunit"><i class="fa fa-user"></i> <span>Profile</span></a></li>
         <li><form id="logout-form" action="/logout" method="POST" style="display: none;">
 
                 {{ csrf_field() }}

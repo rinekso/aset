@@ -19,16 +19,6 @@
             <!-- content-header has breadcrumbs -->
 
             <section class="content-header">
-
-
-                <ol class="breadcrumb">
-
-                    <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li><a href="/register">Register</a></li>
-                    <li class="active">Register</li>
-
-                </ol>
-
             </section>
 
             <!-- end content-header section -->
@@ -85,3 +75,39 @@
 
 @endsection
 
+@section('scripts')
+
+    <script>
+        function changeRole(){
+            if (document.getElementById("role").value === "1") {
+                // document.getElementById("induk").classList.remove('hidden');
+                document.getElementById("unit").classList.remove('hidden');
+                document.getElementById("subunit").classList.remove('hidden');
+            } else if (document.getElementById("role").value === "2") {
+                // document.getElementById("induk").classList.remove('hidden');
+                document.getElementById("unit").classList.remove('hidden');
+                document.getElementById("subunit").classList.add('hidden');
+            } else if(document.getElementById("role").value === "3"){
+                // document.getElementById("induk").classList.remove('hidden');
+                document.getElementById("unit").classList.add('hidden');
+                document.getElementById("subunit").classList.add('hidden');
+            } else {
+                // document.getElementById("induk").classList.add('hidden');
+                document.getElementById("unit").classList.add('hidden');
+                document.getElementById("subunit").classList.add('hidden');
+            }
+        }
+
+        function selectSubunit(){
+            
+            var banyak = document.getElementById("subunitselect").length;
+            for (var i = 0; i < banyak ; i++){
+                document.getElementById("subunitselect").options[i].hidden = false;
+                if (document.getElementById("unitselect").value != document.getElementById("sub2").options[i].value) {
+                    document.getElementById("subunitselect").options[i].hidden = true;
+                }
+            }
+        }
+    </script>
+
+@endsection

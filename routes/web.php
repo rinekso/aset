@@ -13,7 +13,8 @@
 
 // Authentication routes
 
-Route::get('/', 'SubUnitController@index');	
+Route::get('/', 'SubUnitController@index');
+Route::get('/home', 'SubUnitController@index');
 
 Auth::routes();
 
@@ -23,24 +24,51 @@ Route::get('/logout', function(){
 });
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/pengadaan', 'PengadaanController@index');
     Route::post('/storePengadaan', 'PengadaanController@store');
 
     Route::get('/listBarang', 'BarangController@index');
-    Route::get('/data-tanah', 'BrangController@dataTanah');
+    Route::get('/data-tanah', 'BarangController@dataTanah');
+    Route::get('/data-mesin', 'BarangController@dataMesin');
+    Route::get('/data-bangunan', 'BarangController@dataBangunan');
+    Route::get('/data-jalirja', 'BarangController@dataJalirja');
+    Route::get('/data-aset', 'BarangController@dataAset');
+    Route::get('/data-kontruksi', 'BarangController@dataKontruksi');
+    Route::get('/data-bph', 'BarangController@dataBph');
 
     /**
      * Route untuk subunit
      */
     Route::group(['middleware' => 'subunit', 'prefix' => 'subunit', 'as' => 'subunit'], function()
     {
-    	Route::get('/home', 'SubUnitController@index');
-		Route::get('/', 'SubUnitController@index');
-        Route::get('/listPengadaan', 'SubUnitController@listPengadaan');
-        Route::get('/inputBarang', 'SubUnitController@inputBarang');
-        Route::get('/formInputBarang/{id}', 'SubUnitController@formInputBarang')->name('.formInputBarang');
-        Route::post('/storeBarang', 'SubUnitController@storeBarang');
-        Route::get('/data-pengadaan', 'SubUnitController@dataPengadaan');
+        	Route::get('/home', 'SubUnitController@index');
+    		Route::get('/', 'SubUnitController@index');
+            Route::get('/input-kegiatan', 'SubUnitController@inputKegiatan');
+            Route::post('/store-kegiatan', 'SubUnitController@storeKegiatan');
+            Route::get('/kegiatan/{id}', 'SubUnitController@kegiatanPengadaan');
+            Route::get('/pengadaan/{id}', 'SubUnitController@pengadaan');
+            Route::post('/store-pengadaan', 'SubUnitController@storePengadaan');
+            Route::get('/data-pengadaan/{id}', 'SubUnitController@dataPengadaan');
+            Route::get('/list-kegiatan', 'SubUnitController@listKegiatan');
+            Route::get('/data-kegiatan', 'SubUnitController@dataKegiatan');
+            // Route::get('/inputBarang', 'SubUnitController@inputBarang');
+            Route::get('/formInputBarang/{id}', 'SubUnitController@formInputBarang')->name('.formInputBarang');
+            Route::post('/storeBarang', 'SubUnitController@storeBarang');
+
+            Route::get('/pdf-pengadaan', 'SubUnitController@pdfPengadaan')->name('.pdfPengadaan');
+            Route::get('/berita-acara/{id}', 'SubUnitController@beritaAcara')->name('.beritaAcara');
+            Route::post('/upload-berita-acara', 'SubUnitController@uploadBeritaAcara');
+
+            Route::get('/input-barang-kegiatan', 'SubUnitController@inputBarangKegiatan');
+            Route::get('/data-barang-kegiatan', 'SubUnitController@dataBarangKegiatan');
+            Route::get('/barang-kegiatan/{id}', 'SubUnitController@barangKegiatan');
+            Route::get('/data-barang-pengadaan/{id}', 'SubUnitController@dataBarangPengadaan');
+
+            Route::get('/export-word', 'WordController@exportWord')->name('.exportWord');
+            Route::post('/cetak-bast', 'WordController@cetakBast')->name('.cetakBast');
+
+            Route::get('/edit-pengadaan/{id}', 'SubUnitController@editPengadaan');
+            Route::get('/update-pengadaan', 'SubUnitController@updatePengadaan');
+            Route::post('/update-pengadaan', 'SubUnitController@updatePengadaan')->name('.updatePengadaan');
     });
 
 	/**
@@ -50,9 +78,14 @@ Route::group(['middleware' => ['auth']], function () {
     {
     	Route::get('/home', 'UnitController@index');
 		Route::get('/', 'UnitController@index');
-        Route::get('/listPengadaan', 'UnitController@listPengadaan');
+        Route::get('/list-kegiatan', 'UnitController@listKegiatan')->name('.list-kegiatan');
+        Route::get('/data-kegiatan', 'UnitController@dataKegiatan')->name('.data-kegiatan');
+        Route::get('/kegiatan/{id}', 'UnitController@kegiatanPengadaan')->name('.kegiatan');
+        Route::get('/data-pengadaan/{id}', 'UnitController@dataPengadaan')->name('.data-pengadaan');
         Route::get('/approve/{id}', 'UnitController@approve')->name('.approve');
         Route::get('/tolak/{id}', 'UnitController@tolak')->name('.tolak');
+
+        Route::get('/list-barang', 'BarangController@unit')->name('.listBarang');
         // Route::get('/getData', 'UnitController@getDataPengadaan');
     });    
 
@@ -62,51 +95,24 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => 'bidang', 'prefix' => 'bidang', 'as' => 'bidang'], function() {
         Route::get('/home', 'BidangController@index');
         Route::get('/', 'BidangController@index'); 
-        Route::get('/listPengadaan', 'BidangController@listPengadaan');
+        Route::get('/list-kegiatan', 'BidangController@listKegiatan')->name('.list-kegiatan');
+        Route::get('/data-kegiatan', 'BidangController@dataKegiatan')->name('.data-kegiatan');
+        Route::get('/kegiatan/{id}', 'BidangController@kegiatanPengadaan')->name('.kegiatan');
+        Route::get('/data-pengadaan/{id}', 'BidangController@dataPengadaan')->name('.data-pengadaan');
         Route::get('/approve/{id}', 'BidangController@approve')->name('.approve');
         Route::get('/tolak/{id}', 'BidangController@tolak')->name('.tolak');
+        Route::get('/list-users', 'BidangController@getUsers')->name('.listUsers');
+        Route::get('/list-barang', 'BarangController@bidang')->name('.listBarang');
+        Route::get('/list-aset', 'BarangController@aset')->name('.listAset');
+        Route::get('/data-user-subunit', 'BidangController@dataUserSubunit')->name('.dataUserSubunit');
+        Route::get('/data-user-unit', 'BidangController@dataUserUnit')->name('.dataUserUnit');
+        Route::get('/aktif/{id}', 'BidangController@aktif')->name('.aktif');
+        Route::get('/nonaktif/{id}', 'BidangController@nonaktif')->name('.nonaktif');
+        // Route::get('store-lokasi', 'BidangController@storelokasi')->name('/storelokasi');
+        // Route::post('store-lokasi', 'BidangController@storelokasi')->name('/storeLokasi');
+        Route::post('/store-lokasi-aset', 'BidangController@storeLokasiAset')->name('/storeLokasiAset');
     });  
 });
-
-
-
-
-
-
-// Profile
-
-Route::get('show-profile', 'ProfileController@showProfileToUser')->name('show-profile');
-
-Route::get('determine-profile-route', 'ProfileController@determineProfileRoute')->name('determine-profile-route');
-
-Route::resource('profile', 'ProfileController');
-
-// Username route
-
-Route::get('/username', 'UsernameController@show')->middleware('auth');
-
-// Settings routes
-
-Route::get('settings', 'SettingsController@edit');
-
-Route::post('settings', 'SettingsController@update')->name('user-update');
-
-// Terms route
-
-Route::get('/terms', 'PagesController@terms')->name('terms');
-
-// User routes
-
-Route::resource('user', 'UserController');
-
-
-// Widget routes
-
-Route::get('widget/create',  'WidgetController@create')->name('widget.create');
-
-Route::get('widget/{widget}-{slug?}', 'WidgetController@show')->name('widget.show');
-
-Route::resource('widget', 'WidgetController', ['except' => ['show', 'create']]);
 
 
 /*
@@ -185,5 +191,4 @@ Route::get('/top-nav', 'StyleExamplesController@topNav')->name('top-nav');
 Route::get('/ui-general', 'StyleExamplesController@uiGeneral')->name('ui-general');
 
 Route::get('/widgets-examples', 'StyleExamplesController@widgets')->name('widgets');
-
 

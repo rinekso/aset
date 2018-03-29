@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Profile;
+use App\Unit;
+use App\Subunit;
+use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -69,12 +73,30 @@ class RegisterController extends Controller
     {
         $data['is_subscribed'] = empty($data['is_subscribed']) ? 0 : 1;
 
+        Profile::create([
+            'nip' => $data['id'],
+            'nama' => $data['name'],
+            'subunit_id' => $data['subunit'],
+            'unit_id' => $data['unit'],
+            'induk_id' => '1',
+            'jabatan' => $data['role'],
+        ]);
+
+        Session::flash('success', 'User successfully created.');
+
         return User::create([
-            'id' => $data['id'],
+            'nip' => $data['id'],
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'role' => $data['role'],
         ]);
+    }
+
+    public function showRegistrationForm(){
+        $unit = Unit::all();
+        $subunit = Subunit::all();        
+        return view('auth.register', compact('unit', 'subunit'));
+    
     }
 }

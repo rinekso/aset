@@ -55,6 +55,7 @@
                         <form role="form" action="/subunit/storeBarang" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="box-body">
+                                <input type="text" name="kegiatan_id" hidden="" value="{{$pengadaan->kegiatan_id}}">
                                 <div class="form-group">
                                     <label>Nama Barang</label>
                                     <input type="text" class="form-control" name="nama_barang" value="{{ $pengadaan->nama }}">

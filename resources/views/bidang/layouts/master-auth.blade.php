@@ -4,6 +4,8 @@
 
     @include('layouts.auth-partials.meta')
 
+    @yield('title')
+
     @yield('meta')
 
     @include('layouts.auth-partials.css')

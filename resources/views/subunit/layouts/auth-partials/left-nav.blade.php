@@ -26,19 +26,6 @@
                     <span>Dashboard</span>
                 </a>
             </li>
-            <li>
-                <a href="#">
-                    <i class="fa fa-archive"></i>
-                    <span>Barang</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                    <ul class="treeview-menu">
-                        <li><a href="/listBarang">List Barang</a></li>
-                        <li><a href="/subunit/inputBarang">Input Barang</a></li>
-                    </ul>
-                </a>
-            </li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-shopping-cart"></i>
@@ -48,9 +35,22 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="/pengadaan">Ajukan Pengadaan</a></li>
-                    <li><a href="/subunit/listPengadaan">List Pengadaan</a></li>
+                    <li><a href="/subunit/input-kegiatan">Kegiatan Baru</a></li>
+                    <li><a href="/subunit/list-kegiatan">List Kegiatan</a></li>
                 </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-archive"></i>
+                    <span>Barang</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                    <ul class="treeview-menu">
+                        <li><a href="/listBarang">List Barang</a></li>
+                        <li><a href="/subunit/input-barang-kegiatan">Input Barang</a></li>
+                    </ul>
+                </a>
             </li>
         </ul>
         <!-- /.sidebar-menu -->

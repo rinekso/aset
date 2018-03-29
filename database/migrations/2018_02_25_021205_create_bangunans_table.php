@@ -22,13 +22,16 @@ class CreateBangunansTable extends Migration
             $table->string('bertingkat');
             $table->string('beton');
             $table->integer('luas');
+            $table->string('satuan')->nullable();
             $table->string('lokasi');
             $table->string('no_dokumen')->nullable();
             $table->date('tgl_dokumen')->nullable();
             $table->double('harga');
             $table->text('keterangan')->nullable();
             $table->string('user_id');
-            $table->timestamps();
+            $table->string('kegiatan_id');
+            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 

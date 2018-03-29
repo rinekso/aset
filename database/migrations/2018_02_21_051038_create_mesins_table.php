@@ -29,11 +29,14 @@ class CreateMesinsTable extends Migration
             $table->string('no_bpkb')->nullable();
             $table->string('asalusul')->nullable();
             $table->integer('jumlah');
+            $table->string('satuan')->nullable();
             $table->double('harga_satuan');
             $table->double('total');
             $table->text('keterangan')->nullable();
             $table->string('user_id');
-            $table->timestamps();
+            $table->string('kegiatan_id');
+            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 
