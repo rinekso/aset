@@ -62,8 +62,8 @@
                                         <th class="text-left">{{$kegiatan->user->name}}</th>
                                     </tr>
                                     <tr>
-                                        <td>Tanggal Kegiatan</td>
-                                        <th class="text-left">{{$kegiatan->tgl_kegiatan}}</th>
+                                        <td>Tahun Kegiatan</td>
+                                        <th class="text-left">{{$kegiatan->tahun}}</th>
                                     </tr>
                                 </table>
                             </div>

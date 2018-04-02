@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use DataTables;
 use PDF;
+use App\Subunit;
 use App\Profile;
 use App\Kegiatan;
 use App\Kodekegiatan;
@@ -48,21 +49,34 @@ class SubUnitController extends Controller
     public function inputKegiatan(){
         $kodekeg = Kodekegiatan::all();
         $banyakkeg = str_pad(Kegiatan::count()+1, 4, 0, STR_PAD_LEFT);
-        return view('subunit.input_kegiatan', compact('kodekeg', 'banyakkeg'));
+        $subunit = Subunit::all();
+        return view('subunit.input_kegiatan', compact('kodekeg', 'banyakkeg', 'subunit'));
     }
 
     public function storeKegiatan(Request $request){
         $this->validate($request, [
                 'kode_kegiatan' => 'required',
                 'nama_kegiatan' => 'required',
-                'tgl_kegiatan' => 'required',
+                'tahun' => 'required',
             ]);
 
         Kegiatan::insert([
             'nama_kegiatan' => $request->nama_kegiatan,
             'kode_kegiatan' => $request->kode_kegiatan,
             'kode' => $request->kode,
-            'tgl_kegiatan' => $request->tgl_kegiatan,
+            'tahun' => $request->tahun,
+            'pengguna' => $request->pengguna,
+            'nip1' => $request->nip1,
+            'jabatan1' => $request->jabatan1,
+            'pptk' => $request->pptk,
+            'nip2' => $request->nip2,
+            'jabatan2' => $request->jabatan2,
+            'pejabat' => $request->pejabat,
+            'nip3' => $request->nip3,
+            'jabatan3' => $request->jabatan3,
+            'pengurus' => $request->pengurus,
+            'nip4' => $request->nip4,
+            'jabatan4' => $request->jabatan4,
             'user_id' => Auth::user()->nip,
         ]);
 

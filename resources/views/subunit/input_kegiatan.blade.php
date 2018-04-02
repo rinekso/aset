@@ -40,7 +40,7 @@
 
             <section class="content">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-11">
                         <div class="box box-primary">
                             <div class="box-header with-border">
                                 <h3 class="box-title">Masukkan data</h3>
@@ -48,7 +48,7 @@
                             <div class="box-body">
                                 <form role="form" action="/subunit/store-kegiatan" method="POST" enctype="multipart/form-data">
                                 {{ csrf_field() }}
-                                <div class="form-group col-md-12">
+                                <div class="form-group col-md-8">
                                     <label>Nama Kegiatan</label>
                                     <input type="text" list="nama_keg" id="nama_kegiatan" name="nama_kegiatan" value="{{ old('nama_kegiatan')}}" class="form-control" onkeyup="kegi();" onchange="kegi();">
                                     <datalist id="nama_keg">
@@ -57,24 +57,104 @@
                                         @endforeach
                                     </datalist>
                                 </div>
-                                <div class="form-group col-md-12">
+                                <div class="row"></div>
+                                <div class="form-group col-md-2">
+                                    <label>Tahun Kegiatan</label>
+                                    <input type="number" name="tahun" class="form-control" value="{{old('tahun')}}">
+                                </div>
+                                <div class="form-group col-md-6">
                                     <label>Kode Kegiatan</label>
-                                        <input type="text" class="form-control" list="keg" id="kode_kegiatan" name="kode_kegiatan" onkeyup="kegi();" onchange="kegi();" readonly>
-                                        <datalist id="keg">
-                                        @foreach($kodekeg as $key => $data)
-                                            <option value="{{$data->kode}}" label="{{$data->nama_kegiatan}}"></option>
-                                        @endforeach
-                                        </datalist>
+                                    <input type="text" class="form-control" list="keg" id="kode_kegiatan" name="kode_kegiatan" onkeyup="kegi();" onchange="kegi();" readonly>
+                                    <datalist id="keg">
+                                    @foreach($kodekeg as $key => $data)
+                                        <option value="{{$data->kode}}" label="{{$data->nama_kegiatan}}"></option>
+                                    @endforeach
+                                    </datalist>
                                 </div>
-                                <div class="form-group col-md-4">
-                                    <label>Tanggal Kegiatan</label>
-                                    <input type="date" name="tgl_kegiatan" class="form-control" value="{{old('tgl_kegiatan')}}">
-                                </div>
-                                <div class="col-md-8"></div>
                                 <div class="form-group col-md-12 hidden">
                                     <label>Kode Kegiatan (otomatis)</label>
                                     <input type="text" class="form-control" id="kode" name="kode" readonly>
                                 </div>
+                                <div class="row"></div>
+                                <hr width="100%">
+                            
+                                {{-- Nama Pegawai --}}
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label>Pengguna Anggaran</label>
+                                        <input type="text" name="pengguna" class="form-control form-green">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>NIP</label>
+                                        <input type="text" name="nip1" class="form-control form-green">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Jabatan</label>
+                                        <input type="text" list="jabatan1" name="jabatan1" class="form-control form-green">
+                                        <datalist id="jabatan1">
+                                        @foreach($subunit as $key => $data)
+                                            <option value="{{$data->nama_subunit}}" label="{{$data->nama_subunit}}"></option>
+                                        @endforeach
+                                    </datalist>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 col-md-offset-1">
+                                    <div class="form-group">
+                                        <label>PPTK</label>
+                                        <input type="text" name="pptk" class="form-control form-yellow">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>NIP</label>
+                                        <input type="text" name="nip2" class="form-control form-yellow">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Jabatan</label>
+                                        <input type="text" list="jabatan2" name="jabatan2" class="form-control form-yellow">
+                                        <datalist id="jabatan2">
+                                        @foreach($subunit as $key => $data)
+                                            <option value="{{$data->nama_subunit}}" label="{{$data->nama_subunit}}"></option>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <hr width="100%">
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label>Pejabat Pemakai Usaha Pengguna Barang</label>
+                                        <input type="text" name="pejabat" class="form-control form-blue">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>NIP</label>
+                                        <input type="text" name="nip3" class="form-control form-blue">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Jabatan</label>
+                                        <input type="text" list="jabatan3" name="jabatan3" class="form-control form-blue">
+                                        <datalist id="jabatan3">
+                                        @foreach($subunit as $key => $data)
+                                            <option value="{{$data->nama_subunit}}" label="{{$data->nama_subunit}}"></option>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <div class="col-md-5 col-md-offset-1">
+                                    <div class="form-group">
+                                        <label>Pengurus</label>
+                                        <input type="text" name="pengurus" class="form-control form-purple">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>NIP</label>
+                                        <input type="text" name="nip4" class="form-control form-purple">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Jabatan</label>
+                                        <input type="text" list="jabatan4" name="jabatan4" class="form-control form-purple">
+                                        <datalist id="jabatan4">
+                                        @foreach($subunit as $key => $data)
+                                            <option value="{{$data->nama_subunit}}" label="{{$data->nama_subunit}}"></option>
+                                        @endforeach
+                                    </div>
+                                </div>
+
+
                                 <div class="form-group col-md-12">
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>

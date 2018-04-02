@@ -336,3 +336,23 @@ table thead tr th {
 }
 
 /* end popup*/
+
+/*form pegawai*/
+
+.form-green {
+  border: 1px solid #00a65a !important;
+}
+
+.form-yellow {
+  border: 1px solid #f39c12 !important;
+}
+
+.form-blue {
+  border: 1px solid #337ab7 !important;
+}
+
+.form-purple {
+  border: 1px solid #8433b7 !important;
+}
+
+/*end form pegawai*/

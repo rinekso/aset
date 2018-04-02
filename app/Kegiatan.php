@@ -10,8 +10,21 @@ class Kegiatan extends Model
     	'kode',
         'kode_kegiatan',
     	'nama_kegiatan',
-        'tgl_kegiatan',
+        'tahun',
         'foto',
+        'foto2',
+        'pengguna',
+        'nip1',
+        'jabatan1',
+        'pptk',
+        'nip2',
+        'jabatan2',
+        'pejabat',
+        'nip3',
+        'jabatan3',
+        'pengurus',
+        'nip4',
+        'jabatan4',
     ];
 
     public function pengadaan(){
