@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\WordController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Carbon\Carbon;
 use DataTables;
 use PDF;
 use App\Subunit;
@@ -19,6 +21,7 @@ use App\Kodejalirja;
 use App\Kodekontruksi;
 use App\Kodemesin;
 use App\Kodetanah;
+use App\Kodebelanja;
 use App\Pengadaan;
 use App\Kategori;
 use App\Tanah;
@@ -98,40 +101,34 @@ class SubUnitController extends Controller
     public function pengadaan($id){
     
         $kategori = Kategori::all();
+        $kodebelanja = Kodebelanja::all();
         $kegiatan = Kegiatan::where('kode', $id)->first();
 
-        return view('subunit/pengadaan', compact('kategori', 'kegiatan'));
+        return view('subunit/pengadaan', compact('kategori', 'kegiatan', 'kodebelanja'));
     
     }
 
     public function storePengadaan(Request $request){
         $this->validate($request, [
+                'tgl_pengadaan' => 'required',
                 'nama' => 'required',
                 'jumlah' => 'required',
                 'harga_satuan' => 'required',
                 'satuan' => 'required',
                 'kategori_id' => 'required',
-                'no_bst' => 'required',
-                'keterangan' => 'required',
-                'foto_bst' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]);
         $no_pengadaan = Pengadaan::count() + 1;
 
-        // foto bst
-        $file_bst = $request->file('foto_bst');
-        $bst_name = "bst_".Auth::user()->nip."_".$no_pengadaan.".".$file_bst->getClientOriginalExtension();
-        $file_bst->move("images/bst/", $bst_name);
-
         Pengadaan::create([
             'id' => $no_pengadaan,
+            'kode_belanja' => $request->kode_belanja,
+            'tgl_pengadaan' => $request->tgl_pengadaan,
             'nama' => $request->nama,
             'jumlah' => $request->jumlah,
             'satuan' => $request->satuan,
             'harga_satuan' => $request->harga_satuan,
             'total' => $request->jumlah * $request->harga_satuan,
             'kategori_id' => $request->kategori_id,
-            'no_bst' => $request->no_bst,
-            'foto_bst' => $bst_name,
             'keterangan' => $request->keterangan,
             'status_unit' => '0',
             'status_bidang' => '0',
@@ -139,10 +136,10 @@ class SubUnitController extends Controller
             'kegiatan_id' => $request->kegiatan_id,
         ]);
 
-        Bast::firstOrCreate([
-            'bast' => $request->no_bst,
-            'kegiatan_id' => $request->kegiatan_id,
-        ]);
+        // Bast::firstOrCreate([
+        //     'bast' => $request->no_bst,
+        //     'kegiatan_id' => $request->kegiatan_id,
+        // ]);
 
         Session::flash('flash_message', 'Data Berhasil Disimpan');
         return redirect('subunit/kegiatan/'.$request->kegiatan_id);
@@ -588,8 +585,61 @@ class SubUnitController extends Controller
     public function beritaAcara($id){
         $bast = Bast::where('kegiatan_id', $id)->get();
         $pengadaan = Pengadaan::where('kegiatan_id', $id)->get();
+        $kegiatan_id = $id;
 
-        return view('subunit.berita_acara', compact('bast', 'pengadaan'));
+        return view('subunit.berita_acara', compact('bast', 'pengadaan', 'kegiatan_id'));
+    }
+
+    public function bast(Request $request){
+
+        if ($request->bast != null) {
+            $tes = (new WordController)->cetakBast($request);
+            return $tes;
+        } else {
+
+            $tahun_sekarang = Carbon::now()->year;
+            $tahun_kegiatan = Kegiatan::where('kode', $request->kegiatan_id)->first()->tahun;
+            
+            $bast = Bast::where('tahun', $tahun_kegiatan)->get();
+            if ($bast->count() != 0) {
+                $last_bast = Bast::where('tahun', $tahun_sekarang)->latest()->first()->bast;
+                $last_bast = substr($last_bast, 4, 3);
+            } else {
+                $last_bast = 0;
+            }
+            $increment = sprintf("%03d", $last_bast + 1);
+            $increment2 = sprintf("%03d", $last_bast + 2);
+
+            $bast1 = "900/".$increment."/ASET/435.108/".$tahun_kegiatan;
+            $bast2 = "900/".$increment2."/ASET/435.108/".$tahun_kegiatan;
+            
+            Bast::insert([
+                [
+                    'bast' => $bast1,
+                    'kegiatan_id' => $request->kegiatan_id,
+                    'tahun' => $tahun_kegiatan,
+                ],
+                [
+                    'bast' => $bast2,
+                    'kegiatan_id' => $request->kegiatan_id,
+                    'tahun' => $tahun_kegiatan,
+                ],
+            ]);
+
+            for ($i = 0 ; $i < count($request->barang); $i++) { 
+                Pengadaan::find($request->barang[$i])
+                    ->update([
+                        'bast' => $bast1,
+                        'bast2' => $bast2,
+                    ]);
+            }
+
+            $tes = (new WordController)->tes($request);
+
+            return $tes;
+
+        }
+
     }
 
 }

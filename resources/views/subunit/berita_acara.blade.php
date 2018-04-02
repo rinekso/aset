@@ -52,14 +52,16 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <form role="form" action="/subunit/cetak-bast" method="POST" enctype="multipart/form-data">
+                            <form role="form" action="/subunit/bast" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
                                 <div class="row">
+                                    <input type="text" name="kegiatan_id" hidden value="{{$kegiatan_id}}">
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Nomor BAST</label>
-                                            <select class="form-control" onchange="barang();" id="bast" name="bast">
-                                                    <option value="">--pilih salah satu--</option>
+                                            <select class="form-control" onload="barang()" onchange="barang();" id="bast" name="bast">
+                                                    <option>--pilih salah satu---</option>
+                                                    <option value="">null</option>
                                                 @foreach($bast as $key => $data)
                                                     <option value="{{$data->bast}}">{{$data->bast}}</option>
                                                 @endforeach    
@@ -83,13 +85,14 @@
                                             <div class="checkbox">
                                                 <td>
                                                     <input type="checkbox" name="barang[]" value="{{$data->id}}">
-                                                    <input type="checkbox" hidden="" name="brgbast[]" value="{{$data->no_bst}}">
+                                                    <input type="checkbox" hidden="" name="brgbast[]" value="{{$data->bast}}">
+                                                    <input type="checkbox" hidden="" name="brgbast2[]" value="{{$data->bast2}}">
 
                                                 </td>
                                                 <td>{{$data->nama}}</td>
                                                 <td>{{$data->jumlah}} {{$data->satuan}}</td>
-                                                <td>{{$data->harga_satuan}}</td>
-                                                <td>{{$data->total}}</td>
+                                                <td>{{ number_format($data->harga_satuan, 2, ',', '.') }}</td>
+                                                <td>{{ number_format($data->total, 2, ',', '.') }}</td>
 
                                             </div>
                                         </tr>
@@ -133,7 +136,7 @@
             for (var i = 0; i < banyak; i++) {
                 document.getElementById("brg"+i).classList.add('hidden');
                 document.getElementsByName("barang[]")[i].checked = false;
-                if(bast == document.getElementsByName("brgbast[]")[i].value) {
+                if(bast == document.getElementsByName("brgbast[]")[i].value || bast == document.getElementsByName("brgbast2[]")[i].value) {
                     document.getElementById("brg"+i).classList.remove('hidden');
                 }
             }

@@ -66,9 +66,26 @@
                                     <select class="form-control" name="kategori_id">
                                         <option value="">--pilih salah satu--</option>
                                     @foreach($kategori as $key => $data)
-                                        <option value="{{$data->id}}">{{$data->nama_kategori}}</option>
+                                        @if(old('kategori_id') == $data->id)
+                                            <option value="{{$data->id}}" selected>{{$data->nama_kategori}}</option>
+                                        @else
+                                            <option value="{{$data->id}}">{{$data->nama_kategori}}</option>
+                                        @endif
                                     @endforeach
                                     </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Kode Belanja</label>
+                                    <input type="text" class="form-control" list="list_kode" id="kode_belanja" name="kode_belanja" value="{{old('kode_belanja')}}">
+                                    <datalist id="list_kode">
+                                    @foreach($kodebelanja as $key => $data)
+                                        <option value="{{$data->kode}}" label="{{$data->deskripsi}}"></option>
+                                    @endforeach
+                                    </datalist>
+                                </div>
+                                <div class="form-group">
+                                    <label>Tanggal Pengadaan</label>
+                                    <input type="date" name="tgl_pengadaan" class="form-control" value="{{old('tgl_pengadaan')}}">
                                 </div>
                                 <div class="form-group">
                                     <label>Nama Barang</label>
@@ -98,25 +115,10 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Total (Rp)</label>
-                                            <input type="number" disabled class="form-control" id="total" name="total" placeholder="Total">
+                                            <input type="number" disabled class="form-control" id="total" name="total" placeholder="Total" value="{{old('total')}}">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Nomor BST</label>
-                                    <input type="text" name="no_bst" class="form-control" placeholder="Masukkan Nomor BST" value="{{ old('no_bst') }}">
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Foto BST</label>
-                                
-                                    <div class="upload-btn-wrapper">
-                                      <button class="btn btn-info">Pilih foto</button>
-                                      <input type="file" name="foto_bst" id="foto_bst">
-                                    </div>
-                                    <img src="" id="showbst" style="max-width:200px;max-height:200px; margin-right: 10px" />
-                                </div>
-
                                 <div class="form-group">
                                     <label>Keterangan</label>
                                     <textarea class="form-control" placeholder="Keteranagan" name="keterangan">{{ old('keterangan') }}</textarea>

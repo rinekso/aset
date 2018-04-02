@@ -116,7 +116,7 @@
                                     <th>Harga Satuan</th>
                                     <th>Total</th>
                                     <th>Kategori</th>
-                                    <th>Nomor BAST</th>
+                                    <th>Tgl Pengadaan</th>
                                     <th>Keterangan</th>
                                     <th>Status Unit</th>
                                     <th>Status Induk</th>
@@ -165,7 +165,7 @@
                     {data: 'harga_satuan', name: 'harga_satuan'},
                     {data: 'total', name: 'total'},
                     {data: 'kategori.nama_kategori', name: 'kategori.nama_kategori'},
-                    {data: 'no_bst', name: 'no_bst'},
+                    {data: 'tgl_pengadaan', name: 'tgl_pengadaan'},
                     {data: 'keterangan', name: 'keterangan'},
                     { 
                         data: 'status_unit', 

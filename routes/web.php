@@ -69,6 +69,9 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('/edit-pengadaan/{id}', 'SubUnitController@editPengadaan');
             Route::get('/update-pengadaan', 'SubUnitController@updatePengadaan');
             Route::post('/update-pengadaan', 'SubUnitController@updatePengadaan')->name('.updatePengadaan');
+
+            Route::get('/bast', 'SubUnitController@bast')->name('.bast');
+            Route::post('/bast', 'SubUnitController@bast')->name('.bast');
     });
 
 	/**

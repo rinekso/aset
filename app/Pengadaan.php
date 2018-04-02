@@ -10,6 +10,8 @@ class Pengadaan extends Model
     protected $fillable = [
         'id',
         'kegiatan_id',
+        'kode_belanja',
+        'tgl_pengadaan',
         'nama',
         'jumlah', 
         'satuan',
@@ -17,11 +19,11 @@ class Pengadaan extends Model
         'total', 
         'kategori_id', 
         'keterangan', 
-        'no_bst',
-        'foto_bst', 
         'status_unit', 
         'status_bidang', 
         'lokasi_kir',
+        'bast',
+        'bast2',
         'user_id',
     ];
 

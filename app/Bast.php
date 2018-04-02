@@ -9,6 +9,7 @@ class Bast extends Model
     protected $fillable = [
     	'bast',
     	'kegiatan_id',
+    	'tahun',
     ];
 
 	public function kegiatan(){
