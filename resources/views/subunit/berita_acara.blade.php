@@ -48,11 +48,11 @@
                          <!-- general form elements -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Pilih berdasarkan BAST</h3>
+                            <h3 class="box-title">Pilih berdasarkan BAST <font color="green">(Harap refresh halaman setelah mencetak)</font></h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <form role="form" action="/subunit/bast" method="POST" enctype="multipart/form-data">
+                            <form role="form" id="form1" action="/subunit/bast" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
                                 <div class="row">
                                     <input type="text" name="kegiatan_id" hidden value="{{$kegiatan_id}}">
@@ -100,7 +100,23 @@
                                         
                                     </table>
                                 </div>    
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-print"></i> Cetak Berita Acara</button>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary" name="submitButton" value="cetak"><i class="fa fa-print"></i> Cetak Berita Acara</button> 
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group hidden" id="atau">
+                                            <label> atau </label>
+                                            <select class="form-control" name="bastTambah">
+                                                    <option>Tambahkan ke Nomor BAST</option>
+                                                @foreach($bast as $key => $data)
+                                                    <option value="{{$data->bast}}">{{$data->bast}}</option>
+                                                @endforeach    
+                                            </select>
+                                        </div>        
+                                    </div>
+                                </div>
+                                <button type="submit" id="btnTambah" name="submitButton" class="btn btn-info hidden" value="tambah">Tambahkan</button>
                             </form>
                         </div>
                         <!-- /.box-body -->
@@ -133,13 +149,28 @@
         function barang(){
             var bast = document.getElementById("bast").value;
             var banyak = document.getElementsByName("barang[]").length;
+            
+            if (bast == "") {
+                document.getElementById("atau").classList.remove('hidden');
+                document.getElementById("btnTambah").classList.remove('hidden');
+            } else {
+                document.getElementById("atau").classList.add('hidden');
+                document.getElementById("btnTambah").classList.add('hidden');
+            }
+
             for (var i = 0; i < banyak; i++) {
                 document.getElementById("brg"+i).classList.add('hidden');
                 document.getElementsByName("barang[]")[i].checked = false;
                 if(bast == document.getElementsByName("brgbast[]")[i].value || bast == document.getElementsByName("brgbast2[]")[i].value) {
                     document.getElementById("brg"+i).classList.remove('hidden');
+                    document.getElementsByName("barang[]")[i].checked = true;
                 }
             }
+        }
+        function submitForm(){
+            var form = document.getElementById('form1');
+            form.action = action;
+            form.submit();
         }
     </script>
 

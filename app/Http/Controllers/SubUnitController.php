@@ -591,54 +591,95 @@ class SubUnitController extends Controller
     }
 
     public function bast(Request $request){
+        $tahun_sekarang = Carbon::now()->year;
+        $tahun_kegiatan = Kegiatan::where('kode', $request->kegiatan_id)->first()->tahun;
 
-        if ($request->bast != null) {
-            $tes = (new WordController)->cetakBast($request);
-            return $tes;
-        } else {
+        switch ($request->submitButton) {
+            case 'cetak':
+                if ($request->bast != null) {
+                    $tes = (new WordController)->cetakBast($request);
+                    return $tes;
+                } else {
 
-            $tahun_sekarang = Carbon::now()->year;
-            $tahun_kegiatan = Kegiatan::where('kode', $request->kegiatan_id)->first()->tahun;
-            
-            $bast = Bast::where('tahun', $tahun_kegiatan)->get();
-            if ($bast->count() != 0) {
-                $last_bast = Bast::where('tahun', $tahun_sekarang)->latest()->first()->bast;
-                $last_bast = substr($last_bast, 4, 3);
-            } else {
-                $last_bast = 0;
-            }
-            $increment = sprintf("%03d", $last_bast + 1);
-            $increment2 = sprintf("%03d", $last_bast + 2);
+                    
+                    $bast = Bast::where('tahun', $tahun_kegiatan)->get();
+                    if ($bast->count() != 0) {
+                        $last_bast = Bast::where('tahun', $tahun_sekarang)->latest()->first()->bast;
+                        $last_bast = substr($last_bast, 4, 3);
 
-            $bast1 = "900/".$increment."/ASET/435.108/".$tahun_kegiatan;
-            $bast2 = "900/".$increment2."/ASET/435.108/".$tahun_kegiatan;
-            
-            Bast::insert([
-                [
-                    'bast' => $bast1,
-                    'kegiatan_id' => $request->kegiatan_id,
-                    'tahun' => $tahun_kegiatan,
-                ],
-                [
-                    'bast' => $bast2,
-                    'kegiatan_id' => $request->kegiatan_id,
-                    'tahun' => $tahun_kegiatan,
-                ],
-            ]);
+                        if($last_bast % 2 != 0) {
+                            $last_bast = $last_bast + 1;
+                        }
 
-            for ($i = 0 ; $i < count($request->barang); $i++) { 
-                Pengadaan::find($request->barang[$i])
-                    ->update([
-                        'bast' => $bast1,
-                        'bast2' => $bast2,
+
+                    } else {
+                        $last_bast = 0;
+                    }
+                    $increment = sprintf("%03d", $last_bast + 1);
+                    $increment2 = sprintf("%03d", $last_bast + 2);
+
+                    $bast1 = "900/".$increment."/ASET/435.108/".$tahun_kegiatan;
+                    $bast2 = "900/".$increment2."/ASET/435.108/".$tahun_kegiatan;
+                    
+                    Bast::insert([
+                        [
+                            'bast' => $bast1,
+                            'kegiatan_id' => $request->kegiatan_id,
+                            'tahun' => $tahun_kegiatan,
+                        ],
+                        [
+                            'bast' => $bast2,
+                            'kegiatan_id' => $request->kegiatan_id,
+                            'tahun' => $tahun_kegiatan,
+                        ],
                     ]);
-            }
 
-            $tes = (new WordController)->tes($request);
+                    for ($i = 0 ; $i < count($request->barang); $i++) { 
+                        Pengadaan::find($request->barang[$i])
+                            ->update([
+                                'bast' => $bast1,
+                                'bast2' => $bast2,
+                            ]);
+                    }
 
-            return $tes;
+                    $tes = (new WordController)->cetakBast($request);
+                    return $tes;
 
+                }
+                break;
+            
+            case 'tambah':
+                $nomor = substr($request->bastTambah, 4, 3);
+                if ($nomor % 2 == 0) {
+                    $incr1 = sprintf("%03d", $nomor + 1);
+                    $incr2 = sprintf("%03d", $nomor);
+                } else {
+                    $incr1 = sprintf("%03d", $nomor);
+                    $incr2 = sprintf("%03d", $nomor - 1);
+                }
+
+                $bast1 = "900/".$incr1."/ASET/435.108/".$tahun_kegiatan;
+                $bast2 = "900/".$incr2."/ASET/435.108/".$tahun_kegiatan;
+                
+                for ($i = 0 ; $i < count($request->barang); $i++) { 
+                    Pengadaan::find($request->barang[$i])
+                        ->update([
+                            'bast' => $bast1,
+                            'bast2' => $bast2,
+                        ]);
+                }
+
+                Session::flash('flash_message', 'Data Berhasil Ditambahkan');
+                return redirect()->back();
+                // return $nomor;
+
+                break;
+
+            default:
+                # code...
+                break;
         }
+
 
     }
 

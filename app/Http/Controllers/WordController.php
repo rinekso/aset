@@ -165,7 +165,7 @@ class WordController extends Controller
 				array('name' => 'Times New Roman', 'size' => 12, 'bold' => true,), 
 				array('spaceAfter' => 40, 'alignment' => \PhpOffice\PhpWord\SimpleType\Jc::CENTER));
 
-		$kode = Bast::where('bast', $request->bast)->first()->kegiatan_id;
+		$kode = Bast::where('bast', $bast1)->first()->kegiatan_id;
 		$kegiatan = Kegiatan::where('kode', $kode)->first();
 		$nama_kegiatan = $kegiatan->nama_kegiatan;
 		$nama = $kegiatan->user->name;
@@ -475,7 +475,7 @@ class WordController extends Controller
 				array('name' => 'Times New Roman', 'size' => 12, 'bold' => true,), 
 				array('spaceAfter' => 40, 'alignment' => \PhpOffice\PhpWord\SimpleType\Jc::CENTER));
 
-		$kode = Bast::where('bast', $request->bast)->first()->kegiatan_id;
+		$kode = Bast::where('bast', $bast2)->first()->kegiatan_id;
 		$kegiatan = Kegiatan::where('kode', $kode)->first();
 		$nama_kegiatan = $kegiatan->nama_kegiatan;
 		$nama = $kegiatan->user->name;
