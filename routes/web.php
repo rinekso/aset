@@ -114,6 +114,8 @@ Route::group(['middleware' => ['auth']], function () {
         // Route::get('store-lokasi', 'BidangController@storelokasi')->name('/storelokasi');
         // Route::post('store-lokasi', 'BidangController@storelokasi')->name('/storeLokasi');
         Route::post('/store-lokasi-aset', 'BidangController@storeLokasiAset')->name('/storeLokasiAset');
+
+        Route::get('cetak-kir', 'ExcelController@cetakKir')->name('cetakKir');
     });  
 });
 

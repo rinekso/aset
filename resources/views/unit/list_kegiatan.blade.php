@@ -41,7 +41,7 @@
                                         <tr>
                                             <th>Kode Kegiatan</th>
                                             <th>Nama Kegiatan</th>
-                                            <th>Tanggal Kegiatan</th>
+                                            <th>Tahun Kegiatan</th>
                                             <th>Pengaju</th>
                                             <th>Tanggal Dibuat</th>
                                             <th>Action</th>
@@ -83,7 +83,7 @@
             columns: [
               {data: 'kode_kegiatan', name: 'kode_kegiatan'},
               {data: 'nama_kegiatan', name: 'nama_kegiatan'},
-              {data: 'tgl_kegiatan', name: 'tgl_kegiatan'},
+              {data: 'tahun', name: 'tahun'},
               {data: 'user.name', name: 'user.name'},
               {data: 'created_at', name: 'created_at'},
               {data: 'action', name: 'action'},
