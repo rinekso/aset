@@ -39,6 +39,7 @@
 
                 <h1>
                     List Aset
+                    <a href="/bidang/cetak-kir" class="btn btn-success btn-sm">Cetak KIR</a>
                 </h1>
 
             </section>
