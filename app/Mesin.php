@@ -28,6 +28,7 @@ class Mesin extends Model
         'keterangan',
         'user_id',
         'kegiatan_id',
+        'lokasi_id',
     ];
     
     public function user(){
@@ -40,5 +41,9 @@ class Mesin extends Model
 
     public function kir(){
         return $this->belongsTo(Kir::class, 'kode_barang', 'kode_barang');
+    }
+
+    public function koderuang(){
+        return $this->belongsTo(Koderuang::class, 'lokasi_id', 'id');
     }
 }

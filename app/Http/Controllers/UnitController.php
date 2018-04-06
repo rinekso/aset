@@ -42,8 +42,11 @@ class UnitController extends Controller
     }
 
     public function dataKegiatan(){
-        $kegiatan = Kegiatan::with('user')
-                ->select('kegiatans.*');
+        $kegiatan = Kegiatan::with(['user', 'profile.subunit'])
+                ->whereHas('profile', function($q){
+                    $q->where('unit_id', Auth::user()->profile->unit_id);
+                })
+                ->get();
 
         return Datatables::of($kegiatan)
             ->addColumn('action', function ($kegiatan) {

@@ -14,6 +14,7 @@ use App\Kontruksi;
 use App\Asettetap;
 use App\Bph;
 use App\Kir;
+use App\Koderuang;
 
 
 class BarangController extends Controller
@@ -58,7 +59,8 @@ class BarangController extends Controller
         $mesin = Mesin::all();
         $aset = Asettetap::all();
         $kir = Kir::all();
-        return view('bidang.list_aset', compact('mesin','aset'));
+        $koderuang = Koderuang::all();
+        return view('bidang.list_aset', compact('mesin','aset', 'koderuang'));
     }
 
     public function dataTanah(){
@@ -74,7 +76,8 @@ class BarangController extends Controller
 
         return Datatables::of($mesin)
             ->addColumn('action', function ($mesin) {
-                return '<a class="btn btn-info btn-xs" href="#kirPopup'.$mesin->kode_barang.'">Lokasi</a>
+
+                return '<a class="btn btn-info btn-xs" href="#kirPopup'.$mesin->kode_barang.'" onclick="lokasi();">Ubah Lokasi</a>
                         <div id="kirPopup'.$mesin->kode_barang.'" class="overlay">
                             <div class="popup">
                                 <h4>Lokasi Penempatan <strong>'.$mesin->nama_barang.'</strong></h4>
@@ -86,7 +89,8 @@ class BarangController extends Controller
                                             <label>Lokasi</label>
                                             <input name="id" value="'.$mesin->kegiatan_id.'" hidden>
                                             <input name="kode_barang" value="'.$mesin->kode_barang.'" hidden>
-                                            <input type="text" class="form-control" name="lokasi_kir" value="'.$mesin->kir->lokasi.'">
+                                            <select class="form-control lokasi_id" name="lokasi_id">
+                                            </select>      
                                         </div>
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-primary">Submit</button>
@@ -120,7 +124,7 @@ class BarangController extends Controller
 
         return Datatables::of($aset)
             ->addColumn('action', function ($aset) {
-                return '<a class="btn btn-info btn-xs" href="#kirPopup'.$aset->kode_barang.'">Lokasi</a>
+                return '<a class="btn btn-info btn-xs" href="#kirPopup'.$aset->kode_barang.'" onclick="lokasi();">Lokasi</a>
                         <div id="kirPopup'.$aset->kode_barang.'" class="overlay">
                             <div class="popup">
                                 <h4>Lokasi Penempatan <strong>'.$aset->nama_barang.'</strong></h4>
@@ -132,7 +136,8 @@ class BarangController extends Controller
                                             <label>Lokasi</label>
                                             <input name="id" value="'.$aset->kegiatan_id.'" hidden>
                                             <input name="kode_barang" value="'.$aset->kode_barang.'" hidden>
-                                            <input type="text" class="form-control" name="lokasi_kir" value="'.$aset->kir->lokasi.'">
+                                            <select class="form-control lokasi_id" name="lokasi_id">
+                                            </select> 
                                         </div>
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-primary">Submit</button>

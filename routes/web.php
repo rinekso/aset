@@ -113,9 +113,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/nonaktif/{id}', 'BidangController@nonaktif')->name('.nonaktif');
         // Route::get('store-lokasi', 'BidangController@storelokasi')->name('/storelokasi');
         // Route::post('store-lokasi', 'BidangController@storelokasi')->name('/storeLokasi');
-        Route::post('/store-lokasi-aset', 'BidangController@storeLokasiAset')->name('/storeLokasiAset');
-
+        Route::post('/store-lokasi-aset', 'BidangController@storeLokasiAset')->name('.storeLokasiAset');
+        Route::get('/pilih-ruangan', 'BidangController@pilihRuangan')->name('.pilihRuangan');
+        Route::get('/ruang/{id}', 'AjaxController@ruang')->name('.ruang');
+        
         Route::get('cetak-kir', 'ExcelController@cetakKir')->name('cetakKir');
+
     });  
 });
 

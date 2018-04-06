@@ -21,6 +21,7 @@ use App\Asettetap;
 use App\Kontruksi;
 use App\Bph;
 use App\Kir;
+use App\Koderuang;
 
 class BidangController extends Controller
 {
@@ -44,7 +45,7 @@ class BidangController extends Controller
     }
 
     public function dataKegiatan(){
-        $kegiatan = Kegiatan::with('user')
+        $kegiatan = Kegiatan::with('user', 'profile.subunit', 'profile.unit')
                 ->select('kegiatans.*');
 
         return Datatables::of($kegiatan)
@@ -77,32 +78,7 @@ class BidangController extends Controller
 
                         return '<a href="'.url("bidang/tolak/$pengadaan->id").'" class="btn btn-danger btn-xs" style="margin-top:2px">Decline</a>';
                         
-                        // if($pengadaan->kategori_id == 2 || $pengadaan->kategori_id == 5) {
-                        //     return '<a class="btn btn-info btn-xs" href="#kirPopup'.$pengadaan->id.'">KIR</a>
-                        //     <a href="'.url("bidang/tolak/$pengadaan->id").'" class="btn btn-danger btn-xs" style="margin-top:2px">Decline</a>
-                        //     <div id="kirPopup'.$pengadaan->id.'" class="overlay">
-                        //         <div class="popup">
-                        //             <h4>Lokasi Penempatan <strong>'.$pengadaan->nama.'</strong></h4>
-                        //             <a class="close" href="#">&times;</a>
-                        //             <div class="contentPopup">
-                        //                 <form role="form" action="/bidang/store-lokasi" method="POST" enctype="multipart/form-data">'.
-                        //                     csrf_field()
-                        //                     .'<div class="form-group">
-                        //                         <label>Lokasi</label>
-                        //                         <input name="id" value="'.$pengadaan->id.'" hidden>
-                        //                         <input type="text" class="form-control" name="lokasi_kir" value="'.$pengadaan->lokasi_kir.'">
-                        //                     </div>
-                        //                     <div class="form-group">
-                        //                         <button type="submit" class="btn btn-primary">Submit</button>
-                        //                     </div>
-                        //                 </form>
-                        //             </div>
-                        //         </div>
-                        //     </div>
-                        //     ';
-                        // } else{
-                        //     return '<a href="'.url("bidang/tolak/$pengadaan->id").'" class="btn btn-danger btn-xs" style="margin-top:2px">Decline</a>';
-                        // }
+                       
 
                     } else if($pengadaan->status_bidang == 2) {
                         return '<a href="'.url("bidang/approve/$pengadaan->id").'" class="btn btn-success btn-xs">Approve</a>';
@@ -172,21 +148,40 @@ class BidangController extends Controller
 
     }
 
-    public function storeLokasi(Request $request){
-        Pengadaan::find($request->id)
-            ->update(['lokasi_kir' => $request->lokasi_kir]);
+    // public function storeLokasi(Request $request){
+    //     Pengadaan::find($request->id)
+    //         ->update(['lokasi_kir' => $request->lokasi_kir]);
 
-        $kegiatan = Pengadaan::find($request->id)->kegiatan_id;
+    //     $kegiatan = Pengadaan::find($request->id)->kegiatan_id;
 
-        Session::flash('flash_message', 'Data Berhasil Disimpan');
-        return redirect('bidang/kegiatan/'.$kegiatan);
-    }
+    //     Session::flash('flash_message', 'Data Berhasil Disimpan');
+    //     return redirect('bidang/kegiatan/'.$kegiatan);
+    // }
 
     public function storeLokasiAset(Request $request){
+        $lokasi = Koderuang::find($request->lokasi_id)->ruangan;
         Kir::where('kode_barang', $request->kode_barang)
-            ->update(['lokasi' => $request->lokasi_kir]);
+            ->update([
+                'lokasi_id' => $request->lokasi_id,
+                'lokasi' => $lokasi,
+            ]);
+
+        if(Mesin::where('kode_barang', $request->kode_barang)->count() != 0){
+            Mesin::where('kode_barang', $request->kode_barang)
+                ->update(['lokasi_id' => $request->lokasi_id]);
+        } else {
+            Asettetap::where('kode_barang', $request->kode_barang)
+                ->update(['lokasi_id' => $request->lokasi_id]);
+        }
 
         Session::flash('flash_message', 'Data Berhasil Disimpan');
         return redirect()->back();
+    }
+
+    public function pilihRuangan(){
+        $ruang = Koderuang::all();
+        $mesin = Mesin::all();
+        $aset = Asettetap::all();
+        return view('bidang.pilih_ruangan', compact('ruang', 'mesin'));
     }
 }

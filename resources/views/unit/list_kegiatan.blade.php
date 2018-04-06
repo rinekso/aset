@@ -18,7 +18,7 @@
             <section class="content-header">
 
                 <h1>
-                    List Kegiatan</strong>
+                    List Kegiatan Unit {{Auth::user()->profile->unit->nama_unit}}</strong>
                 </h1>
 
                 <ol class="breadcrumb">
@@ -43,6 +43,7 @@
                                             <th>Nama Kegiatan</th>
                                             <th>Tahun Kegiatan</th>
                                             <th>Pengaju</th>
+                                            <th>Subunit</th>
                                             <th>Tanggal Dibuat</th>
                                             <th>Action</th>
                                         </tr>
@@ -85,6 +86,7 @@
               {data: 'nama_kegiatan', name: 'nama_kegiatan'},
               {data: 'tahun', name: 'tahun'},
               {data: 'user.name', name: 'user.name'},
+              {data: 'profile.subunit.nama_subunit', name: 'profile.subunit.nama_subunit'},
               {data: 'created_at', name: 'created_at'},
               {data: 'action', name: 'action'},
             ],
