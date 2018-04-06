@@ -10,6 +10,7 @@ use App\Asettetap;
 use App\Koderuang;
 use App\Kir;
 use App\Unit;
+use Carbon\Carbon;
 
 class ExcelController extends Controller
 {
@@ -178,7 +179,93 @@ class ExcelController extends Controller
 				->setCellValue('I'.$row, $mesin->jumlah)
 				->setCellValue('J'.$row, $mesin->harga_satuan)
 				->setCellValue('N'.$row, $mesin->keterangan);
+
+			$sheet->getStyle('A'.$row)->getAlignment()->setHorizontal('center');
+
+			$styleArray = [
+			    'borders' => [
+			        'left' => [
+			            'borderStyle' => 'thin',
+			        ],
+			        'right' => [
+			            'borderStyle' => 'thin',
+			        ],
+			        'vertical' => [
+			            'borderStyle' => 'thin',
+			        ],
+			    ],
+			];
+
+			$sheet->getStyle('A'.$row.':N'.$row)->applyFromArray($styleArray);
+
 		}
+		$sheet->getStyle('A'.$row.':N'.$row)->getBorders()->getBottom()->setBorderStyle('thin');
+
+		// tanggal
+		$namaHari = [
+		    0 => 'Minggu',
+		    1 => 'Senin',
+		    2 => 'Selasa',
+		    3 => 'Rabu',
+		    4 => 'Kamis',
+		    5 => 'Jumat',
+		    6 => 'Sabtu',
+		];
+
+		$namaBulan = [
+		    1 => 'Januari',
+		    2 => 'Februari',
+		    3 => 'Maret',
+		    4 => 'April',
+		    5 => 'Mei',
+		    6 => 'Juni',
+		    7 => 'Juli',
+		    8 => 'Agustus',
+		    9 => 'September',
+		    10 => 'Oktober',
+		    11 => 'Nopember',
+		    12 => 'Desember',
+		];
+    	$dayOfWeek = Carbon::now()->dayOfWeek;
+    	$hari = $namaHari[$dayOfWeek];
+    	$day = Carbon::now()->day;
+    	$month = Carbon::now()->month;
+    	$bulan = $namaBulan[$month];
+    	$year = Carbon::now()->year;
+    	// end tanggal
+
+		$row = $row+4;
+		$sheet->setCellValue('B'.$row, 'Mengetahui')
+			->mergeCells('J'.$row.':N'.$row)->setCellValue('J'.$row, 'Sumenep, '.$day.' '.$bulan.' '.$year);
+		$sheet->getStyle('B'.$row.':N'.$row)->getAlignment()->setHorizontal('center');
+
+		$row = $row+1;
+		$sheet->setCellValue('B'.$row, 'Kepala Dinas Pariwisata Kebudayaan');
+		$sheet->getStyle('B'.$row.':N'.$row)->getAlignment()->setHorizontal('center');
+
+		$row = $row+1;
+		$sheet->setCellValue('B'.$row, 'Pemuda dan Olahraga')
+			->mergeCells('J'.$row.':N'.$row)->setCellValue('J'.$row, 'Pengurus Barang Pengguna');			
+		$sheet->getStyle('B'.$row.':N'.$row)->getAlignment()->setHorizontal('center');
+
+		$row = $row+1;
+		$sheet->setCellValue('B'.$row, 'Kabupaten Sumenep');
+		$sheet->getStyle('B'.$row.':N'.$row)->getAlignment()->setHorizontal('center');
+
+		$row = $row+3;
+		$sheet->setCellValue('B'.$row, $request->pengguna)
+			->mergeCells('J'.$row.':N'.$row)->setCellValue('J'.$row, $request->pengurus);			
+		$sheet->getStyle('B'.$row.':N'.$row)->getAlignment()->setHorizontal('center');
+
+		$row = $row+1;
+		$sheet->setCellValue('B'.$row, $request->jabatan1)
+			->mergeCells('J'.$row.':N'.$row)->setCellValue('J'.$row, 'NIP: '.$request->jabatan4);			
+		$sheet->getStyle('B'.$row.':N'.$row)->getAlignment()->setHorizontal('center');
+
+		$row = $row+1;
+		$sheet->setCellValue('B'.$row, $request->nip1)
+			->mergeCells('J'.$row.':N'.$row)->setCellValue('J'.$row, 'NIP: '.$request->nip4);			
+		$sheet->getStyle('B'.$row.':N'.$row)->getAlignment()->setHorizontal('center');
 
 
 		$styleArray = [

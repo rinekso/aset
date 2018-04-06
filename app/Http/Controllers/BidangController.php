@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Session;
 use DataTables;
 use App\User;
 use App\Profile;
+use App\Subunit;
 use App\Kegiatan;
 use App\Kodekegiatan;
 use App\Pengadaan;
@@ -182,6 +183,8 @@ class BidangController extends Controller
         $ruang = Koderuang::all();
         $mesin = Mesin::all();
         $aset = Asettetap::all();
-        return view('bidang.pilih_ruangan', compact('ruang', 'mesin'));
+        $subunit = Subunit::all();
+        $pegawai = Kegiatan::all()->first();
+        return view('bidang.pilih_ruangan', compact('ruang', 'mesin', 'subunit', 'pegawai'));
     }
 }
