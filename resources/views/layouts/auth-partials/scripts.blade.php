@@ -10,3 +10,4 @@
 {{-- <script src="{{ asset('/js/app.js') }}"></script> --}}
 
 <script src="{{asset('DataTables/datatables.min.js')}}"></script>
+

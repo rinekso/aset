@@ -228,7 +228,6 @@ class SubUnitController extends Controller
             $this->validate($request, [
                     'kode_barang' => 'required',
                     'nama_barang' => 'required',
-                    'no_reg' => 'required',
                     'luas' => 'required',
                     'tahun_pengadaan' => 'required',    
                     'lokasi' => 'required',
@@ -262,7 +261,6 @@ class SubUnitController extends Controller
             $this->validate($request, [
                     'kode_barang' => 'required',
                     'nama_barang' => 'required',
-                    'no_reg' => 'required',
                     'merk' => 'required',
                     'ukuran' => 'required',    
                     'bahan' => 'required',
@@ -303,7 +301,6 @@ class SubUnitController extends Controller
             
             $this->validate($request, [
                     'kode_barang' => 'required',
-                    'no_reg' => 'required',
                     'nama_barang' => 'required',
                     'luas' => 'required',
                     'lokasi' => 'required',
@@ -333,7 +330,6 @@ class SubUnitController extends Controller
             
             $this->validate($request, [
                     'kode_barang' => 'required',
-                    'no_reg' => 'required',
                     'nama_barang' => 'required',
                     'kontruksi' => 'required',
                     'panjang' => 'required',
@@ -369,7 +365,6 @@ class SubUnitController extends Controller
             
             $this->validate($request, [
                     'kode_barang' => 'required',
-                    'no_reg' => 'required',
                     'nama_barang' => 'required',
                     'jumlah' => 'required',
                     'harga_satuan' => 'required',
@@ -445,7 +440,6 @@ class SubUnitController extends Controller
             Bph::create([
                 'nama_barang' => $request->nama_barang,
                 'kode_barang' => $request->kode_barang,
-                'no_reg' => $request->no_reg,
                 'merk' => $request->merk,
                 'jumlah' => $request->jumlah,
                 'harga_satuan' => $request->harga_satuan,

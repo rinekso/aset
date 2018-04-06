@@ -57,10 +57,14 @@
                             <div class="box-body">
                                 <div class="form-group">
                                     <label>Jenis Barang</label>
-                                    <input type="text" class="form-control" list="kodelist" id="barang" onkeyup="generateKode();" onchange="generateKode();">
+                                    <input type="text" class="form-control" list="kodelist" name="barang" id="barang" onkeyup="generateKode();" onchange="generateKode();" value="{{old('barang')}}">
                                     <datalist id="kodelist">
                                     @foreach($kode as $key => $data)
-                                        <option value="{{$data->kode}}" label="{{$data->deskripsi}}"></option>
+                                        {{-- @if(old('barang') == $data->kode)
+                                            <option selected value="{{$data->kode}}" label="{{$data->deskripsi}}"></option>
+                                        @else --}}
+                                            <option value="{{$data->kode}}" label="{{$data->deskripsi}}"></option>
+                                        {{-- @endif --}}
                                     @endforeach
                                     </datalist>
                                 </div>

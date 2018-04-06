@@ -6,7 +6,9 @@
 
 @endsection
 
-
+@section('css')
+  {{-- <link rel="stylesheet" href="{{asset('/bootstrap-select/css/bootstrap-select.min.css')}}"> --}}
+@endsection
 
 @section('content')
 
@@ -39,7 +41,7 @@
 
                 <h1>
                     List Aset
-                    <a href="/bidang/cetak-kir" class="btn btn-success btn-sm">Cetak KIR</a>
+                    <a href="/bidang/pilih-ruangan" class="btn btn-success btn-sm">Cetak KIR</a>
                 </h1>
 
             </section>
@@ -115,6 +117,10 @@
                                         </table>
                                     </div>
                                 </div>
+                                <script>
+                                  
+                                  // lokasi();
+                                </script>
                             </div>
                         </div>
                     </div>
@@ -136,7 +142,7 @@
 
 
 @section('scripts')
-
+  
     <script>
         $(function() {
             var table_mesin = $('#table-mesin').DataTable({
@@ -223,8 +229,40 @@
             });
 
         });
+        function lokasi(){
+          var banyak = document.getElementsByName('lokasi_id').length;
+
+          for (var i = 0; i < banyak; i++) {
+            var lok = document.getElementsByName('lokasi_id')[i];
+            
+            while (lok.firstChild) {
+                lok.removeChild(lok.firstChild);
+            }
+            var z = document.createElement("option");
+            z.setAttribute("value", "");
+            z.setAttribute("label", "--pilih ruangan--");
+            lok.appendChild(z);
+
+            @foreach($koderuang as $key => $data)
+              var z = document.createElement("option");
+              z.setAttribute("value", "{{$data->id}}");
+              z.setAttribute("label", "{{$data->ruangan}}");
+              lok.appendChild(z);
+            @endforeach
+          
+          }
 
 
+        }
+
+        function idLokasi(){
+          var banyak = document.getElementById('lokasi_kir').options.length;
+            for (var i = 0; banyak ; i++) {
+                if (document.getElementById('lokasi').value == document.getElementById('lokasi_kir').options[i].value) {
+                    document.getElementsByName('lokasi_id').value = document.getElementById('lokasi_kir').options[i].label;
+                }
+            }
+        }
     </script>
 
 

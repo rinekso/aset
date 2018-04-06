@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Kir extends Model
 {
     protected $fillable = [
-    	'lokasi',
+    	'lokasi_id',
+        'lokasi',
     	'kode_barang',
     	'kategori_id',
     ];
@@ -18,6 +19,10 @@ class Kir extends Model
 
     public function asettetap(){
     	return $this->hasOne(Asettetap::class, 'kode_barang', 'kode_barang');
+    }
+
+    public function koderuang(){
+        return $this->belongsTo(Koderuang::class, 'lokasi_id', 'id');
     }
 
 }

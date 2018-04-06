@@ -14,8 +14,15 @@ class CreateKoderuangsTable extends Migration
     public function up()
     {
         Schema::create('koderuangs', function (Blueprint $table) {
-            $table->string('kode');
-            $table->string('deskripsi');
+            $table->increment('id');
+            $table->string('kepemilikan');
+            $table->string('provinsi');
+            $table->string('kabupaten');
+            $table->string('bidang');
+            $table->string('induk');
+            $table->string('unit');
+            $table->string('subunit');
+            $table->string('ruangan');
             $table->timestamp('updated_at')->useCurrent();
             $table->timestamp('created_at')->useCurrent();
 

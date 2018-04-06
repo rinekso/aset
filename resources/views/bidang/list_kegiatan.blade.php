@@ -44,6 +44,8 @@
                                             <th>Tahun Kegiatan</th>
                                             <th>Tanggal Dibuat</th>
                                             <th>Pengaju</th>
+                                            <th>Subunit</th>
+                                            <th>Unit</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -86,6 +88,8 @@
                   {data: 'tahun', name: 'tahun'},
                   {data: 'created_at', name: 'created_at'},
                   {data: 'user.name', name: 'user.name'},
+                  {data: 'profile.subunit.nama_subunit', nama: 'profile.subunit.nama_subunit'},
+                  {data: 'profile.unit.nama_unit', nama: 'profile.unit.nama_unit'},
                   {data: 'action', name: 'action'},
                 ],
             });

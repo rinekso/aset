@@ -35,6 +35,7 @@ class CreateMesinsTable extends Migration
             $table->text('keterangan')->nullable();
             $table->string('user_id');
             $table->string('kegiatan_id');
+            $table->integer('lokasi_id')->nullable();
             $table->timestamp('updated_at')->useCurrent();
             $table->timestamp('created_at')->useCurrent();
         });
