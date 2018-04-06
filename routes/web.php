@@ -117,7 +117,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/pilih-ruangan', 'BidangController@pilihRuangan')->name('.pilihRuangan');
         Route::get('/ruang/{id}', 'AjaxController@ruang')->name('.ruang');
         
-        Route::get('cetak-kir', 'ExcelController@cetakKir')->name('cetakKir');
+        Route::post('/cetak-kir', 'ExcelController@cetakKir')->name('cetakKir');
 
     });  
 });

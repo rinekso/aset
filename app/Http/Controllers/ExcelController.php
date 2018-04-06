@@ -5,20 +5,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use App\Mesin;
+use App\Asettetap;
+use App\Koderuang;
+use App\Kir;
+use App\Unit;
 
 class ExcelController extends Controller
 {
-    public function cetakKir(){
+    public function cetakKir(Request $request){
 
 		$spreadsheet = new Spreadsheet();
 		
 		$spreadsheet->getDefaultStyle()
 				    ->getFont()
-				    ->setName('Arial')
+				    ->setName('Arial Narrow')
 				    ->setSize(9);
 
 		$sheet = $spreadsheet->getActiveSheet();
 		
+		$sheet->getPageSetup()->setPaperSize('A5');
 		$sheet->getPageMargins()->setTop(0.511);
 		$sheet->getPageMargins()->setRight(0.196);
 		$sheet->getPageMargins()->setLeft(0.196);
@@ -26,22 +32,39 @@ class ExcelController extends Controller
 
 
 
-		$sheet->getColumnDimension('A')->setWidth(34/7);
-		$sheet->getColumnDimension('B')->setWidth(180/7);
-		$sheet->getColumnDimension('C')->setWidth(14/7);
-		$sheet->getColumnDimension('D')->setWidth(89/7);
-		$sheet->getColumnDimension('E')->setWidth(40/7);
-		$sheet->getColumnDimension('F')->setWidth(77/7);
-		$sheet->getColumnDimension('G')->setWidth(39/7);
-		$sheet->getColumnDimension('H')->setWidth(78/7);
-		$sheet->getColumnDimension('I')->setWidth(45/7);
-		$sheet->getColumnDimension('J')->setWidth(50/7);
-		$sheet->getColumnDimension('K')->setWidth(33/7);
-		$sheet->getColumnDimension('L')->setWidth(33/7);
-		$sheet->getColumnDimension('M')->setWidth(33/7);
-		$sheet->getColumnDimension('N')->setWidth(55/7);
+		$sheet->getColumnDimension('A')->setAutoSize(false)->setWidth(34/5);
+		$sheet->getColumnDimension('B')->setAutoSize(false)->setWidth(180/5);
+		$sheet->getColumnDimension('C')->setAutoSize(false)->setWidth(14/5);
+		$sheet->getColumnDimension('D')->setAutoSize(false)->setWidth(89/5);
+		$sheet->getColumnDimension('E')->setAutoSize(false)->setWidth(40/5);
+		$sheet->getColumnDimension('F')->setAutoSize(false)->setWidth(77/5);
+		$sheet->getColumnDimension('G')->setAutoSize(false)->setWidth(39/5);
+		$sheet->getColumnDimension('H')->setAutoSize(false)->setWidth(78/5);
+		$sheet->getColumnDimension('I')->setAutoSize(false)->setWidth(45/5);
+		$sheet->getColumnDimension('J')->setAutoSize(false)->setWidth(50/5);
+		$sheet->getColumnDimension('K')->setAutoSize(false)->setWidth(33/5);
+		$sheet->getColumnDimension('L')->setAutoSize(false)->setWidth(33/5);
+		$sheet->getColumnDimension('M')->setAutoSize(false)->setWidth(33/5);
+		$sheet->getColumnDimension('N')->setAutoSize(false)->setWidth(55/5);
+		// $sheet->getColumnDimension('A')->setAutoSize(false)->setWidth(34/5);
+		// $sheet->getColumnDimension('B')->setAutoSize(false)->setWidth(26.71);
+		// $sheet->getColumnDimension('C')->setAutoSize(false)->setWidth(3);
+		// $sheet->getColumnDimension('D')->setAutoSize(false)->setWidth(13.71);
+		// $sheet->getColumnDimension('E')->setAutoSize(false)->setWidth(6.71);
+		// $sheet->getColumnDimension('F')->setAutoSize(false)->setWidth(12);
+		// $sheet->getColumnDimension('G')->setAutoSize(false)->setWidth(6.57);
+		// $sheet->getColumnDimension('H')->setAutoSize(false)->setWidth(12.14);
+		// $sheet->getColumnDimension('I')->setAutoSize(false)->setWidth(7.43);
+		// $sheet->getColumnDimension('J')->setAutoSize(false)->setWidth(8.14);
+		// $sheet->getColumnDimension('K')->setAutoSize(false)->setWidth(5.71);
+		// $sheet->getColumnDimension('L')->setAutoSize(false)->setWidth(5.71);
+		// $sheet->getColumnDimension('M')->setAutoSize(false)->setWidth(5.71);
+		// $sheet->getColumnDimension('N')->setAutoSize(false)->setWidth(8.86);
 
 
+		$ruang = Koderuang::find($request->ruang);
+		$unit_id = (int)$ruang->unit;
+		$unit = Unit::find($unit_id)->nama_unit;
 
 		$sheet->mergeCells('A1:N1')
 			->setCellValue('A1', 'KARTU INVENTARIS RUANGAN (KIR)');
@@ -60,7 +83,7 @@ class ExcelController extends Controller
 
 		$sheet->setCellValue('A5', 'UNIT')
 			->setCellValue('C5', ':')
-			->setCellValue('D5', '................................');
+			->setCellValue('D5', $unit);
 
 		$sheet->setCellValue('A6', 'ORGANISASI PERANGKAT DAERAH')
 			->setCellValue('C6', ':')
@@ -68,7 +91,7 @@ class ExcelController extends Controller
 
 		$sheet->setCellValue('A7', 'RUANGAN')
 			->setCellValue('C7', ':')
-			->setCellValue('D7', '.................................');
+			->setCellValue('D7', $ruang->ruangan);
 
 
 		// table
@@ -139,6 +162,25 @@ class ExcelController extends Controller
 			->setCellValue('C13', '3');	
 
 
+		$barissekarang = 14;
+
+		for ($i = 0 ; $i < count($request->barang); $i++) {
+			$row = $barissekarang + $i; 
+			$mesin = Mesin::where('kode_barang', $request->barang[$i])->first();
+
+			$sheet->setCellValue('A'.$row, $i+1)
+				->setCellValue('B'.$row, $mesin->nama_barang)
+				->mergeCells('C'.$row.':D'.$row)->setCellValue('C'.$row, $mesin->merk)
+				->setCellValue('E'.$row, $mesin->ukuran)
+				->setCellValue('F'.$row, $mesin->bahan)
+				->setCellValue('G'.$row, $mesin->tahun_pembelian)
+				->setCellValue('H'.$row, $mesin->kode_barang)
+				->setCellValue('I'.$row, $mesin->jumlah)
+				->setCellValue('J'.$row, $mesin->harga_satuan)
+				->setCellValue('N'.$row, $mesin->keterangan);
+		}
+
+
 		$styleArray = [
 		    'borders' => [
 		        'top' => [
@@ -167,5 +209,9 @@ class ExcelController extends Controller
 		$writer->save(storage_path('kir.xlsx'));
 
 		return response()->download(storage_path('kir.xlsx'));
+    }
+
+    public function cetakKir2(Request $request){
+    	return $request->barang[0];
     }
 }

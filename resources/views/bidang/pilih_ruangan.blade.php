@@ -59,7 +59,7 @@
                                         <div class="form-group">
                                             <label>Ruangan</label>
                                             <select class="form-control" id="ruang" name="ruang">
-                                                    <option>--pilih salah satu---</option>
+                                                    <option value="0">--pilih salah satu---</option>
                                                 @foreach($ruang as $key => $data)
                                                     <option value="{{$data->id}}">{{$data->ruangan}}</option>
                                                 @endforeach    
@@ -69,7 +69,6 @@
                                     <div class="col-md-8"></div>
                                 </div>
                                 <div class="form-group">
-                                <label>Pilih Barang</label>
                                     <table class="table">
                                         <thead>
                                             <tr>
@@ -100,7 +99,7 @@
                                     </table>
                                 </div>    
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary" name="submitButton" value="cetak"><i class="fa fa-print"></i> Cetak KIR</button> 
+                                    <button type="submit" class="btn btn-primary hidden" id="submitButton" name="submitButton" value="cetak"><i class="fa fa-print"></i> Cetak KIR</button> 
                                 </div>
                             </form>
                         </div>
@@ -139,10 +138,17 @@
                     console.log(data);
                     $('#barang').empty();
                     $.each(data, function(index, element){
-                        $('#barang').append("<tr><td>"+element.nama_barang+"</td><td>"+element.kode_barang+"</td></tr>")
+                        $('#barang').append("<tr><td><input name='barang[]' hidden value='"+element.kode_barang+"'>"+element.nama_barang+"</td><td>"+element.kode_barang+"</td></tr>")
                     });
 
                 });
+
+                if (document.getElementById('ruang').value == 0) {
+                    document.getElementById('submitButton').classList.add('hidden');
+                } else {
+                    document.getElementById('submitButton').classList.remove('hidden');
+                }
+
             });
         });
 

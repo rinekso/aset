@@ -23,4 +23,8 @@ class Unit extends Model
     public function induk(){
     	return $this->belongsTo(Induk::class);
     }
+
+    public function koderuang(){
+        return $this->hasMany(Koderuang::class, 'id', 'unit');
+    }
 }
